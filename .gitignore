@@ -1,0 +1,23 @@
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+
+# Variables de entorno (secretos)
+.env
+.env.*
+!.env.example
+
+# Prisma
+backend/src/generated/
+
+# Editor / SO
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+
+# Archivos temporales de Word
+~$*.docx

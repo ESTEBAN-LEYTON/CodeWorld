@@ -1,0 +1,204 @@
+:root {
+  --fondo: #f4f6fb;
+  --superficie: #ffffff;
+  --texto: #1f2440;
+  --texto-suave: #5b6185;
+  --primario: #4f46e5;
+  --ok: #16a34a;
+  --error: #dc2626;
+  --pared: #334155;
+  --camino: #e2e8f0;
+  --borde: #d8dcea;
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  color: var(--texto);
+  background: var(--fondo);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+button {
+  font: inherit;
+  padding: 0.5rem 1rem;
+  border-radius: 0.6rem;
+  border: 1px solid var(--borde);
+  background: var(--superficie);
+  color: var(--texto);
+  cursor: pointer;
+}
+
+button.primario {
+  background: var(--primario);
+  border-color: var(--primario);
+  color: #fff;
+  font-weight: 600;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.barra {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 1rem;
+  background: var(--superficie);
+  border-bottom: 1px solid var(--borde);
+  flex-wrap: wrap;
+}
+
+.barra h1 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: var(--primario);
+}
+
+.niveles {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.nivel {
+  width: 2.2rem;
+  padding: 0.3rem 0;
+}
+
+.nivel.hecho {
+  background: #dcfce7;
+  border-color: var(--ok);
+}
+
+.nivel.activo {
+  outline: 3px solid var(--primario);
+}
+
+.xp {
+  margin-left: auto;
+  font-weight: 700;
+}
+
+.contenido {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(280px, 380px) 1fr;
+  min-height: 0;
+}
+
+.panel-juego {
+  padding: 1rem;
+  overflow-y: auto;
+  border-right: 1px solid var(--borde);
+}
+
+.panel-juego h2 {
+  margin: 0 0 0.3rem;
+}
+
+.enunciado {
+  color: var(--texto-suave);
+  margin-top: 0;
+}
+
+.panel-editor,
+.editor {
+  height: 100%;
+  min-height: 360px;
+}
+
+.laberinto {
+  display: grid;
+  gap: 2px;
+  max-width: 340px;
+  margin: 1rem 0;
+}
+
+.celda {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border-radius: 4px;
+  font-size: 1.6rem;
+}
+
+.pared {
+  background: var(--pared);
+}
+
+.camino {
+  background: var(--camino);
+}
+
+.meta {
+  color: #eab308;
+}
+
+.robot {
+  color: var(--primario);
+  transition: transform 0.2s;
+}
+
+.robot.chocado {
+  color: var(--error);
+}
+
+.acciones {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.feedback {
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  border-radius: 0.6rem;
+  border-left: 5px solid;
+}
+
+.feedback p {
+  margin: 0 0 0.5rem;
+}
+
+.feedback.ok {
+  background: #dcfce7;
+  border-color: var(--ok);
+}
+
+.feedback.error {
+  background: #fee2e2;
+  border-color: var(--error);
+}
+
+.pista {
+  font-style: italic;
+  color: var(--texto-suave);
+}
+
+@media (max-width: 720px) {
+  .contenido {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 60vh;
+  }
+
+  .panel-juego {
+    border-right: none;
+    border-bottom: 1px solid var(--borde);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .robot {
+    transition: none;
+  }
+}

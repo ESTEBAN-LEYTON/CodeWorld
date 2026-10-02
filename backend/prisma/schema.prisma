@@ -1,0 +1,104 @@
+// Modelo relacional de CodeWorld (Figura 4 del informe).
+// Principio Zero-Data (Ley N.° 19.628): ALUMNO no guarda nombre real, correo ni biometría.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Tutor {
+  id                 String           @id @default(uuid()) @db.Uuid
+  username           String           @unique
+  passwordHash       String           @map("password_hash")
+  twoFactorEnabled   Boolean          @default(false) @map("two_factor_enabled")
+  /// Teléfono o correo verificado del adulto, usado para enviar el segundo factor.
+  contactoVerificado String           @map("contacto_verificado")
+  createdAt          DateTime         @default(now()) @map("created_at")
+  alumnos            Alumno[]
+  consentimientos    Consentimiento[]
+
+  @@map("tutor")
+}
+
+model Alumno {
+  id             String          @id @default(uuid()) @db.Uuid
+  tutorId        String          @map("tutor_id") @db.Uuid
+  username       String          @unique
+  /// Identificador anónimo autogenerado; nunca se deriva de datos personales.
+  anonId         String          @unique @default(uuid()) @map("anon_id")
+  edad           Int
+  createdAt      DateTime        @default(now()) @map("created_at")
+  tutor          Tutor           @relation(fields: [tutorId], references: [id], onDelete: Cascade)
+  progresos      Progreso[]
+  consentimiento Consentimiento?
+
+  @@map("alumno")
+}
+
+/// Registro inmutable del consentimiento, disociado de la actividad del alumno.
+model Consentimiento {
+  id                 String   @id @default(uuid()) @db.Uuid
+  tutorId            String   @map("tutor_id") @db.Uuid
+  alumnoId           String   @unique @map("alumno_id") @db.Uuid
+  otorgadoEn         DateTime @default(now()) @map("otorgado_en")
+  metodoVerificacion String   @map("metodo_verificacion")
+  tutor              Tutor    @relation(fields: [tutorId], references: [id], onDelete: Restrict)
+  alumno             Alumno   @relation(fields: [alumnoId], references: [id], onDelete: Restrict)
+
+  @@map("consentimiento")
+}
+
+model Nivel {
+  id           String     @id @default(uuid()) @db.Uuid
+  orden        Int        @unique
+  titulo       String
+  descripcion  String
+  xpRecompensa Int        @map("xp_recompensa")
+  desafios     Desafio[]
+  progresos    Progreso[]
+
+  @@map("nivel")
+}
+
+model Desafio {
+  id                String           @id @default(uuid()) @db.Uuid
+  nivelId           String           @map("nivel_id") @db.Uuid
+  enunciado         String
+  /// Lista de tipos de bloque Blockly permitidos, separados por coma.
+  bloquesPermitidos String           @map("bloques_permitidos")
+  xpRecompensa      Int              @map("xp_recompensa")
+  nivel             Nivel            @relation(fields: [nivelId], references: [id], onDelete: Cascade)
+  guias             GuiaCorrectiva[]
+
+  @@map("desafio")
+}
+
+model GuiaCorrectiva {
+  id          String  @id @default(uuid()) @db.Uuid
+  desafioId   String  @map("desafio_id") @db.Uuid
+  /// Estado de error del intérprete: choque, incompleto, limite_pasos, vacio.
+  patronError String  @map("patron_error")
+  mensaje     String
+  orden       Int
+  desafio     Desafio @relation(fields: [desafioId], references: [id], onDelete: Cascade)
+
+  @@map("guia_correctiva")
+}
+
+model Progreso {
+  id           String    @id @default(uuid()) @db.Uuid
+  alumnoId     String    @map("alumno_id") @db.Uuid
+  nivelId      String    @map("nivel_id") @db.Uuid
+  completadoEn DateTime? @map("completado_en")
+  xpObtenido   Int       @default(0) @map("xp_obtenido")
+  intentos     Int       @default(0)
+  alumno       Alumno    @relation(fields: [alumnoId], references: [id], onDelete: Cascade)
+  nivel        Nivel     @relation(fields: [nivelId], references: [id], onDelete: Cascade)
+
+  @@unique([alumnoId, nivelId])
+  @@map("progreso")
+}

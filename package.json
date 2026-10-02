@@ -1,0 +1,12 @@
+{
+  "name": "codeworld",
+  "private": true,
+  "description": "Plataforma web para enseñar programación con bloques a jóvenes de 9 a 15 años",
+  "scripts": {
+    "install:all": "npm install --prefix frontend && npm install --prefix backend",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "dev:backend": "npm run dev --prefix backend",
+    "test": "npm test --prefix frontend && npm test --prefix backend",
+    "build": "npm run build --prefix frontend && npm run build --prefix backend"
+  }
+}
