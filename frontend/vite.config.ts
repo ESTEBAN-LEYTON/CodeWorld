@@ -1,7 +1,12 @@
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
-// https://vite.dev/config/
+// En desarrollo, /api se redirige al backend: el navegador ve un solo origen.
 export default defineConfig({
   plugins: [react()],
+  server: {
+    proxy: {
+      '/api': process.env.API_PROXY ?? 'http://localhost:3000',
+    },
+  },
 })

@@ -6,13 +6,16 @@ interface Props {
   laberinto: Laberinto
   robot: Posicion
   chocado: boolean
+  /** Versión pequeña para las explicaciones de bloques. */
+  mini?: boolean
 }
 
-export function MazeView({ laberinto, robot, chocado }: Props) {
+export function MazeView({ laberinto, robot, chocado, mini = false }: Props) {
   const columnas = laberinto.celdas[0].length
   return (
     <div
-      className="laberinto"
+      className={`laberinto ${mini ? 'mini' : ''}`}
+      data-recorrido={mini ? undefined : 'laberinto'}
       style={{ gridTemplateColumns: `repeat(${columnas}, 1fr)` }}
       role="img"
       aria-label="Laberinto del desafío"

@@ -9,6 +9,7 @@
   --pared: #334155;
   --camino: #e2e8f0;
   --borde: #d8dcea;
+  --aviso: #d97706;
   font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
   color: var(--texto);
   background: var(--fondo);
@@ -60,15 +61,31 @@ button:disabled {
   flex-wrap: wrap;
 }
 
-.barra h1 {
+.logo-barra {
   margin: 0;
   font-size: 1.3rem;
   color: var(--primario);
 }
 
-.niveles {
+.mapa {
   display: flex;
-  gap: 0.4rem;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.grupo-nivel {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--borde);
+  border-radius: 0.8rem;
+}
+
+.nombre-nivel {
+  font-size: 0.8rem;
+  color: var(--texto-suave);
+  margin-right: 0.2rem;
 }
 
 .nivel {
@@ -86,8 +103,17 @@ button:disabled {
 }
 
 .xp {
-  margin-left: auto;
   font-weight: 700;
+}
+
+.espacio {
+  flex: 1;
+}
+
+.estado-alumno {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
 }
 
 .contenido {
@@ -180,12 +206,604 @@ button:disabled {
   border-color: var(--error);
 }
 
+.feedback.reintento {
+  background: #fef3c7;
+  border-color: var(--aviso);
+}
+
+.feedback .medicion {
+  margin: 0.4rem 0 0;
+  font-size: 0.8rem;
+  color: var(--texto-suave);
+}
+
 .pista {
   font-style: italic;
   color: var(--texto-suave);
 }
 
+.usuario {
+  font-weight: 600;
+}
+
+.rol {
+  color: var(--texto-suave);
+}
+
+.rol + .usuario {
+  margin-left: auto;
+}
+
+.estado-sync {
+  font-size: 0.85rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 1rem;
+}
+
+.estado-sync.sincronizado {
+  border-color: var(--ok);
+  color: var(--ok);
+}
+
+.estado-sync.pendiente,
+.estado-sync.sin-conexion {
+  border-color: var(--aviso);
+  color: var(--aviso);
+}
+
+.aviso {
+  margin: 0;
+  padding: 0.4rem 1rem;
+  background: #fef3c7;
+  color: #92400e;
+  font-size: 0.9rem;
+}
+
+/* Pantallas de acceso */
+
+.centrado {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.tarjeta {
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 900px;
+}
+
+.portada {
+  max-width: 560px;
+  text-align: center;
+}
+
+.logo {
+  margin: 0;
+  font-size: 2.6rem;
+  color: var(--primario);
+}
+
+.lema,
+.subtitulo {
+  color: var(--texto-suave);
+}
+
+.opciones {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.opcion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 1.2rem;
+}
+
+.opcion:hover {
+  border-color: var(--primario);
+}
+
+.opcion .icono {
+  font-size: 2.2rem;
+}
+
+.opcion small {
+  color: var(--texto-suave);
+}
+
+.formulario {
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.formulario h1 {
+  margin: 0;
+}
+
+.formulario .subtitulo {
+  margin: 0;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.9rem;
+  flex: 1;
+}
+
+.campo input {
+  font: inherit;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--borde);
+  border-radius: 0.5rem;
+}
+
+.campo input:focus {
+  outline: 2px solid var(--primario);
+  border-color: var(--primario);
+}
+
+.error-form {
+  margin: 0;
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.5rem;
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.enlace {
+  border: none;
+  background: none;
+  padding: 0;
+  color: var(--primario);
+  text-decoration: underline;
+}
+
+.volver {
+  align-self: flex-start;
+}
+
+.pie-form {
+  margin: 0;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* Panel del tutor */
+
+.pagina {
+  min-height: 100vh;
+}
+
+.panel-tutor {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  justify-items: center;
+}
+
+.titulo-seccion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.tabla th,
+.tabla td {
+  text-align: left;
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--borde);
+}
+
+.tabla tr.seleccionado {
+  background: #eef2ff;
+}
+
+.avance {
+  position: relative;
+  height: 1.3rem;
+  min-width: 120px;
+  background: var(--camino);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.avance-relleno {
+  height: 100%;
+  background: var(--ok);
+}
+
+.avance span {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.registro-alumno {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px dashed var(--borde);
+  border-radius: 0.8rem;
+}
+
+.registro-alumno .subtitulo {
+  margin: 0;
+}
+
+.fila-campos {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.consentimiento {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  font-size: 0.9rem;
+}
+
+.consentimiento input {
+  margin-top: 0.2rem;
+}
+
+.registro-alumno .primario {
+  align-self: flex-start;
+}
+
+.nivel-detalle h3 {
+  margin: 1rem 0 0.4rem;
+  font-size: 1rem;
+}
+
+.nivel-detalle ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nivel-detalle li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 0.4rem;
+}
+
+.nivel-detalle li.hecho {
+  background: #dcfce7;
+}
+
+.nivel-detalle .dato {
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+}
+
+/* Menú principal del alumno */
+
+.menu-alumno {
+  padding: 1.2rem;
+  max-width: 1150px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.saludo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.saludo h2 {
+  margin: 0;
+}
+
+.saludo .subtitulo {
+  margin: 0.3rem 0 0;
+}
+
+button.grande {
+  font-size: 1.1rem;
+  padding: 0.75rem 1.4rem;
+}
+
+.niveles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.tarjeta-nivel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-top: 6px solid var(--primario);
+  border-radius: 1rem;
+  padding: 1.1rem;
+}
+
+.tarjeta-nivel.completo {
+  border-top-color: var(--ok);
+}
+
+.tarjeta-nivel h3,
+.tarjeta-nivel p {
+  margin: 0;
+}
+
+.tarjeta-nivel > .primario {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+.etiqueta-nivel {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--primario);
+}
+
+.bloques-nivel {
+  font-size: 0.85rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  align-items: center;
+}
+
+.chip-bloque,
+.nombre-bloque {
+  background: #d1fae5;
+  color: #065f46;
+  border-radius: 1rem;
+  padding: 0.1rem 0.6rem;
+  font-weight: 600;
+}
+
+.lista-desafios {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.lista-desafios button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: left;
+}
+
+.lista-desafios button small {
+  margin-left: auto;
+  color: var(--texto-suave);
+}
+
+.lista-desafios button.hecho {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+.miga {
+  margin: 0 0 0.3rem;
+  font-size: 0.85rem;
+  color: var(--primario);
+  font-weight: 600;
+}
+
+.ayuda-bloques {
+  margin-top: 0.8rem;
+}
+
+.feedback .acciones {
+  flex-wrap: wrap;
+}
+
+/* Ventana modal y explicación de bloques */
+
+.fondo-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgb(15 23 42 / 0.55);
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.modal {
+  background: var(--superficie);
+  border-radius: 1rem;
+  padding: 1.2rem 1.4rem;
+  width: min(760px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal h2 {
+  margin: 0;
+}
+
+.cerrar {
+  border: none;
+  font-size: 1.2rem;
+  padding: 0.2rem 0.5rem;
+}
+
+.cuerpo-modal {
+  display: grid;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.pie-modal {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.bloque-demo {
+  display: grid;
+  gap: 0.8rem;
+  padding: 1rem;
+  border: 1px solid var(--borde);
+  border-radius: 0.8rem;
+}
+
+.demo-texto h3 {
+  margin: 0 0 0.4rem;
+}
+
+.demo-texto p {
+  margin: 0.2rem 0;
+}
+
+.consejo {
+  color: var(--texto-suave);
+}
+
+.demo-visual {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  align-items: center;
+}
+
+.demo-bloques {
+  height: 250px;
+  border-radius: 0.6rem;
+  overflow: hidden;
+  border: 1px solid var(--borde);
+}
+
+.laberinto.mini {
+  width: 200px;
+  margin: 0;
+}
+
+.laberinto.mini .celda {
+  font-size: 1.1rem;
+}
+
+/* Tutorial guiado */
+
+.recorrido {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+}
+
+.foco {
+  position: fixed;
+  border-radius: 0.8rem;
+  box-shadow: 0 0 0 9999px rgb(15 23 42 / 0.6);
+  outline: 3px solid #facc15;
+  transition: all 0.25s;
+  pointer-events: none;
+}
+
+.foco-vacio {
+  position: fixed;
+  inset: 0;
+  background: rgb(15 23 42 / 0.6);
+}
+
+.tarjeta-recorrido {
+  position: fixed;
+  width: min(340px, calc(100vw - 24px));
+  background: var(--superficie);
+  border-radius: 0.9rem;
+  padding: 1rem 1.1rem;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.25);
+}
+
+.tarjeta-recorrido h3 {
+  margin: 0 0 0.4rem;
+}
+
+.tarjeta-recorrido p {
+  margin: 0 0 0.8rem;
+}
+
+.tarjeta-recorrido .contador {
+  margin: 0 0 0.2rem;
+  font-size: 0.8rem;
+  color: var(--texto-suave);
+}
+
+.tarjeta-recorrido .acciones {
+  align-items: center;
+}
+
+.como-empezar {
+  margin-top: 1rem;
+  padding: 1rem 1.2rem;
+  background: #eef2ff;
+  border-radius: 0.8rem;
+}
+
+.como-empezar h3 {
+  margin: 0 0 0.4rem;
+}
+
+.como-empezar ol {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.3rem;
+}
+
 @media (max-width: 720px) {
+  .demo-visual {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .demo-bloques {
+    width: 100%;
+  }
+
+  .opciones {
+    grid-template-columns: 1fr;
+  }
+
+  .tabla th:nth-child(2),
+  .tabla td:nth-child(2) {
+    display: none;
+  }
+
   .contenido {
     grid-template-columns: 1fr;
     grid-template-rows: auto 60vh;

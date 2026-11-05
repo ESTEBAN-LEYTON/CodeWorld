@@ -1,58 +1,76 @@
 import { describe, expect, it } from 'vitest'
-import { ejecutar } from './interpreter'
-import { DESAFIOS } from './levels'
-import type { Instruccion } from './types'
+import { NIVELES } from '../../../backend/prisma/contenido'
+import { ejecutar, PASOS_MAXIMOS } from './interpreter'
+import type { Instruccion, Laberinto } from './types'
 
 const A: Instruccion = { tipo: 'avanzar' }
 const DER: Instruccion = { tipo: 'girar', sentido: 'derecha' }
 const IZQ: Instruccion = { tipo: 'girar', sentido: 'izquierda' }
 
-const lab = (id: string) => DESAFIOS.find((d) => d.id === id)!.laberinto
+// El contenido es el mismo que el seed carga en PostgreSQL.
+const DESAFIOS = NIVELES.flatMap((n) => n.desafios)
+const lab = (id: string) => DESAFIOS.find((d) => d.id === id)!.laberinto as Laberinto
 
-// Una solución de referencia por desafío: garantiza que todos son resolubles.
+// Una solución de referencia por desafío: garantiza que todos se pueden resolver con sus bloques.
 const SOLUCIONES: Record<string, Instruccion[]> = {
-  'inicial-1': [A, A],
-  'inicial-2': [A, A, DER, A, A],
-  'inicial-3': [{ tipo: 'repetir', veces: 6, cuerpo: [A] }],
-  'inicial-4': [{ tipo: 'repetirHastaMeta', cuerpo: [A, DER, A, IZQ] }],
-  'inicial-5': [{ tipo: 'repetirHastaMeta', cuerpo: [{ tipo: 'siCaminoAdelante', entonces: [A], sino: [DER] }] }],
+  'secuencias-1': [A, A],
+  'secuencias-2': [A, A, DER, A, A],
+  'ciclos-1': [{ tipo: 'repetir', veces: 6, cuerpo: [A] }],
+  'ciclos-2': [{ tipo: 'repetirHastaMeta', cuerpo: [A, DER, A, IZQ] }],
+  'condiciones-1': [{ tipo: 'repetirHastaMeta', cuerpo: [{ tipo: 'siCaminoAdelante', entonces: [A], sino: [DER] }] }],
+  'condiciones-2': [{ tipo: 'repetirHastaMeta', cuerpo: [{ tipo: 'siCaminoAdelante', entonces: [A], sino: [IZQ] }] }],
 }
 
-describe('BlocklyInterpreter.ejecutar', () => {
-  it.each(DESAFIOS.map((d) => d.id))('el desafío %s tiene solución', (id) => {
-    expect(ejecutar(SOLUCIONES[id], lab(id)).estado).toBe('exito')
+const tiposUsados = (p: Instruccion[]): string[] =>
+  p.flatMap((i) => {
+    const propios = { avanzar: 'cw_avanzar', girar: 'cw_girar', repetir: 'cw_repetir', repetirHastaMeta: 'cw_repetir_hasta_meta', siCaminoAdelante: 'cw_si_camino' }[i.tipo]
+    const hijos = 'cuerpo' in i ? i.cuerpo : 'entonces' in i ? [...i.entonces, ...i.sino] : []
+    return [propios, ...tiposUsados(hijos)]
   })
 
-  it('programa vacío', () => {
-    expect(ejecutar([], lab('inicial-1')).estado).toBe('vacio')
+describe('Interpretador.ejecutar', () => {
+  it.each(DESAFIOS.map((d) => d.id))('el desafío %s tiene solución con sus bloques permitidos', (id) => {
+    const d = DESAFIOS.find((x) => x.id === id)!
+    expect(SOLUCIONES[id], `falta solución de referencia para ${id}`).toBeDefined()
+    expect(d.bloquesPermitidos).toEqual(expect.arrayContaining(tiposUsados(SOLUCIONES[id])))
+    const r = ejecutar(SOLUCIONES[id], lab(id))
+    expect(r).toMatchObject({ estado: 'EXITO', patronError: null })
   })
 
-  it('detecta choque con pared y conserva la traza hasta el choque', () => {
-    const r = ejecutar([A, A, A, A], lab('inicial-2'))
-    expect(r.estado).toBe('choque')
-    expect(r.trace.at(-1)).toMatchObject({ fila: 1, col: 3 })
+  it('el límite de pasos del diseño es 200', () => {
+    expect(PASOS_MAXIMOS).toBe(200)
   })
 
-  it('detecta programa incompleto', () => {
-    expect(ejecutar([A], lab('inicial-1')).estado).toBe('incompleto')
+  it('programa vacío: ERROR con patrón «vacio»', () => {
+    expect(ejecutar([], lab('secuencias-1'))).toMatchObject({ estado: 'ERROR', patronError: 'vacio' })
+  })
+
+  it('choque con pared: ERROR y conserva la traza hasta el choque', () => {
+    const r = ejecutar([A, A, A, A], lab('secuencias-2'))
+    expect(r).toMatchObject({ estado: 'ERROR', patronError: 'choque' })
+    expect(r.traza.at(-1)).toMatchObject({ fila: 1, col: 3 })
+  })
+
+  it('programa que no llega a la meta: REINTENTO con patrón «incompleto»', () => {
+    expect(ejecutar([A], lab('secuencias-1'))).toMatchObject({ estado: 'REINTENTO', patronError: 'incompleto' })
   })
 
   it('corta ciclos infinitos con el límite de pasos', () => {
-    const r = ejecutar([{ tipo: 'repetirHastaMeta', cuerpo: [DER] }], lab('inicial-1'))
-    expect(r.estado).toBe('limite_pasos')
+    const r = ejecutar([{ tipo: 'repetirHastaMeta', cuerpo: [DER] }], lab('secuencias-1'))
+    expect(r).toMatchObject({ estado: 'ERROR', patronError: 'limite_pasos', pasos: PASOS_MAXIMOS })
   })
 
   it('un ciclo vacío no cuelga el navegador', () => {
-    expect(ejecutar([{ tipo: 'repetirHastaMeta', cuerpo: [] }], lab('inicial-1')).estado).toBe('limite_pasos')
+    expect(ejecutar([{ tipo: 'repetirHastaMeta', cuerpo: [] }], lab('secuencias-1')).patronError).toBe('limite_pasos')
   })
 
   it('se detiene al llegar a la meta aunque sobren bloques', () => {
-    expect(ejecutar([A, A, A, A], lab('inicial-1')).estado).toBe('exito')
+    expect(ejecutar([A, A, A, A], lab('secuencias-1')).estado).toBe('EXITO')
   })
 
-  it('cada error entrega una guía correctiva no vacía', () => {
-    for (const p of [[], [A], [A, A, A, A]] as Instruccion[][]) {
-      expect(ejecutar(p, lab('inicial-2')).mensaje.length).toBeGreaterThan(20)
-    }
+  it('evalúa muy por debajo de 300 ms (RNF01)', () => {
+    const t0 = performance.now()
+    for (let i = 0; i < 100; i++) ejecutar([{ tipo: 'repetirHastaMeta', cuerpo: [DER] }], lab('condiciones-1'))
+    expect((performance.now() - t0) / 100).toBeLessThan(300)
   })
 })

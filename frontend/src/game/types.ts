@@ -1,4 +1,4 @@
-// Tipos del dominio del juego: laberinto, programa y resultado de ejecución.
+// Tipos del dominio (Figura 7 del informe): laberinto, programa, desafío y resultado de ejecución.
 
 export type Direccion = 'N' | 'E' | 'S' | 'O'
 
@@ -22,22 +22,52 @@ export type Instruccion =
   | { tipo: 'repetirHastaMeta'; cuerpo: Instruccion[] }
   | { tipo: 'siCaminoAdelante'; entonces: Instruccion[]; sino: Instruccion[] }
 
-export type Estado = 'exito' | 'choque' | 'incompleto' | 'limite_pasos' | 'vacio'
+export type Programa = Instruccion[]
 
-/** Value object del diagrama de clases (ResultadoEjecucion). */
+/** EXITO: llegó a la meta. REINTENTO: el programa corrió bien pero no llegó. ERROR: falló al ejecutarse. */
+export type EstadoResultado = 'EXITO' | 'REINTENTO' | 'ERROR'
+
+/** Coincide con GUIA_CORRECTIVA.patron_error en la base de datos. */
+export type PatronError = 'vacio' | 'choque' | 'incompleto' | 'limite_pasos'
+
+/** Única representación del resultado de una ejecución (value object). */
 export interface ResultadoEjecucion {
-  trace: Posicion[]
-  estado: Estado
+  estado: EstadoResultado
+  traza: Posicion[]
+  patronError: PatronError | null
+  pasos: number
+}
+
+export interface GuiaCorrectiva {
+  patronError: PatronError
   mensaje: string
+  orden: number
 }
 
 export interface Desafio {
   id: string
+  orden: number
   titulo: string
   enunciado: string
   laberinto: Laberinto
   bloquesPermitidos: string[]
-  xpRecompensa: number
   /** Máximo de bloques sugerido; superarlo no es error, solo una pista. */
-  bloquesOptimos?: number
+  bloquesOptimos: number | null
+  xpRecompensa: number
+  guias: GuiaCorrectiva[]
+}
+
+export interface Nivel {
+  id: string
+  orden: number
+  titulo: string
+  descripcion: string
+  desafios: Desafio[]
+}
+
+/** Registro de PROGRESO de un desafío (por desafío, no por nivel). */
+export interface Progreso {
+  desafioId: string
+  completadoEn: string
+  intentos: number
 }

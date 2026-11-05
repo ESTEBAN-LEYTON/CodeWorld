@@ -1,10 +1,9 @@
-import type { Direccion, Instruccion, Laberinto, Posicion, ResultadoEjecucion } from './types'
-import { guiaPara } from './feedback'
+import type { Direccion, Laberinto, PatronError, Posicion, Programa, ResultadoEjecucion } from './types'
 
-// BlocklyInterpreter: ejecuta el programa del alumno localmente sobre el laberinto.
-// El límite de pasos evita ciclos infinitos producidos por bloques mal formados.
+// Interpretador: ejecuta el programa del alumno localmente, en el navegador, sobre el laberinto.
+// pasosMaximos evita ciclos infinitos producidos por bloques mal formados (RNF05).
 
-export const LIMITE_DE_PASOS = 500
+export const PASOS_MAXIMOS = 200
 
 const ORDEN: Direccion[] = ['N', 'E', 'S', 'O']
 const DELTA: Record<Direccion, [number, number]> = {
@@ -22,6 +21,10 @@ export function buscar(lab: Laberinto, simbolo: string): { fila: number; col: nu
   throw new Error(`El laberinto no contiene '${simbolo}'`)
 }
 
+export function posicionInicial(lab: Laberinto): Posicion {
+  return { ...buscar(lab, 'I'), dir: lab.dirInicial }
+}
+
 function esCamino(lab: Laberinto, fila: number, col: number): boolean {
   const c = lab.celdas[fila]?.[col]
   return c !== undefined && c !== '#'
@@ -35,23 +38,28 @@ function girar(dir: Direccion, sentido: 'izquierda' | 'derecha'): Direccion {
 class Choque extends Error {}
 class LimiteExcedido extends Error {}
 
-export function ejecutar(programa: Instruccion[], lab: Laberinto, limite = LIMITE_DE_PASOS): ResultadoEjecucion {
-  const inicio = buscar(lab, 'I')
+export function ejecutar(programa: Programa, lab: Laberinto, pasosMaximos = PASOS_MAXIMOS): ResultadoEjecucion {
   const meta = buscar(lab, 'M')
-  let pos: Posicion = { ...inicio, dir: lab.dirInicial }
-  const trace: Posicion[] = [pos]
+  let pos = posicionInicial(lab)
+  const traza: Posicion[] = [pos]
   let pasos = 0
 
+  const resultado = (estado: ResultadoEjecucion['estado'], patronError: PatronError | null): ResultadoEjecucion => ({
+    estado,
+    traza,
+    patronError,
+    pasos: Math.min(pasos, pasosMaximos),
+  })
   const enMeta = () => pos.fila === meta.fila && pos.col === meta.col
   const caminoAdelante = () => {
     const [df, dc] = DELTA[pos.dir]
     return esCamino(lab, pos.fila + df, pos.col + dc)
   }
   const contarPaso = () => {
-    if (++pasos > limite) throw new LimiteExcedido()
+    if (++pasos > pasosMaximos) throw new LimiteExcedido()
   }
 
-  const correr = (bloque: Instruccion[]) => {
+  const correr = (bloque: Programa) => {
     for (const ins of bloque) {
       if (enMeta()) return
       contarPaso()
@@ -60,12 +68,12 @@ export function ejecutar(programa: Instruccion[], lab: Laberinto, limite = LIMIT
           if (!caminoAdelante()) throw new Choque()
           const [df, dc] = DELTA[pos.dir]
           pos = { ...pos, fila: pos.fila + df, col: pos.col + dc }
-          trace.push(pos)
+          traza.push(pos)
           break
         }
         case 'girar':
           pos = { ...pos, dir: girar(pos.dir, ins.sentido) }
-          trace.push(pos)
+          traza.push(pos)
           break
         case 'repetir':
           for (let i = 0; i < ins.veces && !enMeta(); i++) correr(ins.cuerpo)
@@ -83,17 +91,15 @@ export function ejecutar(programa: Instruccion[], lab: Laberinto, limite = LIMIT
     }
   }
 
-  if (programa.length === 0) return { trace, estado: 'vacio', mensaje: guiaPara('vacio') }
+  if (programa.length === 0) return resultado('ERROR', 'vacio')
 
   try {
     correr(programa)
   } catch (e) {
-    if (e instanceof Choque) return { trace, estado: 'choque', mensaje: guiaPara('choque') }
-    if (e instanceof LimiteExcedido) return { trace, estado: 'limite_pasos', mensaje: guiaPara('limite_pasos') }
+    if (e instanceof Choque) return resultado('ERROR', 'choque')
+    if (e instanceof LimiteExcedido) return resultado('ERROR', 'limite_pasos')
     throw e
   }
 
-  return enMeta()
-    ? { trace, estado: 'exito', mensaje: guiaPara('exito') }
-    : { trace, estado: 'incompleto', mensaje: guiaPara('incompleto') }
+  return enMeta() ? resultado('EXITO', null) : resultado('REINTENTO', 'incompleto')
 }

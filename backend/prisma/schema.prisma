@@ -1,5 +1,6 @@
-// Modelo relacional de CodeWorld (Figura 4 del informe).
+// Modelo relacional de CodeWorld (Figura 8 del informe).
 // Principio Zero-Data (Ley N.° 19.628): ALUMNO no guarda nombre real, correo ni biometría.
+// Progreso y XP se registran por DESAFIO; un nivel completo se calcula, no se almacena.
 
 generator client {
   provider = "prisma-client"
@@ -14,7 +15,7 @@ model Tutor {
   id                 String           @id @default(uuid()) @db.Uuid
   username           String           @unique
   passwordHash       String           @map("password_hash")
-  twoFactorEnabled   Boolean          @default(false) @map("two_factor_enabled")
+  twoFactorEnabled   Boolean          @default(true) @map("two_factor_enabled")
   /// Teléfono o correo verificado del adulto, usado para enviar el segundo factor.
   contactoVerificado String           @map("contacto_verificado")
   createdAt          DateTime         @default(now()) @map("created_at")
@@ -25,16 +26,18 @@ model Tutor {
 }
 
 model Alumno {
-  id             String          @id @default(uuid()) @db.Uuid
-  tutorId        String          @map("tutor_id") @db.Uuid
-  username       String          @unique
+  id              String           @id @default(uuid()) @db.Uuid
+  tutorId         String           @map("tutor_id") @db.Uuid
+  username        String           @unique
+  /// Clave definida por el tutor; solo se guarda su hash.
+  passwordHash    String           @map("password_hash")
   /// Identificador anónimo autogenerado; nunca se deriva de datos personales.
-  anonId         String          @unique @default(uuid()) @map("anon_id")
-  edad           Int
-  createdAt      DateTime        @default(now()) @map("created_at")
-  tutor          Tutor           @relation(fields: [tutorId], references: [id], onDelete: Cascade)
-  progresos      Progreso[]
-  consentimiento Consentimiento?
+  anonId          String           @unique @default(uuid()) @map("anon_id")
+  edad            Int
+  createdAt       DateTime         @default(now()) @map("created_at")
+  tutor           Tutor            @relation(fields: [tutorId], references: [id], onDelete: Cascade)
+  progresos       Progreso[]
+  consentimientos Consentimiento[]
 
   @@map("alumno")
 }
@@ -43,7 +46,7 @@ model Alumno {
 model Consentimiento {
   id                 String   @id @default(uuid()) @db.Uuid
   tutorId            String   @map("tutor_id") @db.Uuid
-  alumnoId           String   @unique @map("alumno_id") @db.Uuid
+  alumnoId           String   @map("alumno_id") @db.Uuid
   otorgadoEn         DateTime @default(now()) @map("otorgado_en")
   metodoVerificacion String   @map("metodo_verificacion")
   tutor              Tutor    @relation(fields: [tutorId], references: [id], onDelete: Restrict)
@@ -53,34 +56,41 @@ model Consentimiento {
 }
 
 model Nivel {
-  id           String     @id @default(uuid()) @db.Uuid
-  orden        Int        @unique
-  titulo       String
-  descripcion  String
-  xpRecompensa Int        @map("xp_recompensa")
-  desafios     Desafio[]
-  progresos    Progreso[]
+  id          String    @id
+  orden       Int       @unique
+  titulo      String
+  descripcion String
+  desafios    Desafio[]
 
   @@map("nivel")
 }
 
 model Desafio {
-  id                String           @id @default(uuid()) @db.Uuid
-  nivelId           String           @map("nivel_id") @db.Uuid
+  /// Identificador estable (p. ej. "inicial-1"), compartido con el progreso guardado sin conexión.
+  id                String           @id
+  nivelId           String           @map("nivel_id")
+  orden             Int
+  titulo            String
   enunciado         String
-  /// Lista de tipos de bloque Blockly permitidos, separados por coma.
-  bloquesPermitidos String           @map("bloques_permitidos")
+  /// Celdas del laberinto y dirección inicial del personaje: { celdas: string[], dirInicial }.
+  laberinto         Json
+  /// Tipos de bloque Blockly permitidos en la caja de herramientas.
+  bloquesPermitidos String[]         @map("bloques_permitidos")
+  /// Máximo de bloques sugerido; superarlo no es error, solo una pista.
+  bloquesOptimos    Int?             @map("bloques_optimos")
   xpRecompensa      Int              @map("xp_recompensa")
   nivel             Nivel            @relation(fields: [nivelId], references: [id], onDelete: Cascade)
   guias             GuiaCorrectiva[]
+  progresos         Progreso[]
 
+  @@unique([nivelId, orden])
   @@map("desafio")
 }
 
 model GuiaCorrectiva {
   id          String  @id @default(uuid()) @db.Uuid
-  desafioId   String  @map("desafio_id") @db.Uuid
-  /// Estado de error del intérprete: choque, incompleto, limite_pasos, vacio.
+  desafioId   String  @map("desafio_id")
+  /// Patrón de error del Interpretador: choque, incompleto, limite_pasos, vacio.
   patronError String  @map("patron_error")
   mensaje     String
   orden       Int
@@ -90,15 +100,16 @@ model GuiaCorrectiva {
 }
 
 model Progreso {
-  id           String    @id @default(uuid()) @db.Uuid
-  alumnoId     String    @map("alumno_id") @db.Uuid
-  nivelId      String    @map("nivel_id") @db.Uuid
-  completadoEn DateTime? @map("completado_en")
-  xpObtenido   Int       @default(0) @map("xp_obtenido")
-  intentos     Int       @default(0)
-  alumno       Alumno    @relation(fields: [alumnoId], references: [id], onDelete: Cascade)
-  nivel        Nivel     @relation(fields: [nivelId], references: [id], onDelete: Cascade)
+  id           String   @id @default(uuid()) @db.Uuid
+  alumnoId     String   @map("alumno_id") @db.Uuid
+  desafioId    String   @map("desafio_id")
+  completadoEn DateTime @map("completado_en")
+  /// Toma el valor de DESAFIO.xp_recompensa.
+  xpObtenido   Int      @map("xp_obtenido")
+  intentos     Int      @default(1)
+  alumno       Alumno   @relation(fields: [alumnoId], references: [id], onDelete: Cascade)
+  desafio      Desafio  @relation(fields: [desafioId], references: [id], onDelete: Cascade)
 
-  @@unique([alumnoId, nivelId])
+  @@unique([alumnoId, desafioId])
   @@map("progreso")
 }

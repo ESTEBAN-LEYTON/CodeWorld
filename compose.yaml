@@ -1,0 +1,16 @@
+# Base de datos PostgreSQL para desarrollo: `docker compose up -d` o `podman compose up -d`.
+services:
+  db:
+    image: docker.io/library/postgres:17-alpine
+    environment:
+      POSTGRES_USER: codeworld
+      POSTGRES_PASSWORD: codeworld
+      POSTGRES_DB: codeworld
+    ports:
+      - '5432:5432'
+    volumes:
+      - codeworld-db:/var/lib/postgresql/data
+      - ./backend/prisma/crear-db-pruebas.sql:/docker-entrypoint-initdb.d/crear-db-pruebas.sql:ro
+
+volumes:
+  codeworld-db:
