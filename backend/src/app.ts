@@ -20,6 +20,8 @@ export interface Opciones {
   enviador?: EnviadorCodigo
   /** Peticiones por minuto e IP a /api y a los endpoints de login. */
   limites?: { api: number; login: number }
+  /** Saltos de proxy delante de la API (hosting): sin esto, todos los usuarios comparten la IP del proxy. */
+  saltosProxy?: number
 }
 
 export function crearApp({
@@ -28,8 +30,10 @@ export function crearApp({
   origenPermitido = process.env.CORS_ORIGIN ?? 'http://localhost:5173',
   enviador = enviadorConsola,
   limites = { api: 300, login: 20 },
+  saltosProxy = 0,
 }: Opciones) {
   const app = express()
+  app.set('trust proxy', saltosProxy)
   const tokens = new Tokens(jwtSecret)
 
   app.use(helmet())

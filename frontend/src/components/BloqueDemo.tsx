@@ -19,6 +19,7 @@ export function BloqueDemo({ tipo }: { tipo: string }) {
   useEffect(() => {
     if (!contenedor.current) return
     const ws = Blockly.inject(contenedor.current, {
+      media: '/blockly-media/',
       readOnly: true,
       renderer: 'zelos',
       zoom: { startScale: 0.65 },

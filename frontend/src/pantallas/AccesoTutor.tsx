@@ -65,7 +65,7 @@ export function AccesoTutor({ onSesion, onVolver }: Props) {
         onVolver={() => setPaso({ tipo: 'login' })}
       >
         <Campo label="Usuario" name="username" autoComplete="username" required minLength={3} autoFocus />
-        <Campo label="Correo o teléfono (recibe el código de verificación)" name="contacto" required minLength={6} />
+        <Campo label="Correo (recibe el código de verificación)" name="contacto" type="email" autoComplete="email" required />
         <Campo label="Contraseña" name="password" type="password" autoComplete="new-password" required minLength={6} />
         <Campo label="Repite la contraseña" name="password2" type="password" autoComplete="new-password" required minLength={6} />
       </Formulario>

@@ -3,11 +3,13 @@
   "private": true,
   "description": "Plataforma web para enseñar programación con bloques a jóvenes de 9 a 15 años",
   "scripts": {
-    "install:all": "npm install --prefix frontend && npm install --prefix backend",
+    "install:all": "npm install --prefix frontend && npm install --prefix backend && npm install --prefix e2e",
     "db:setup": "npm run db:deploy --prefix backend && npm run db:seed --prefix backend",
     "dev:frontend": "npm run dev --prefix frontend",
     "dev:backend": "npm run dev --prefix backend",
     "test": "npm test --prefix frontend && npm test --prefix backend",
+    "test:e2e": "npm test --prefix e2e",
+    "test:carga": "npm run test:carga --prefix backend",
     "build": "npm run build --prefix frontend && npm run build --prefix backend"
   }
 }

@@ -20,7 +20,7 @@ export function servicioAutenticacion(db: Db, tokens: Tokens, enviador: Enviador
       z.object({
         username: nombreUsuario,
         password: clave,
-        contacto: z.string().trim().min(6, 'ingresa un correo o teléfono válido').max(120),
+        contacto: z.string().trim().max(120).pipe(z.email('ingresa un correo válido')),
       }),
     ),
     async (req, res) => {
@@ -42,7 +42,12 @@ export function servicioAutenticacion(db: Db, tokens: Tokens, enviador: Enviador
       return res.status(401).json(CREDENCIALES_INVALIDAS)
     }
     const { codigo, token } = tokens.crearDesafio2fa(tutor.id)
-    await enviador.enviar(tutor.contactoVerificado, codigo)
+    try {
+      await enviador.enviar(tutor.contactoVerificado, codigo)
+    } catch (e) {
+      console.error('No se pudo enviar el código 2FA:', e)
+      return res.status(503).json({ error: 'No pudimos enviar el código de verificación. Intenta de nuevo en unos minutos.' })
+    }
     res.json({ desafio2fa: token, enviadoA: ocultar(tutor.contactoVerificado) })
   })
 

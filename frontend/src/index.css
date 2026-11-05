@@ -389,6 +389,7 @@ button:disabled {
 
 .panel-tutor {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1rem;
   padding: 1rem;
   justify-items: center;
@@ -412,6 +413,10 @@ button:disabled {
   text-align: left;
   padding: 0.5rem;
   border-bottom: 1px solid var(--borde);
+}
+
+.tabla td:first-child {
+  overflow-wrap: anywhere;
 }
 
 .tabla tr.seleccionado {
@@ -797,6 +802,10 @@ button.grande {
 
   .opciones {
     grid-template-columns: 1fr;
+  }
+
+  .tabla .avance {
+    min-width: 64px;
   }
 
   .tabla th:nth-child(2),

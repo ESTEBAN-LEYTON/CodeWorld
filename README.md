@@ -10,13 +10,15 @@ Autor: Esteban Ignacio Leyton Miranda · Profesora guía: Alfonsina del Mar Lina
 
 ```
 CodeWorld/
-├── docs/        Informe del proyecto de título
+├── docs/        Plan y resultados de pruebas, guía de despliegue
+├── e2e/         Pruebas de aceptación en navegador real (Playwright)
 ├── frontend/    React + Vite + TypeScript + Blockly (evaluación local en el navegador)
 └── backend/     Node + Express + TypeScript + Prisma (PostgreSQL)
 ```
 
 La decisión central de la arquitectura es que **los bloques se evalúan en el navegador del alumno**:
-el backend solo autentica al tutor y persiste el progreso. Ver [`docs/arquitectura.md`](docs/arquitectura.md).
+el backend solo autentica al tutor y persiste el progreso. El detalle está en el Capítulo IV del informe
+(`Formato_Portafolio_de_Proyecto_Final_2026.docx`).
 
 ## Requisitos
 
@@ -40,7 +42,7 @@ npm run dev:frontend                    # App en http://localhost:5173
 
 1. Entra en http://localhost:5173 → **Soy tutor** → **Crear cuenta de tutor**.
 2. Inicia sesión. El **código de verificación (2FA)** aparece en la consola del backend
-   (`[2FA] Código para …`), porque en desarrollo no se envían correos ni SMS.
+   (`[2FA] Código para …`), porque sin `BREVO_API_KEY` no se envían correos.
 3. En el panel, **+ Registrar alumno**: usuario, clave, edad y consentimiento.
 4. Cierra sesión → **Soy alumno** → entra con el usuario del alumno y resuelve desafíos.
 5. Vuelve a entrar como tutor → **Ver progreso**.
@@ -49,7 +51,11 @@ npm run dev:frontend                    # App en http://localhost:5173
 
 ```bash
 npm test                   # frontend (intérprete, guías, progreso) + backend (seguridad y API)
+npm run test:e2e           # aceptación en navegador real, en computador, tableta y celular
+npm run test:carga         # cargabilidad de la API
 ```
+
+El plan, la matriz de requerimientos y los resultados están en [`docs/pruebas.md`](docs/pruebas.md).
 
 Las pruebas de la API usan una base de datos aparte (`TEST_DATABASE_URL`, que se vacía en cada ejecución).
 `compose.yaml` la crea automáticamente. Sin esa variable, esas pruebas se omiten.
@@ -70,8 +76,10 @@ Las pruebas de la API usan una base de datos aparte (`TEST_DATABASE_URL`, que se
 | Menú principal del alumno: niveles con avance, bloques que enseña cada uno y «Continuar donde quedé» | ✅ |
 | Tutoriales guiados la primera vez (menú, desafío y panel del tutor), repetibles desde «¿Cómo se juega?» y «Ayuda» (R5) | ✅ |
 | Explicación animada de cada bloque nuevo, con ejemplo armado y mini laberinto | ✅ |
-| Envío real del código 2FA por correo/SMS (hoy se muestra en la consola del servidor) | ⏳ |
+| Autoguardado del programa a medio armar y apertura sin conexión con service worker (R2, R7) | ✅ |
+| Pruebas funcionales, de integración, de carga y de aceptación automatizadas | ✅ |
+| Código 2FA por correo con Brevo: implementado, falta probarlo con una cuenta real | 🔶 |
+| Despliegue en hosting: guía lista en [`docs/despliegue.md`](docs/despliegue.md), falta ejecutarlo | ⏳ |
+| Pruebas manuales en dispositivos físicos (iOS, Android, gama baja) | ⏳ |
 | Más desafíos por nivel | ⏳ |
-| Funcionamiento offline al recargar la página (service worker / PWA) | ⏳ |
-| Despliegue en hosting (frontend estático + servidor Node.js + PostgreSQL) | ⏳ |
 | Pruebas de usabilidad con el grupo de control (OE4) | ⏳ |

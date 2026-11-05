@@ -161,6 +161,7 @@ export function Juego({ token, alumnoId, username, onSalir }: Props) {
       ) : desafio ? (
         <PantallaDesafio
           key={desafio.id}
+          alumnoId={alumnoId}
           desafio={desafio}
           nivel={nivelDe(desafio)!}
           siguiente={desafios[desafios.indexOf(desafio) + 1] ?? null}
@@ -211,6 +212,7 @@ function EstadoConexion({ conexion, pendientes, onReintentar }: { conexion: Cone
 }
 
 interface PropsDesafio {
+  alumnoId: string
   desafio: Desafio
   nivel: Nivel
   siguiente: Desafio | null
@@ -327,7 +329,11 @@ function PantallaDesafio(props: PropsDesafio) {
         )}
       </section>
       <section className="panel-editor">
-        <BlocklyEditor bloquesPermitidos={desafio.bloquesPermitidos} workspaceRef={ws} />
+        <BlocklyEditor
+          bloquesPermitidos={desafio.bloquesPermitidos}
+          claveGuardado={`codeworld.programa.${props.alumnoId}.${desafio.id}`}
+          workspaceRef={ws}
+        />
       </section>
       {recorrido ? (
         <Recorrido

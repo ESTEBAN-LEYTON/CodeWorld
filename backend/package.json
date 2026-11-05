@@ -8,6 +8,7 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "test": "vitest run",
+    "test:carga": "tsx pruebas-carga/carga.ts",
     "postinstall": "prisma generate",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
@@ -33,12 +34,14 @@
     "zod": "^4.6.6"
   },
   "devDependencies": {
+    "@types/autocannon": "^7.12.7",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^24.19.1",
     "@types/pg": "^8.23.1",
     "@types/supertest": "^7.2.1",
+    "autocannon": "^8.0.0",
     "prisma": "7.10",
     "supertest": "^7.3.1",
     "tsx": "^4.23.15",

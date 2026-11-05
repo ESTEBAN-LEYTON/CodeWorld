@@ -1,0 +1,12 @@
+{
+  "name": "@codeworld/e2e",
+  "private": true,
+  "type": "module",
+  "description": "Pruebas de aceptación de CodeWorld en un navegador real",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.0"
+  }
+}

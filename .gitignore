@@ -22,3 +22,7 @@ Thumbs.db
 # Archivos temporales de Word
 ~$*.docx
 .~lock.*#
+
+# Resultados de las pruebas e2e
+e2e/resultados/
+Pendientes.txt

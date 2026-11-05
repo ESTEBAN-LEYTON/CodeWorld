@@ -2,6 +2,7 @@ import { useEffect, useRef, type RefObject } from 'react'
 import * as Blockly from 'blockly/core'
 import 'blockly/blocks'
 import * as Es from 'blockly/msg/es'
+import { guardar, leer } from '../almacen'
 import { BLOQUE_INICIO, toolboxPara } from '../game/blocks'
 
 Blockly.setLocale(Es as unknown as Record<string, string>)
@@ -9,10 +10,31 @@ Blockly.setLocale(Es as unknown as Record<string, string>)
 interface Props {
   /** Lista estable por desafío (viene de DESAFIOS); al cambiar se crea un workspace nuevo. */
   bloquesPermitidos: string[]
+  /** Clave de localStorage donde se autoguarda el programa de este alumno y desafío (riesgo R2). */
+  claveGuardado: string
   workspaceRef: RefObject<Blockly.WorkspaceSvg | null>
 }
 
-export function BlocklyEditor({ bloquesPermitidos, workspaceRef }: Props) {
+function colocarInicio(ws: Blockly.WorkspaceSvg) {
+  const inicio = ws.newBlock(BLOQUE_INICIO)
+  inicio.initSvg()
+  inicio.render()
+  inicio.moveBy(30, 30)
+}
+
+function restaurar(ws: Blockly.WorkspaceSvg, clave: string) {
+  const guardado = leer<object | null>(clave, null)
+  if (!guardado) return colocarInicio(ws)
+  try {
+    Blockly.serialization.workspaces.load(guardado, ws)
+  } catch {
+    // Un programa guardado que ya no se puede leer no debe impedir jugar el desafío.
+    ws.clear()
+    colocarInicio(ws)
+  }
+}
+
+export function BlocklyEditor({ bloquesPermitidos, claveGuardado, workspaceRef }: Props) {
   const contenedor = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -23,17 +45,19 @@ export function BlocklyEditor({ bloquesPermitidos, workspaceRef }: Props) {
       zoom: { controls: true, startScale: 1.1 },
       move: { scrollbars: true, drag: true, wheel: true },
       renderer: 'zelos',
+      // Servidos por la propia aplicación: funcionan sin conexión y no se contacta a terceros.
+      media: '/blockly-media/',
     })
-    const inicio = ws.newBlock(BLOQUE_INICIO)
-    inicio.initSvg()
-    inicio.render()
-    inicio.moveBy(30, 30)
+    restaurar(ws, claveGuardado)
+    ws.addChangeListener((e) => {
+      if (!e.isUiEvent) guardar(claveGuardado, Blockly.serialization.workspaces.save(ws))
+    })
     workspaceRef.current = ws
     return () => {
       workspaceRef.current = null
       ws.dispose()
     }
-  }, [bloquesPermitidos, workspaceRef])
+  }, [bloquesPermitidos, claveGuardado, workspaceRef])
 
   return <div ref={contenedor} className="editor" />
 }
