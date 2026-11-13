@@ -60,7 +60,7 @@ Se regeneran con `npm run expotic`. Quedan en `docs/expotic/`.
 | 30 | Nuevos desafíos | **6 más, 2 por nivel (12 en total)**, con guías propias y solución de referencia probada. «El caracol» se resuelve con el mismo programa de «El robot decide», para mostrar que una condición generaliza; «Curvas para ambos lados» es el reto final, con una condición dentro de otra. | Más desafíos o un nivel nuevo. |
 | 31 | XP de los desafíos anteriores | **Sin cambios**, para no alterar el progreso ya guardado. Los nuevos dan entre 15 y 50 XP. | Rebalancear todo. |
 | 32 | Diseño | **Más de juego sin cambiar el flujo:** robot dibujado en vez de una flecha, tablero con muros en relieve, estrella animada, botones con relieve, un color por nivel y una portada con un laberinto de ejemplo. Sin fuentes externas, porque el navegador del alumno no debe contactar a terceros (PA-14). | Una fuente propia descargada en la app, o un rediseño más profundo del panel del tutor. |
-| 33 | Informe | **No lo regeneré.** Sigue diciendo 6 desafíos y 64 pruebas; el afiche y el resumen ya dicen 12 desafíos y 89 pruebas. | Actualizar `docs/informe/contenido.py` y volver a generarlo. |
+| 33 | Informe | **Actualizado con 12 desafíos, 89 pruebas y el R6 implementado.** Los objetivos OE2 y OE3 siguen diciendo 6 desafíos, porque son el compromiso original; los resultados y las conclusiones dicen que se entregó el doble. La fila del Sprint 3 también conserva los 6 desafíos que entregó ese sprint. | Cambiar los objetivos a 12 desafíos, aunque así se reescribe el compromiso después de cumplirlo. |
 
 ## Lo que no hice
 

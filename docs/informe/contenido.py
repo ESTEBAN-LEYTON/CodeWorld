@@ -50,7 +50,7 @@ def capitulo1(d, T):
     for i in (161, 162):
         d.p(T(i))
     d.h2('Trabajo a realizar en el proyecto')
-    d.p('El proyecto consiste en diseñar, construir y validar CodeWorld, una plataforma web utilizable desde el navegador de computadores, tabletas y celulares, que enseña programación a jóvenes de 9 a 15 años sin exigir escribir código. Se desarrolla un producto mínimo viable que integra el motor de bloques Google Blockly ejecutado localmente en el navegador, tres niveles con seis desafíos de secuencias, ciclos y condiciones, guías correctivas para todos los patrones de error de esos desafíos, un módulo de gamificación basado en experiencia y niveles, y un backend de autenticación, contenido y persistencia de progreso con acceso controlado por el tutor legal. El trabajo culmina con una validación con un grupo de control de al menos diez jóvenes del rango etario objetivo, para verificar las métricas de cada objetivo específico.')
+    d.p('El proyecto consiste en diseñar, construir y validar CodeWorld, una plataforma web utilizable desde el navegador de computadores, tabletas y celulares, que enseña programación a jóvenes de 9 a 15 años sin exigir escribir código. Se desarrolla un producto mínimo viable que integra el motor de bloques Google Blockly ejecutado localmente en el navegador, tres niveles con doce desafíos de secuencias, ciclos y condiciones, guías correctivas para todos los patrones de error de esos desafíos, un módulo de gamificación basado en experiencia y niveles, y un backend de autenticación, contenido y persistencia de progreso con acceso controlado por el tutor legal. El trabajo culmina con una validación con un grupo de control de al menos diez jóvenes del rango etario objetivo, para verificar las métricas de cada objetivo específico.')
     d.h2('Organización y presentación de este trabajo')
     d.p('El Capítulo II identifica el problema, presenta su análisis causal, define los objetivos bajo la metodología SMART, delimita alcances y limitaciones, revisa la normativa y expone la solución de alto nivel y el plan del proyecto. El Capítulo III desarrolla las metodologías de gestión y de desarrollo, la programación de los sprints, las herramientas, los controles, los planes de calidad y riesgos, el cronograma y el prototipo. El Capítulo IV presenta los resultados: la gestión ejecutada, el diseño con artefactos UML, la trazabilidad, la arquitectura, el modelo de datos, la construcción y las pruebas. Finalmente se exponen las conclusiones y recomendaciones, el glosario, las referencias y los anexos con los manuales y los diagramas de funcionamiento.')
 
@@ -229,7 +229,7 @@ def capitulo3(d, T, filas, img):
     d.h2('Propuesta de controles y evidencia a implementar en los flujos de la propuesta de solución')
     d.tabla('Controles y evidencia por flujo', [
         ['Flujo', 'Control', 'Evidencia'],
-        ['Acceso del tutor', 'Contraseña con hash scrypt, código 2FA de 10 minutos y límite de intentos por IP', 'Pruebas PA-01 y de la API'],
+        ['Acceso del tutor', 'Contraseña con hash scrypt; código 2FA de 10 minutos, de un solo uso y con 5 intentos; reenvío con espera de 60 s; límite de peticiones por IP', 'Pruebas PA-01 y de la API'],
         ['Registro del alumno', 'Solo con sesión de tutor; datos validados; alumno y consentimiento en una transacción', 'Prueba PA-02; registro en CONSENTIMIENTO'],
         ['Consentimiento', 'Trigger de base de datos que impide modificarlo o eliminarlo', 'Prueba de integración RF03'],
         ['Ejecución del programa', 'Sin evaluar código; límite de 200 pasos', 'Prueba PA-11 y unitarias'],
@@ -258,7 +258,7 @@ def capitulo3(d, T, filas, img):
         ['R3', 'Seguridad: exposición de datos de menores', 'Alta', 'Alto', 'Crítico', 'Modelo Zero-Data, id anónimo, permisos por rol', 'Aviso al tutor; desactivar cuentas y rotar el secreto JWT'],
         ['R4', 'Compatibilidad entre navegadores', 'Alta', 'Bajo', 'Medio', 'Pruebas en tres perfiles y en dispositivos reales. Métrica: 95%', 'Indicar navegador recomendado'],
         ['R5', 'Usabilidad: OE4 bajo 80%', 'Media', 'Medio', 'Medio', 'Tutorial guiado de 3 pasos y ayuda animada de bloques', 'Rediseñar el flujo y repetir con un subgrupo'],
-        ['R6', 'Fallo del 2FA: el tutor no puede entrar', 'Media', 'Alto', 'Crítico', 'Código de 10 minutos; pruebas del flujo', 'Error claro y nuevo código al reintentar el login'],
+        ['R6', 'Fallo del 2FA: el tutor no puede entrar', 'Media', 'Alto', 'Crítico', 'Código de 10 minutos, de un solo uso y con 5 intentos; pruebas del flujo', 'Reenvío del código con espera de 60 s; aviso de intentos restantes'],
         ['R7', 'Caída del backend durante una clase', 'Baja', 'Alto', 'Medio', 'Backend sin estado; juego local', 'Modo sin conexión y sincronización posterior'],
     ], [5, 23, 8, 7, 9, 27, 26], sz=18)
     d.p('Los riesgos críticos son consecuencias directas del contexto de uso: hardware de gama baja, conectividad inestable y usuarios menores de edad. Ejecutar los bloques en el navegador mitiga a la vez R1, R2 y R7.')
@@ -281,9 +281,9 @@ def capitulo4(d, T, filas, img):
         ['2. Diseño del sistema', 'Arquitectura, base de datos, interfaces y prototipos', 'Completado', 'Figuras 4 a 10 y tablas de este capítulo'],
         ['3. Funcionalidades principales', 'Usuarios, niveles y editor visual', 'Completado', 'Repositorio: 2FA, alumnos con consentimiento, 3 niveles y 6 desafíos, intérprete local'],
         ['4. Integración y optimización', 'Retroalimentación, gamificación e integración', 'Completado', 'Repositorio: guías, XP, sincronización, autoguardado, tutoriales'],
-        ['5. Validación y cierre', 'Pruebas, despliegue, validación y documentación', 'En curso', 'Pruebas automatizadas ejecutadas; [[despliegue y prueba con usuarios pendientes]]'],
+        ['5. Validación y cierre', 'Pruebas, despliegue, validación y documentación', 'En curso', 'Pruebas automatizadas ejecutadas; 6 desafíos más (12 en total); 2FA reforzado (R6); [[despliegue y prueba con usuarios pendientes]]'],
     ], [24, 27, 15, 34])
-    d.p('En el monitoreo y control, la retroalimentación de la profesora y los hallazgos de las pruebas se trataron como solicitudes de cambio, evaluando su impacto en alcance, cronograma y riesgos. Dieron lugar a estos ajustes: una arquitectura única para todos los diagramas; el registro del progreso por desafío; el reemplazo de la aplicación nativa por una web responsiva; la exclusión de los bloques de orientación a objetos y de robótica; el 2FA solo por correo, porque el envío por SMS no se implementó; y la simplificación de medidas de la matriz de riesgos que no resultaron necesarias o no se implementaron.')
+    d.p('En el monitoreo y control, la retroalimentación de la profesora y los hallazgos de las pruebas se trataron como solicitudes de cambio, evaluando su impacto en alcance, cronograma y riesgos. Dieron lugar a estos ajustes: una arquitectura única para todos los diagramas; el registro del progreso por desafío; el reemplazo de la aplicación nativa por una web responsiva; la exclusión de los bloques de orientación a objetos y de robótica; el 2FA solo por correo, porque el envío por SMS no se implementó; la simplificación de medidas de la matriz de riesgos que no resultaron necesarias o no se implementaron; y, en el Sprint 5, la ampliación del contenido a 12 desafíos, el doble de los 6 comprometidos en el OE2, junto con el refuerzo del doble factor previsto en R6.')
 
     d.h2('Diseño de los componentes funcionales de la propuesta de solución')
     d.h3('Del levantamiento del problema a los requerimientos')
@@ -384,10 +384,10 @@ def capitulo4(d, T, filas, img):
     d.h3('Procedimientos operativos')
     d.p('El tutor crea su cuenta, entra con doble factor, registra al alumno y le entrega su usuario y clave. El alumno entra y resuelve desafíos; su avance se guarda solo. Los pasos detallados y la instalación están en los anexos A y B.')
     d.h3('Resultados de las pruebas')
-    d.p('Las pruebas se ejecutaron en un computador local el 5 de noviembre de 2026. Las pruebas funcionales y de aceptación se ejecutan en un navegador real, sobre el build de producción y una base de datos real.')
+    d.p('Las pruebas se ejecutaron en un computador local el 5 de noviembre de 2026. Las unitarias, de integración y de aceptación se repitieron el 13 de noviembre, después de agregar 6 desafíos y reforzar el doble factor; la prueba de carga no se repitió. Las pruebas funcionales y de aceptación se ejecutan en un navegador real, sobre el build de producción y una base de datos real.')
     d.tabla('Resumen de resultados de las pruebas', [
         ['Tipo', 'Alcance', 'Resultado'],
-        ['Unitarias e integración', 'Frontend 35 y backend 29', '64 de 64 pasan'],
+        ['Unitarias e integración', 'Frontend 53 y backend 36', '89 de 89 pasan'],
         ['Funcionales y aceptación', '15 casos en computador, tableta y celular', '43 pasan, 2 omitidas, 0 fallan'],
         ['Carga', '4 endpoints con 10, 50 y 100 conexiones', 'Última corrida: 12 de 12 cumplen; 1 falla intermitente'],
         ['Compatibilidad en dispositivos reales', 'Safari iOS, Android, equipo de gama baja', '[[Pendiente]]'],
@@ -396,10 +396,10 @@ def capitulo4(d, T, filas, img):
     d.p('Las dos pruebas omitidas requieren arrastrar bloques con el dedo en un celular y se verifican de forma manual. Las pruebas permitieron corregir defectos reales antes de la validación con usuarios: el service worker no abría la aplicación sin conexión, Blockly contactaba a un servidor externo y el panel del tutor se desbordaba en celulares.')
     d.tabla('Casos de prueba de aceptación automatizados', [
         ['ID', 'Req.', 'Criterio de aceptación', 'Resultado'],
-        ['PA-01', 'RF01', 'Entra con contraseña y 2FA; un código incorrecto no da acceso', 'Pasa'],
+        ['PA-01', 'RF01, R6', 'Entra con contraseña y 2FA; un código incorrecto no da acceso y avisa los intentos restantes; el reenvío espera 60 s', 'Pasa'],
         ['PA-02', 'RF02, RF03, RNF04', 'Registro solo con consentimiento y sin datos personales', 'Pasa'],
         ['PA-03', 'RF04', 'El alumno entra con su clave; una incorrecta no da acceso', 'Pasa'],
-        ['PA-04', 'RF05', 'Se ven 3 niveles y 6 desafíos ordenados', 'Pasa'],
+        ['PA-04', 'RF05', 'Se ven 3 niveles y 12 desafíos ordenados', 'Pasa'],
         ['PA-05', 'RF06, RF07, RF09', 'Arma el programa, el robot llega y recibe XP', 'Pasa (omitida en celular)'],
         ['PA-06', 'RF08', 'El error muestra una guía sin dar XP', 'Pasa'],
         ['PA-07', 'RF11', 'El tutor ve el progreso de su alumno', 'Pasa'],
@@ -424,19 +424,18 @@ def capitulo4(d, T, filas, img):
 def cierre(d):
     d.h1('CONCLUSIONES Y RECOMENDACIONES')
     d.h2('Conclusiones')
-    d.p('Este proyecto abordó la deserción temprana en el aprendizaje de la programación con una plataforma que evalúa el programa del alumno en su propio navegador y convierte cada error en una pista. La construcción demostró que ese enfoque es viable técnicamente: el producto mínimo opera de principio a fin con 3 niveles, 6 desafíos, autenticación del tutor, progreso sincronizado y funcionamiento sin conexión.')
-    d.p('**OE3 se cumple.** Los 6 desafíos cubren el 100% de los 4 patrones de error, y evaluar el programa y elegir la guía tardó 1 ms o menos con la CPU 6 veces más lenta, muy por debajo de los 300 ms comprometidos. Esta evidencia corresponde a un equipo emulado.')
-    d.p('**OE2 se cumple parcialmente.** El módulo y sus 6 desafíos están operativos, y los casos de aceptación pasan en perfiles de computador, tableta y celular sobre Chromium. [[Falta verificar Safari y dispositivos físicos para confirmar el 95%.]]')
+    d.p('Este proyecto abordó la deserción temprana en el aprendizaje de la programación con una plataforma que evalúa el programa del alumno en su propio navegador y convierte cada error en una pista. La construcción demostró que ese enfoque es viable técnicamente: el producto mínimo opera de principio a fin con 3 niveles, 12 desafíos, autenticación del tutor, progreso sincronizado y funcionamiento sin conexión.')
+    d.p('**OE3 se cumple.** Los 12 desafíos, el doble de los 6 comprometidos, cubren el 100% de los 4 patrones de error (48 combinaciones), y evaluar el programa y elegir la guía tardó 1 ms o menos con la CPU 6 veces más lenta, muy por debajo de los 300 ms comprometidos. Esta evidencia corresponde a un equipo emulado.')
+    d.p('**OE2 se cumple parcialmente.** El módulo y sus 12 desafíos están operativos, el doble de los 6 comprometidos, y los casos de aceptación pasan en perfiles de computador, tableta y celular sobre Chromium. [[Falta verificar Safari y dispositivos físicos para confirmar el 95%.]]')
     d.p('**OE1 se cumple parcialmente.** Las opciones principales están a 2 clics o menos y la interfaz se adapta a los tres tamaños de pantalla. [[Falta medir con el grupo de control el tiempo hasta el primer desafío.]]')
     d.p('**OE4 y objetivo general.** [[Completar con los resultados de la prueba. Sin estos datos no se puede afirmar que el objetivo general se cumplió.]]')
     d.p('Respecto de la gestión, el enfoque híbrido permitió cumplir las fechas fijas de la asignatura y a la vez incorporar cambios. Las pruebas automatizadas fueron especialmente valiosas: detectaron defectos que una revisión manual no habría encontrado, como el contacto con un servidor externo desde el navegador de un menor.')
     d.h2('Recomendaciones')
     d.lista([
         '**Validar con más usuarios y durante más tiempo.** Una prueba con 10 jóvenes evalúa la usabilidad, pero no demuestra por sí sola un aprendizaje sostenido. Se recomienda un estudio con evaluación antes y después.',
-        '**Ampliar el contenido.** Agregar más desafíos por nivel y evaluar los bloques de orientación a objetos y de robótica excluidos de este alcance.',
+        '**Seguir ampliando el contenido.** Agregar un nivel con nuevos conceptos y evaluar los bloques de orientación a objetos y de robótica excluidos de este alcance.',
         '**Repetir la prueba de carga en el hosting definitivo** e investigar la falla intermitente observada en la sincronización.',
         '**Revisar el tratamiento de datos bajo la Ley N.° 21.719**, en particular la solicitud de eliminación de datos de un menor frente a un consentimiento que hoy es inmutable.',
-        '**Reforzar el doble factor** con un tope de intentos por código y un reenvío con tiempo de espera.',
     ])
 
     d.h1('GLOSARIO')
@@ -488,7 +487,7 @@ def cierre(d):
     d.h3('Tutor')
     d.lista_num([
         'En la pantalla de inicio, elige **Soy tutor** y luego **Crear cuenta de tutor**. Ingresa usuario, correo y contraseña.',
-        'Inicia sesión. Recibirás un código de 6 dígitos en tu correo, válido por 10 minutos.',
+        'Inicia sesión. Recibirás un código de 6 dígitos en tu correo, válido por 10 minutos. Si no llega, presiona Reenviar código: se habilita a los 60 segundos.',
         'En el panel, presiona **+ Registrar alumno**. Ingresa usuario, clave y edad (de 9 a 15 años) y marca el consentimiento. No uses el nombre real del menor.',
         'Entrega el usuario y la clave al alumno. Para revisar su avance, presiona **Ver progreso**.',
     ])
@@ -527,14 +526,14 @@ ANEXO_C = [
 RESUMEN = [
     'Enseñar programación a jóvenes sigue siendo difícil: las herramientas disponibles asumen conocimientos previos, usan interfaces pensadas para adultos y no corrigen al estudiante cuando se equivoca. El efecto es frustración temprana y abandono. Este proyecto se pregunta si una plataforma visual, con retroalimentación inmediata, permite comprender la lógica de programación de forma autónoma, sin esa deserción.',
     'El objetivo fue desarrollar y validar CodeWorld, una plataforma web para jóvenes de 9 a 15 años, de modo que al menos el 80% de un grupo de control complete un ejercicio básico sin ayuda. La gestión siguió la guía PMBOK y el desarrollo, un marco híbrido de Scrum y Kanban. El problema se levantó mediante observación en terreno, revisión bibliográfica y un diagrama de Ishikawa.',
-    'Se construyó un producto mínimo viable sobre Google Blockly, que evalúa los bloques en el navegador del alumno. Ofrece 3 niveles y 6 desafíos, guías correctivas para los 4 patrones de error, tutor con doble factor, datos mínimos de los menores conforme a la Ley N.° 19.628 y funcionamiento sin conexión. Se aprobaron 64 de 64 pruebas unitarias y de integración, y los 15 casos de aceptación automatizados, con una retroalimentación de 1 ms o menos frente a una meta de 300 ms. [[Agregar el resultado de la prueba con el grupo de control.]]',
+    'Se construyó un producto mínimo viable sobre Google Blockly, que evalúa los bloques en el navegador del alumno. Ofrece 3 niveles y 12 desafíos, guías correctivas para los 4 patrones de error, tutor con doble factor, datos mínimos de los menores conforme a la Ley N.° 19.628 y funcionamiento sin conexión. Se aprobaron 89 de 89 pruebas unitarias y de integración, y los 15 casos de aceptación automatizados, con una retroalimentación de 1 ms o menos frente a una meta de 300 ms. [[Agregar el resultado de la prueba con el grupo de control.]]',
     'Se concluye que evaluar en el navegador es técnicamente viable para establecimientos con infraestructura limitada. [[Completar con la conclusión de la validación con usuarios.]] Se recomienda repetir las pruebas en el hosting definitivo y ampliar el contenido.',
 ]
 CLAVES = 'pensamiento computacional, programación visual, gamificación, aprendizaje interactivo, Blockly.'
 ABSTRACT = [
     'Teaching programming to young learners remains difficult: available tools assume prior knowledge, use interfaces designed for adults and do not correct students when they make mistakes. The effect is early frustration and dropout. This project asks whether a visual platform with immediate feedback allows programming logic to be understood autonomously, without that dropout.',
     'The objective was to develop and validate CodeWorld, a web platform for young people aged 9 to 15, so that at least 80% of a control group completes a basic exercise without help. Management followed the PMBOK guide and development followed a hybrid Scrum and Kanban framework. The problem was identified through field observation, a literature review and an Ishikawa diagram.',
-    'A minimum viable product was built on Google Blockly, which evaluates blocks in the learner’s browser. It offers 3 levels and 6 challenges, corrective guidance for the 4 error patterns, a tutor account with two-factor authentication, minimal data on minors in line with Chilean Law No. 19,628, and offline operation. All 64 unit and integration tests and the 15 automated acceptance cases passed, with feedback in 1 ms or less against a 300 ms target. [[Add the result of the control group test.]]',
+    'A minimum viable product was built on Google Blockly, which evaluates blocks in the learner’s browser. It offers 3 levels and 12 challenges, corrective guidance for the 4 error patterns, a tutor account with two-factor authentication, minimal data on minors in line with Chilean Law No. 19,628, and offline operation. All 89 unit and integration tests and the 15 automated acceptance cases passed, with feedback in 1 ms or less against a 300 ms target. [[Add the result of the control group test.]]',
     'Evaluating in the browser is technically viable for schools with limited infrastructure. [[Complete with the conclusion of the user validation.]] Repeating the tests on the final hosting and expanding the content are recommended.',
 ]
 CLAVES_EN = 'computational thinking, visual programming, gamification, interactive learning, Blockly.'
