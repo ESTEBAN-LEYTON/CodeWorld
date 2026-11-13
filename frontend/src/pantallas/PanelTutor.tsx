@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState, type FormEvent } from 'react'
 import { ErrorApi, llamar, mensajeDeError } from '../api'
 import { useAyudaVista } from '../ayudaVista'
 import { Recorrido, type PasoRecorrido } from '../components/Recorrido'
+import { Logo } from '../components/Robot'
 import { cargarNiveles } from '../game/contenido'
 import type { Nivel, Progreso } from '../game/types'
 import { texto } from './datosFormulario'
@@ -88,7 +89,7 @@ export function PanelTutor({ token, username, onSalir }: Props) {
   return (
     <div className="pagina">
       <header className="barra">
-        <h1 className="logo-barra">CodeWorld</h1>
+        <Logo />
         <span className="rol">Panel del tutor</span>
         <span className="usuario">🛡️ {username}</span>
         <button data-recorrido="ayuda-tutor" onClick={() => setVerRecorrido(true)}>

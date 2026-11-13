@@ -1,3 +1,4 @@
+import { Robot } from './Robot'
 import type { Direccion, Laberinto, Posicion } from '../game/types'
 
 const ROTACION: Record<Direccion, number> = { N: -90, E: 0, S: 90, O: 180 }
@@ -25,13 +26,13 @@ export function MazeView({ laberinto, robot, chocado, mini = false }: Props) {
           const esRobot = robot.fila === f && robot.col === col
           return (
             <div key={`${f}-${col}`} className={`celda ${c === '#' ? 'pared' : 'camino'}`}>
-              {c === 'M' && !esRobot && <span className="meta">★</span>}
+              {c === 'M' && !esRobot && <span className="meta" aria-hidden>★</span>}
               {esRobot && (
                 <span
                   className={`robot ${chocado ? 'chocado' : ''}`}
                   style={{ transform: `rotate(${ROTACION[robot.dir]}deg)` }}
                 >
-                  ➤
+                  <Robot />
                 </span>
               )}
             </div>

@@ -7,6 +7,7 @@ import { BlocklyEditor } from '../components/BlocklyEditor'
 import { MazeView } from '../components/MazeView'
 import { Modal } from '../components/Modal'
 import { Recorrido, type PasoRecorrido } from '../components/Recorrido'
+import { Logo } from '../components/Robot'
 import { bloquesNuevos } from '../game/ayudaBloques'
 import { compilarWorkspace } from '../game/blocks'
 import { cargarNiveles } from '../game/contenido'
@@ -136,7 +137,7 @@ export function Juego({ token, alumnoId, username, onSalir }: Props) {
   return (
     <div className="app">
       <header className="barra">
-        <h1 className="logo-barra">CodeWorld</h1>
+        <Logo />
         {desafio && (
           <button onClick={() => setActualId(null)} className="volver-menu">
             ← Menú

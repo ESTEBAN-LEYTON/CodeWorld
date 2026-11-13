@@ -10,7 +10,7 @@ import {
 const esCelular = (nombre: string) => nombre === 'celular'
 
 test.describe('Tutor', () => {
-  test('PA-01 RF01: entra con contraseña y código 2FA; un código incorrecto no da acceso', async ({ page }) => {
+  test('PA-01 RF01, R6: entra con contraseña y código 2FA; un código incorrecto no da acceso', async ({ page }) => {
     const tutor = unico('tutor')
     await registrarYEntrarTutor(page, tutor)
     await expect(page.getByText('Mis alumnos')).toBeVisible()
@@ -25,8 +25,10 @@ test.describe('Tutor', () => {
     const correcto = await ultimoCodigo(page)
     await page.getByLabel('Código').fill(correcto === '000000' ? '111111' : '000000')
     await page.getByRole('button', { name: 'Verificar' }).click()
-    await expect(page.getByRole('alert')).toContainText('Código incorrecto')
+    await expect(page.getByRole('alert')).toContainText('Código incorrecto. Te quedan 4 intentos')
     await expect(page.getByText('Mis alumnos')).toBeHidden()
+    // R6: el reenvío del código espera 60 s
+    await expect(page.getByRole('button', { name: /Reenviar código en \d+ s/ })).toBeDisabled()
   })
 
   test('PA-02 RF02, RF03, RNF04: registra un alumno con consentimiento y sin pedir datos personales', async ({ page }) => {
@@ -64,7 +66,7 @@ test.describe('Alumno', () => {
     await entrarAlumno(page, alumno)
     await saltarRecorrido(page)
     await expect(page.locator('.tarjeta-nivel h3')).toHaveText(['Secuencias', 'Ciclos', 'Condiciones'])
-    await expect(page.locator('.lista-desafios button')).toHaveCount(6)
+    await expect(page.locator('.lista-desafios button')).toHaveCount(12)
   })
 
   test('PA-05 RF06, RF07, RF09: arma el programa con bloques, ve al robot llegar y gana XP', async ({ page }, info) => {

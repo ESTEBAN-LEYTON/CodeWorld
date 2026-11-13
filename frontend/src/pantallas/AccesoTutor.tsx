@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { llamar } from '../api'
+import { useEffect, useState } from 'react'
+import { ErrorApi, llamar, mensajeDeError } from '../api'
 import type { Sesion } from '../sesion'
 import { texto } from './datosFormulario'
 import { Campo, Formulario } from './Formulario'
@@ -11,14 +11,24 @@ interface Props {
   onVolver: () => void
 }
 
-type Paso = { tipo: 'login'; aviso?: string } | { tipo: 'registro' } | { tipo: 'codigo'; desafio2fa: string; enviadoA: string; username: string }
+interface Desafio2fa {
+  desafio2fa: string
+  enviadoA: string
+  /** Segundos que hay que esperar para pedir otro código. */
+  esperaReenvio: number
+}
+
+type Paso = { tipo: 'login'; aviso?: string } | { tipo: 'registro' } | ({ tipo: 'codigo'; username: string; aviso?: string } & Desafio2fa)
+
+/** El servidor pide volver a iniciar sesión cuando el código se agotó, venció o ya se usó. */
+const hayQueReiniciar = (e: unknown) => e instanceof ErrorApi && e.datos.reiniciar === true
 
 export function AccesoTutor({ onSesion, onVolver }: Props) {
   const [paso, setPaso] = useState<Paso>({ tipo: 'login' })
 
   const iniciar = async (d: FormData) => {
     const username = texto(d, 'username')
-    const r = await llamar<{ desafio2fa: string; enviadoA: string }>('/auth/tutor/login', {
+    const r = await llamar<Desafio2fa>('/auth/tutor/login', {
       metodo: 'POST',
       cuerpo: { username, password: String(d.get('password')) },
     })
@@ -36,19 +46,34 @@ export function AccesoTutor({ onSesion, onVolver }: Props) {
 
   if (paso.tipo === 'codigo') {
     const verificar = async (d: FormData) => {
-      const r = await llamar<{ token: string; username: string }>('/auth/tutor/verificar', {
-        metodo: 'POST',
-        cuerpo: { desafio2fa: paso.desafio2fa, codigo: texto(d, 'codigo') },
-      })
-      onSesion({ rol: 'tutor', token: r.token, username: r.username })
+      try {
+        const r = await llamar<{ token: string; username: string }>('/auth/tutor/verificar', {
+          metodo: 'POST',
+          cuerpo: { desafio2fa: paso.desafio2fa, codigo: texto(d, 'codigo') },
+        })
+        onSesion({ rol: 'tutor', token: r.token, username: r.username })
+      } catch (e) {
+        if (!hayQueReiniciar(e)) throw e
+        setPaso({ tipo: 'login', aviso: mensajeDeError(e) })
+      }
     }
     return (
       <Formulario
+        key={paso.desafio2fa}
         titulo="Verificación en dos pasos"
-        subtitulo={`Enviamos un código de 6 dígitos a ${paso.enviadoA}. Vence en 10 minutos.`}
+        subtitulo={paso.aviso ?? `Enviamos un código de 6 dígitos a ${paso.enviadoA}. Vence en 10 minutos.`}
         boton="Verificar"
         onEnviar={verificar}
         onVolver={() => setPaso({ tipo: 'login' })}
+        pie={
+          <ReenviarCodigo
+            key={paso.desafio2fa}
+            desafio2fa={paso.desafio2fa}
+            espera={paso.esperaReenvio}
+            onNuevo={(r) => setPaso({ ...paso, ...r, aviso: `Te enviamos un código nuevo a ${r.enviadoA}. El anterior ya no sirve.` })}
+            onReiniciar={(aviso) => setPaso({ tipo: 'login', aviso })}
+          />
+        }
       >
         <Campo label="Código" name="codigo" inputMode="numeric" pattern="\d{6}" maxLength={6} autoComplete="one-time-code" required autoFocus />
       </Formulario>
@@ -91,5 +116,62 @@ export function AccesoTutor({ onSesion, onVolver }: Props) {
       <Campo label="Usuario" name="username" autoComplete="username" required autoFocus />
       <Campo label="Contraseña" name="password" type="password" autoComplete="current-password" required />
     </Formulario>
+  )
+}
+
+/** Botón «Reenviar código» con cuenta regresiva (riesgo R6). */
+function ReenviarCodigo({
+  desafio2fa,
+  espera,
+  onNuevo,
+  onReiniciar,
+}: {
+  desafio2fa: string
+  espera: number
+  onNuevo: (r: Desafio2fa) => void
+  onReiniciar: (aviso: string) => void
+}) {
+  const [listoEn, setListoEn] = useState(() => Date.now() + espera * 1000)
+  const [ahora, setAhora] = useState(() => Date.now())
+  const [error, setError] = useState('')
+  const [enviando, setEnviando] = useState(false)
+  const falta = Math.max(0, Math.ceil((listoEn - ahora) / 1000))
+
+  useEffect(() => {
+    if (falta === 0) return
+    const t = setInterval(() => setAhora(Date.now()), 1000)
+    return () => clearInterval(t)
+  }, [falta])
+
+  const reenviar = async () => {
+    setError('')
+    setEnviando(true)
+    try {
+      onNuevo(await llamar<Desafio2fa>('/auth/tutor/reenviar', { metodo: 'POST', cuerpo: { desafio2fa } }))
+    } catch (e) {
+      if (hayQueReiniciar(e)) return onReiniciar(mensajeDeError(e))
+      const segundos = e instanceof ErrorApi ? Number(e.datos.esperaReenvio) : NaN
+      if (segundos > 0) {
+        setAhora(Date.now())
+        setListoEn(Date.now() + segundos * 1000)
+      }
+      setError(mensajeDeError(e))
+    } finally {
+      setEnviando(false)
+    }
+  }
+
+  return (
+    <div className="pie-form reenviar">
+      ¿No te llegó?{' '}
+      <button type="button" className="enlace" onClick={reenviar} disabled={falta > 0 || enviando}>
+        {falta > 0 ? `Reenviar código en ${falta} s` : enviando ? 'Enviando…' : 'Reenviar código'}
+      </button>
+      {error && (
+        <p className="error-form" role="alert">
+          {error}
+        </p>
+      )}
+    </div>
   )
 }

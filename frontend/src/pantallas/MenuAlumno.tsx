@@ -3,6 +3,9 @@ import type { Desafio, Nivel } from '../game/types'
 
 // Menú principal del alumno: elige el nivel (la «clase») y el desafío que quiere jugar.
 
+/** Ícono de cada nivel, por orden; los niveles nuevos usan el último. */
+const ICONOS_NIVEL = ['👣', '🔁', '🤔']
+
 interface Props {
   username: string
   niveles: Nivel[]
@@ -38,8 +41,16 @@ export function MenuAlumno({ username, niveles, completados, nuevos, onJugar }: 
           const bloques = n.desafios.flatMap((d) => nuevos.get(d.id) ?? [])
           const pendiente = n.desafios.find((d) => !hecho(d)) ?? n.desafios[0]
           return (
-            <article key={n.id} className={`tarjeta-nivel ${listos === n.desafios.length ? 'completo' : ''}`}>
-              <p className="etiqueta-nivel">Nivel {n.orden}</p>
+            <article key={n.id} className={`tarjeta-nivel ${listos === n.desafios.length ? 'completo' : ''}`} data-nivel={n.orden}>
+              <div className="cabeza-nivel">
+                <span className="icono-nivel" aria-hidden>
+                  {ICONOS_NIVEL[Math.min(n.orden, ICONOS_NIVEL.length) - 1]}
+                </span>
+                <p className="etiqueta-nivel">
+                  Nivel {n.orden}
+                  {listos === n.desafios.length && <span className="sello"> · ¡Completo!</span>}
+                </p>
+              </div>
               <h3>{n.titulo}</h3>
               <p className="subtitulo">{n.descripcion}</p>
               {bloques.length > 0 && (

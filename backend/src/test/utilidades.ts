@@ -26,6 +26,6 @@ export async function reiniciarDb(db: Db) {
   await cargarContenido(db)
 }
 
-export function appDePruebas(db: Db, enviador: EnviadorCodigo) {
-  return crearApp({ db, jwtSecret: SECRETO, enviador, limites: { api: 10_000, login: 10_000 } })
+export function appDePruebas(db: Db, enviador: EnviadorCodigo, esperaReenvio2fa?: number) {
+  return crearApp({ db, jwtSecret: SECRETO, enviador, limites: { api: 10_000, login: 10_000 }, esperaReenvio2fa })
 }

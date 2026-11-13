@@ -19,7 +19,28 @@ const SOLUCIONES: Record<string, Instruccion[]> = {
   'ciclos-2': [{ tipo: 'repetirHastaMeta', cuerpo: [A, DER, A, IZQ] }],
   'condiciones-1': [{ tipo: 'repetirHastaMeta', cuerpo: [{ tipo: 'siCaminoAdelante', entonces: [A], sino: [DER] }] }],
   'condiciones-2': [{ tipo: 'repetirHastaMeta', cuerpo: [{ tipo: 'siCaminoAdelante', entonces: [A], sino: [IZQ] }] }],
+  'secuencias-3': [A, A, A, IZQ, A, A],
+  'secuencias-4': [A, DER, A, A, IZQ, A, A, DER, A, A, IZQ, A],
+  'ciclos-3': [{ tipo: 'repetir', veces: 3, cuerpo: [{ tipo: 'repetir', veces: 3, cuerpo: [A] }, DER] }],
+  'ciclos-4': [
+    { tipo: 'repetir', veces: 6, cuerpo: [A] }, DER, A, A, DER,
+    { tipo: 'repetir', veces: 6, cuerpo: [A] }, IZQ, A, A, IZQ,
+    { tipo: 'repetir', veces: 6, cuerpo: [A] },
+  ],
+  // El mismo programa de «El robot decide» resuelve el caracol: la condición generaliza.
+  'condiciones-3': [{ tipo: 'repetirHastaMeta', cuerpo: [{ tipo: 'siCaminoAdelante', entonces: [A], sino: [DER] }] }],
+  // Si no hay camino: probar a la derecha y, si tampoco, darse vuelta hacia la izquierda.
+  'condiciones-4': [
+    {
+      tipo: 'repetirHastaMeta',
+      cuerpo: [{ tipo: 'siCaminoAdelante', entonces: [A], sino: [DER, { tipo: 'siCaminoAdelante', entonces: [], sino: [DER, DER] }] }],
+    },
+  ],
 }
+
+/** Cantidad de bloques de un programa, contando los que van dentro de ciclos y condiciones. */
+const contarBloques = (p: Instruccion[]): number =>
+  p.reduce((n, i) => n + 1 + contarBloques('cuerpo' in i ? i.cuerpo : 'entonces' in i ? [...i.entonces, ...i.sino] : []), 0)
 
 const tiposUsados = (p: Instruccion[]): string[] =>
   p.flatMap((i) => {
@@ -35,6 +56,11 @@ describe('Interpretador.ejecutar', () => {
     expect(d.bloquesPermitidos).toEqual(expect.arrayContaining(tiposUsados(SOLUCIONES[id])))
     const r = ejecutar(SOLUCIONES[id], lab(id))
     expect(r).toMatchObject({ estado: 'EXITO', patronError: null })
+  })
+
+  it.each(DESAFIOS.map((d) => d.id))('el «reto extra» de %s se puede cumplir', (id) => {
+    const d = DESAFIOS.find((x) => x.id === id)!
+    expect(contarBloques(SOLUCIONES[id])).toBeLessThanOrEqual(d.bloquesOptimos ?? Infinity)
   })
 
   it('el límite de pasos del diseño es 200', () => {

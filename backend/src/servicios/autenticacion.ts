@@ -1,7 +1,8 @@
-import { Router } from 'express'
+import { Router, type Response } from 'express'
 import { z } from 'zod'
 import type { Db } from '../db.js'
 import { hashear, verificar } from '../seguridad/contrasenas.js'
+import { Intentos2fa } from '../seguridad/intentos2fa.js'
 import type { Sesion, Tokens } from '../seguridad/tokens.js'
 import { ocultar, type EnviadorCodigo } from './mensajeria.js'
 import { clave, nombreUsuario, validar } from './validacion.js'
@@ -10,9 +11,28 @@ import { clave, nombreUsuario, validar } from './validacion.js'
 // Zero-Data (Ley N.° 19.628): del alumno solo se guardan usuario, clave (hash), id anónimo y edad.
 
 const CREDENCIALES_INVALIDAS = { error: 'Usuario o contraseña incorrectos' }
+const DESAFIO_VENCIDO = { error: 'El código ya no es válido. Inicia sesión de nuevo.', reiniciar: true }
 
-export function servicioAutenticacion(db: Db, tokens: Tokens, enviador: EnviadorCodigo) {
+/** Segundos que se espera antes de poder pedir otro código 2FA (R6). */
+export const ESPERA_REENVIO_2FA = 60
+
+export function servicioAutenticacion(db: Db, tokens: Tokens, enviador: EnviadorCodigo, esperaReenvio = ESPERA_REENVIO_2FA) {
   const r = Router()
+  const intentos = new Intentos2fa()
+
+  /** Crea un código 2FA, lo envía al correo del tutor y responde con el token del desafío. */
+  async function enviarCodigo(tutor: { id: string; contactoVerificado: string }, res: Response) {
+    const { codigo, token } = tokens.crearDesafio2fa(tutor.id)
+    try {
+      await enviador.enviar(tutor.contactoVerificado, codigo)
+    } catch (e) {
+      console.error('No se pudo enviar el código 2FA:', e)
+      res.status(503).json({ error: 'No pudimos enviar el código de verificación. Intenta de nuevo en unos minutos.' })
+      return false
+    }
+    res.json({ desafio2fa: token, enviadoA: ocultar(tutor.contactoVerificado), esperaReenvio })
+    return true
+  }
 
   r.post(
     '/auth/tutor/registro',
@@ -41,27 +61,39 @@ export function servicioAutenticacion(db: Db, tokens: Tokens, enviador: Enviador
     if (!tutor || !(await verificar(req.body.password, tutor.passwordHash))) {
       return res.status(401).json(CREDENCIALES_INVALIDAS)
     }
-    const { codigo, token } = tokens.crearDesafio2fa(tutor.id)
-    try {
-      await enviador.enviar(tutor.contactoVerificado, codigo)
-    } catch (e) {
-      console.error('No se pudo enviar el código 2FA:', e)
-      return res.status(503).json({ error: 'No pudimos enviar el código de verificación. Intenta de nuevo en unos minutos.' })
-    }
-    res.json({ desafio2fa: token, enviadoA: ocultar(tutor.contactoVerificado) })
+    await enviarCodigo(tutor, res)
   })
 
-  // Paso 2: código correcto -> sesión de tutor.
+  // Paso 2: código correcto -> sesión de tutor. Cada código sirve una vez y admite MAX_INTENTOS_2FA fallos.
   r.post(
     '/auth/tutor/verificar',
     validar(z.object({ desafio2fa: z.string(), codigo: z.string().regex(/^\d{6}$/, 'son 6 dígitos') })),
     async (req, res) => {
-      const tutorId = tokens.verificarDesafio2fa(req.body.desafio2fa, req.body.codigo)
-      const tutor = tutorId ? await db.tutor.findUnique({ where: { id: tutorId } }) : null
-      if (!tutor) return res.status(401).json({ error: 'Código incorrecto o expirado' })
+      const desafio = tokens.leerDesafio2fa(req.body.desafio2fa)
+      if (!desafio || intentos.anulado(desafio.jti)) return res.status(401).json(DESAFIO_VENCIDO)
+      const vence = desafio.vence * 1000
+      if (!tokens.codigoCorrecto(desafio, req.body.codigo)) {
+        const quedan = intentos.fallar(desafio.jti, vence)
+        if (quedan === 0) return res.status(401).json({ error: 'Demasiados intentos. Inicia sesión de nuevo para recibir otro código.', reiniciar: true })
+        return res.status(401).json({ error: `Código incorrecto. Te ${quedan === 1 ? 'queda 1 intento' : `quedan ${quedan} intentos`}.` })
+      }
+      intentos.anular(desafio.jti, vence)
+      const tutor = await db.tutor.findUnique({ where: { id: desafio.tutorId } })
+      if (!tutor) return res.status(401).json(DESAFIO_VENCIDO)
       res.json({ token: tokens.firmarSesion({ sub: tutor.id, rol: 'tutor' }), username: tutor.username })
     },
   )
+
+  // Reenviar el código: exige esperar esperaReenvio segundos y anula el código anterior.
+  r.post('/auth/tutor/reenviar', validar(z.object({ desafio2fa: z.string() })), async (req, res) => {
+    const desafio = tokens.leerDesafio2fa(req.body.desafio2fa)
+    if (!desafio || intentos.anulado(desafio.jti)) return res.status(401).json(DESAFIO_VENCIDO)
+    const falta = desafio.emitido + esperaReenvio - Math.floor(Date.now() / 1000)
+    if (falta > 0) return res.status(429).json({ error: `Espera ${falta} s para pedir otro código.`, esperaReenvio: falta })
+    const tutor = await db.tutor.findUnique({ where: { id: desafio.tutorId } })
+    if (!tutor) return res.status(401).json(DESAFIO_VENCIDO)
+    if (await enviarCodigo(tutor, res)) intentos.anular(desafio.jti, desafio.vence * 1000)
+  })
 
   r.post('/auth/alumno/login', validar(z.object({ username: z.string(), password: z.string() })), async (req, res) => {
     const alumno = await db.alumno.findUnique({ where: { username: req.body.username } })

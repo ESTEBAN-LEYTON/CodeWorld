@@ -4,9 +4,12 @@ const BASE = import.meta.env.VITE_API_URL ?? '/api'
 
 export class ErrorApi extends Error {
   readonly status: number
-  constructor(status: number, mensaje: string) {
+  /** Cuerpo de la respuesta de error, por si trae datos además del mensaje. */
+  readonly datos: Record<string, unknown>
+  constructor(status: number, mensaje: string, datos: Record<string, unknown> = {}) {
     super(mensaje)
     this.status = status
+    this.datos = datos
   }
   /** status 0: no hubo respuesta (sin conexión o servidor caído). */
   get sinConexion() {
@@ -35,7 +38,7 @@ export async function llamar<T>(ruta: string, { metodo = 'GET', cuerpo, token }:
     throw new ErrorApi(0, 'No hay conexión con el servidor.')
   }
   const datos = await res.json().catch(() => ({}))
-  if (!res.ok) throw new ErrorApi(res.status, datos.error ?? `Error ${res.status}`)
+  if (!res.ok) throw new ErrorApi(res.status, datos.error ?? `Error ${res.status}`, datos)
   return datos as T
 }
 

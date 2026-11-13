@@ -66,13 +66,14 @@ Las pruebas de la API usan una base de datos aparte (`TEST_DATABASE_URL`, que se
 | --- | --- |
 | Editor de bloques en español (avanzar, girar, repetir, repetir hasta la meta, si hay camino) | ✅ |
 | Interpretador local en el navegador, límite de 200 pasos, estados EXITO/REINTENTO/ERROR | ✅ |
-| MotorGuias: guía correctiva por desafío y patrón de error, 100% de cobertura en el nivel inicial (OE3) | ✅ |
-| 3 niveles y 6 desafíos servidos desde PostgreSQL (ServicioContenido), con caché sin conexión | ✅ |
+| MotorGuias: guía correctiva por desafío y patrón de error, 100% de cobertura en los 12 desafíos (OE3) | ✅ |
+| 3 niveles y 12 desafíos (4 por nivel) servidos desde PostgreSQL (ServicioContenido), con caché sin conexión | ✅ |
 | ApiGateway: CORS, rate limiting (más estricto en login), cabeceras de seguridad, errores en JSON | ✅ |
 | ServicioAutenticacion: registro y login del tutor con 2FA, registro de alumno con consentimiento, login del alumno | ✅ |
+| 2FA reforzado (R6): 5 intentos por código, un solo uso y reenvío con espera de 60 s | ✅ |
 | ServicioProgreso: sincronización por lotes idempotente, XP por desafío, panel de progreso del tutor | ✅ |
 | GestorProgreso: progreso en localStorage, sincronización automática al recuperar conexión (R2) | ✅ |
-| Interfaz web responsiva (computador, tableta y celular) | ✅ |
+| Interfaz web responsiva (computador, tableta y celular), con diseño de juego: robot, tablero en relieve y un color por nivel | ✅ |
 | Menú principal del alumno: niveles con avance, bloques que enseña cada uno y «Continuar donde quedé» | ✅ |
 | Tutoriales guiados la primera vez (menú, desafío y panel del tutor), repetibles desde «¿Cómo se juega?» y «Ayuda» (R5) | ✅ |
 | Explicación animada de cada bloque nuevo, con ejemplo armado y mini laberinto | ✅ |
@@ -81,5 +82,4 @@ Las pruebas de la API usan una base de datos aparte (`TEST_DATABASE_URL`, que se
 | Código 2FA por correo con Brevo: implementado, falta probarlo con una cuenta real | 🔶 |
 | Despliegue en hosting: guía lista en [`docs/despliegue.md`](docs/despliegue.md), falta ejecutarlo | ⏳ |
 | Pruebas manuales en dispositivos físicos (iOS, Android, gama baja) | ⏳ |
-| Más desafíos por nivel | ⏳ |
 | Pruebas de usabilidad con el grupo de control (OE4) | ⏳ |

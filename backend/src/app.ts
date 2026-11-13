@@ -22,6 +22,8 @@ export interface Opciones {
   limites?: { api: number; login: number }
   /** Saltos de proxy delante de la API (hosting): sin esto, todos los usuarios comparten la IP del proxy. */
   saltosProxy?: number
+  /** Segundos de espera para reenviar el código 2FA; las pruebas lo bajan a 0. */
+  esperaReenvio2fa?: number
 }
 
 export function crearApp({
@@ -31,6 +33,7 @@ export function crearApp({
   enviador = enviadorConsola,
   limites = { api: 300, login: 20 },
   saltosProxy = 0,
+  esperaReenvio2fa,
 }: Opciones) {
   const app = express()
   app.set('trust proxy', saltosProxy)
@@ -42,7 +45,7 @@ export function crearApp({
   const limitar = (limit: number) => rateLimit({ windowMs: 60_000, limit, standardHeaders: 'draft-8', legacyHeaders: false })
   app.use('/api', limitar(limites.api))
   // Límite más estricto contra fuerza bruta de contraseñas y códigos 2FA.
-  app.use(['/api/auth/tutor/login', '/api/auth/tutor/verificar', '/api/auth/alumno/login'], limitar(limites.login))
+  app.use(['/api/auth/tutor/login', '/api/auth/tutor/verificar', '/api/auth/tutor/reenviar', '/api/auth/alumno/login'], limitar(limites.login))
 
   app.get('/api/health', async (_req, res) => {
     try {
@@ -53,7 +56,7 @@ export function crearApp({
     }
   })
 
-  app.use('/api', servicioAutenticacion(db, tokens, enviador))
+  app.use('/api', servicioAutenticacion(db, tokens, enviador, esperaReenvio2fa))
   app.use('/api', servicioContenido(db))
   app.use('/api', servicioProgreso(db, tokens))
 

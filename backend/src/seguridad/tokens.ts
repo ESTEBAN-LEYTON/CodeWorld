@@ -1,4 +1,4 @@
-import { createHmac, randomInt, timingSafeEqual } from 'node:crypto'
+import { createHmac, randomInt, randomUUID, timingSafeEqual } from 'node:crypto'
 import jwt from 'jsonwebtoken'
 import type { NextFunction, Request, Response } from 'express'
 
@@ -16,6 +16,15 @@ interface Desafio2fa {
   sub: string
   rol: 'tutor_2fa'
   codigo: string
+}
+
+/** Desafío 2FA leído de un token válido: quién es, su id único y cuándo se emitió y vence (segundos). */
+export interface LecturaDesafio2fa {
+  tutorId: string
+  jti: string
+  emitido: number
+  vence: number
+  hmacCodigo: string
 }
 
 export const DURACION_SESION = '8h'
@@ -44,20 +53,26 @@ export class Tokens {
   crearDesafio2fa(tutorId: string): { codigo: string; token: string } {
     const codigo = String(randomInt(0, 1_000_000)).padStart(6, '0')
     const datos: Desafio2fa = { sub: tutorId, rol: 'tutor_2fa', codigo: this.hmac(tutorId, codigo) }
-    return { codigo, token: jwt.sign(datos, this.secreto, { expiresIn: DURACION_CODIGO_2FA }) }
+    return { codigo, token: jwt.sign(datos, this.secreto, { expiresIn: DURACION_CODIGO_2FA, jwtid: randomUUID() }) }
   }
 
-  /** Devuelve el id del tutor si el código corresponde al token y no ha expirado. */
-  verificarDesafio2fa(token: string, codigo: string): string | null {
+  /** Lee un desafío 2FA firmado y vigente; null si es falso, de otro tipo o expiró. */
+  leerDesafio2fa(token: string): LecturaDesafio2fa | null {
     try {
-      const datos = jwt.verify(token, this.secreto) as Partial<Desafio2fa>
-      if (datos.rol !== 'tutor_2fa' || typeof datos.sub !== 'string' || typeof datos.codigo !== 'string') return null
-      const esperado = Buffer.from(datos.codigo, 'hex')
-      const recibido = Buffer.from(this.hmac(datos.sub, codigo), 'hex')
-      return esperado.length === recibido.length && timingSafeEqual(esperado, recibido) ? datos.sub : null
+      const d = jwt.verify(token, this.secreto) as Partial<Desafio2fa> & jwt.JwtPayload
+      if (d.rol !== 'tutor_2fa' || typeof d.sub !== 'string' || typeof d.codigo !== 'string') return null
+      if (typeof d.jti !== 'string' || typeof d.iat !== 'number' || typeof d.exp !== 'number') return null
+      return { tutorId: d.sub, jti: d.jti, emitido: d.iat, vence: d.exp, hmacCodigo: d.codigo }
     } catch {
       return null
     }
+  }
+
+  /** Compara el código ingresado con el del desafío en tiempo constante. */
+  codigoCorrecto(desafio: LecturaDesafio2fa, codigo: string): boolean {
+    const esperado = Buffer.from(desafio.hmacCodigo, 'hex')
+    const recibido = Buffer.from(this.hmac(desafio.tutorId, codigo), 'hex')
+    return esperado.length === recibido.length && timingSafeEqual(esperado, recibido)
   }
 
   private hmac(tutorId: string, codigo: string): string {

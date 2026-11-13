@@ -76,6 +76,56 @@ describe.skipIf(!urlPruebas)('API de CodeWorld', () => {
       expect(paso2.body.token).toBeTruthy()
     })
 
+    async function pedirCodigo(aplicacion = app) {
+      await request(aplicacion).post('/api/auth/tutor/registro').send({ username: 'papa', password: 'clave123', contacto: 'p@correo.cl' })
+      const login = await request(aplicacion).post('/api/auth/tutor/login').send({ username: 'papa', password: 'clave123' })
+      return login.body.desafio2fa as string
+    }
+    const verificarCodigo = (desafio2fa: string, codigo: string, aplicacion = app) =>
+      request(aplicacion).post('/api/auth/tutor/verificar').send({ desafio2fa, codigo })
+    const codigoMalo = () => (correo.ultimoCodigo() === '000000' ? '111111' : '000000')
+
+    it('R6: tras 5 códigos incorrectos, ni el correcto sirve y pide iniciar sesión de nuevo', async () => {
+      const desafio = await pedirCodigo()
+      for (let quedan = 4; quedan >= 1; quedan--) {
+        const r = await verificarCodigo(desafio, codigoMalo())
+        expect(r.status).toBe(401)
+        expect(r.body.error).toContain(quedan === 1 ? 'queda 1 intento' : `quedan ${quedan} intentos`)
+      }
+      const quinto = await verificarCodigo(desafio, codigoMalo())
+      expect(quinto.body).toMatchObject({ reiniciar: true })
+      const correcto = await verificarCodigo(desafio, correo.ultimoCodigo())
+      expect(correcto.status).toBe(401)
+      expect(correcto.body.token).toBeUndefined()
+    })
+
+    it('R6: un código sirve una sola vez', async () => {
+      const desafio = await pedirCodigo()
+      expect((await verificarCodigo(desafio, correo.ultimoCodigo())).status).toBe(200)
+      expect((await verificarCodigo(desafio, correo.ultimoCodigo())).status).toBe(401)
+    })
+
+    it('R6: el reenvío exige esperar 60 s', async () => {
+      const desafio = await pedirCodigo()
+      const r = await request(app).post('/api/auth/tutor/reenviar').send({ desafio2fa: desafio })
+      expect(r.status).toBe(429)
+      expect(r.body.esperaReenvio).toBeGreaterThan(55)
+    })
+
+    it('R6: el reenvío manda un código nuevo y anula el anterior', async () => {
+      const sinEspera = appDePruebas(db, correo.enviador, 0)
+      const viejo = await pedirCodigo(sinEspera)
+      const codigoViejo = correo.ultimoCodigo()
+      const r = await request(sinEspera).post('/api/auth/tutor/reenviar').send({ desafio2fa: viejo })
+      expect(r.status).toBe(200)
+      expect(r.body.enviadoA).toBeTruthy()
+      expect((await verificarCodigo(viejo, codigoViejo, sinEspera)).status).toBe(401)
+      expect((await request(sinEspera).post('/api/auth/tutor/reenviar').send({ desafio2fa: viejo })).status).toBe(401)
+      const nuevo = await verificarCodigo(r.body.desafio2fa, correo.ultimoCodigo(), sinEspera)
+      expect(nuevo.status).toBe(200)
+      expect(nuevo.body.token).toBeTruthy()
+    })
+
     it('rechaza contraseña incorrecta sin revelar si el usuario existe', async () => {
       await request(app).post('/api/auth/tutor/registro').send({ username: 'papa', password: 'clave123', contacto: 'p@correo.cl' })
       const a = await request(app).post('/api/auth/tutor/login').send({ username: 'papa', password: 'mala' })
@@ -212,21 +262,25 @@ describe.skipIf(!urlPruebas)('API de CodeWorld', () => {
           registros: [
             { desafioId: 'secuencias-1', completadoEn: '2026-10-10T15:00:00Z', intentos: 1 },
             { desafioId: 'secuencias-2', completadoEn: '2026-10-10T15:05:00Z', intentos: 3 },
+            { desafioId: 'secuencias-3', completadoEn: '2026-10-10T15:09:00Z', intentos: 1 },
+            { desafioId: 'secuencias-4', completadoEn: '2026-10-10T15:15:00Z', intentos: 2 },
+            { desafioId: 'ciclos-1', completadoEn: '2026-10-10T15:20:00Z', intentos: 1 },
           ],
         })
       expect(sync.status).toBe(200)
-      expect(sync.body.xpTotal).toBe(25)
+      // 10 + 15 + 15 + 20 de Secuencias y 20 de Ciclos; un nivel se completa solo con todos sus desafíos.
+      expect(sync.body.xpTotal).toBe(80)
       expect(sync.body.nivelesCompletados).toEqual(['secuencias'])
 
       const lista = await request(app).get('/api/tutor/alumnos').set('Authorization', `Bearer ${tutor}`)
       expect(lista.body).toEqual([
-        expect.objectContaining({ username: 'gato_rapido', xpTotal: 25, desafiosCompletados: 2, totalDesafios: 6 }),
+        expect.objectContaining({ username: 'gato_rapido', xpTotal: 80, desafiosCompletados: 5, totalDesafios: 12 }),
       ])
 
       const detalle = await request(app)
         .get(`/api/tutor/alumnos/${lista.body[0].id}/progreso`)
         .set('Authorization', `Bearer ${tutor}`)
-      expect(detalle.body.registros).toHaveLength(2)
+      expect(detalle.body.registros).toHaveLength(5)
     })
 
     it('la sincronización es idempotente y el XP lo fija el servidor', async () => {

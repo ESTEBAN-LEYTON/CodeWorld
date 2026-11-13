@@ -1,6 +1,6 @@
 # Pruebas de CodeWorld
 
-Evidencia de la Iteración 3 (pruebas funcionales, de integración y de cargabilidad) y de las pruebas de aceptación del cliente. Resultados obtenidos el 2026-11-05 en un computador local.
+Evidencia de la Iteración 3 (pruebas funcionales, de integración y de cargabilidad) y de las pruebas de aceptación del cliente. Resultados obtenidos el 2026-11-05 en un computador local; las unitarias, de integración y de aceptación se repitieron el 2026-11-13 tras agregar 6 desafíos y reforzar el 2FA. La prueba de carga no se repitió.
 
 ## Cómo ejecutarlas
 
@@ -16,9 +16,9 @@ npm run test:carga   # cargabilidad; reescribe docs/pruebas/resultados-carga.md
 
 | Tipo | Herramienta | Alcance | Resultado |
 | --- | --- | --- | --- |
-| Unitarias | Vitest | Interpretador, MotorGuias, GestorProgreso, ayuda de bloques, contraseñas, tokens y mensajería | Pasan |
+| Unitarias | Vitest | Interpretador, MotorGuias, GestorProgreso, ayuda de bloques, contraseñas, tokens, intentos 2FA y mensajería | Pasan |
 | Integración | Vitest, Supertest y PostgreSQL | API completa contra una base real | Pasan |
-| Total unitarias e integración | | Frontend 35; backend 29 | **64 de 64** |
+| Total unitarias e integración | | Frontend 53; backend 36 | **89 de 89** |
 | Funcionales y de aceptación | Playwright (Chromium) | 15 casos en computador, tableta y celular | **43 pasan, 2 omitidas, 0 fallan** |
 | Cargabilidad | Autocannon | 4 endpoints con 10, 50 y 100 conexiones | Ver abajo; **1 falla intermitente sin explicar** |
 | Aceptación con usuarios (OE4) | Grupo de control | Al menos 10 jóvenes | **Pendiente** |
@@ -32,10 +32,10 @@ Código en `e2e/pruebas/aceptacion.spec.ts`. El resultado es el de los tres perf
 
 | ID | Requerimiento | Criterio de aceptación | Resultado |
 | --- | --- | --- | --- |
-| PA-01 | RF01 | El tutor entra con contraseña y código 2FA; un código incorrecto no da acceso | Pasa |
+| PA-01 | RF01, R6 | El tutor entra con contraseña y código 2FA; un código incorrecto no da acceso y avisa cuántos intentos quedan; el reenvío espera 60 s | Pasa |
 | PA-02 | RF02, RF03, RNF04 | Se registra al alumno solo con consentimiento y sin pedir nombre real ni correo | Pasa |
 | PA-03 | RF04 | El alumno entra con su usuario y clave; una clave incorrecta no da acceso | Pasa |
-| PA-04 | RF05 | Se ven 3 niveles y 6 desafíos ordenados por dificultad | Pasa |
+| PA-04 | RF05 | Se ven 3 niveles y 12 desafíos ordenados por dificultad | Pasa |
 | PA-05 | RF06, RF07, RF09 | Arma un programa arrastrando bloques, el robot llega y recibe +10 XP | Pasa (omitida en celular) |
 | PA-06 | RF08 | Un error muestra una guía correctiva, sin dar la solución ni XP | Pasa |
 | PA-07 | RF11 | El tutor ve el progreso de su alumno | Pasa |

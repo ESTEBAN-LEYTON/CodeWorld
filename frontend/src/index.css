@@ -1,16 +1,18 @@
 :root {
-  --fondo: #f4f6fb;
+  --fondo: #f1f3fb;
   --superficie: #ffffff;
   --texto: #1f2440;
   --texto-suave: #5b6185;
   --primario: #4f46e5;
+  --primario-oscuro: #3730a3;
   --ok: #16a34a;
   --error: #dc2626;
   --pared: #334155;
   --camino: #e2e8f0;
   --borde: #d8dcea;
   --aviso: #d97706;
-  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --sombra: 0 1px 2px rgb(31 36 64 / 0.06), 0 6px 18px rgb(31 36 64 / 0.07);
+  font-family: ui-rounded, 'SF Pro Rounded', 'Nunito', system-ui, 'Segoe UI', Roboto, sans-serif;
   color: var(--texto);
   background: var(--fondo);
 }
@@ -21,6 +23,9 @@
 
 body {
   margin: 0;
+  background:
+    radial-gradient(circle at 1px 1px, rgb(79 70 229 / 0.07) 1px, transparent 0) 0 0 / 22px 22px,
+    var(--fondo);
 }
 
 button {
@@ -33,11 +38,37 @@ button {
   cursor: pointer;
 }
 
+button {
+  transition: transform 0.08s, box-shadow 0.08s, border-color 0.15s, background-color 0.15s;
+}
+
+button:hover:not(:disabled) {
+  border-color: #b4b9d6;
+}
+
+/* Botón principal con relieve, como los de un juego */
 button.primario {
   background: var(--primario);
   border-color: var(--primario);
   color: #fff;
-  font-weight: 600;
+  font-weight: 700;
+  box-shadow: 0 4px 0 var(--primario-oscuro);
+  margin-bottom: 4px;
+}
+
+button.primario:hover:not(:disabled) {
+  background: #5b52f0;
+  border-color: #5b52f0;
+}
+
+button.primario:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--primario-oscuro);
+}
+
+button:focus-visible {
+  outline: 3px solid #facc15;
+  outline-offset: 2px;
 }
 
 button:disabled {
@@ -58,13 +89,34 @@ button:disabled {
   padding: 0.6rem 1rem;
   background: var(--superficie);
   border-bottom: 1px solid var(--borde);
+  box-shadow: 0 2px 10px rgb(31 36 64 / 0.05);
   flex-wrap: wrap;
 }
 
+.logo,
 .logo-barra {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
   margin: 0;
-  font-size: 1.3rem;
+  color: var(--texto);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.logo-barra {
+  font-size: 1.35rem;
+}
+
+.logo-acento {
   color: var(--primario);
+}
+
+.logo-robot {
+  width: 1.5em;
+  height: 1.5em;
+  color: var(--primario);
+  flex: none;
 }
 
 .mapa {
@@ -144,40 +196,78 @@ button:disabled {
   min-height: 360px;
 }
 
+/* Laberinto: tablero con muros en relieve, camino de baldosas y la estrella de la meta */
 .laberinto {
   display: grid;
-  gap: 2px;
+  gap: 3px;
   max-width: 340px;
   margin: 1rem 0;
+  padding: 6px;
+  background: #1e293b;
+  border-radius: 14px;
+  box-shadow: 0 6px 0 #0f172a, var(--sombra);
 }
 
 .celda {
   aspect-ratio: 1;
   display: grid;
   place-items: center;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 1.6rem;
+  container-type: inline-size;
 }
 
 .pared {
-  background: var(--pared);
+  background: linear-gradient(160deg, #64748b, #475569 55%, #334155);
+  box-shadow: inset 0 -3px 0 rgb(15 23 42 / 0.35), inset 0 2px 0 rgb(255 255 255 / 0.12);
 }
 
 .camino {
-  background: var(--camino);
+  background:
+    radial-gradient(circle at center, rgb(99 102 241 / 0.18) 2px, transparent 2.5px),
+    linear-gradient(#f8fafc, #e2e8f0);
 }
 
 .meta {
-  color: #eab308;
+  color: #facc15;
+  font-size: 75cqi;
+  line-height: 1;
+  text-shadow: 0 0 10px rgb(250 204 21 / 0.8), 0 2px 0 #a16207;
+  animation: latido 1.6s ease-in-out infinite;
 }
 
 .robot {
+  display: grid;
+  width: 88%;
+  height: 88%;
   color: var(--primario);
   transition: transform 0.2s;
+  filter: drop-shadow(0 2px 1px rgb(15 23 42 / 0.35));
+}
+
+.robot svg {
+  width: 100%;
+  height: 100%;
 }
 
 .robot.chocado {
   color: var(--error);
+  animation: sacudida 0.35s;
+}
+
+@keyframes latido {
+  50% {
+    transform: scale(1.12);
+  }
+}
+
+@keyframes sacudida {
+  25% {
+    translate: -3px 0;
+  }
+  75% {
+    translate: 3px 0;
+  }
 }
 
 .acciones {
@@ -275,17 +365,75 @@ button:disabled {
   padding: 1.5rem;
   width: 100%;
   max-width: 900px;
+  box-shadow: var(--sombra);
+}
+
+/* Portada */
+.portada-fondo {
+  background:
+    radial-gradient(circle at 15% 20%, rgb(99 102 241 / 0.16), transparent 40%),
+    radial-gradient(circle at 85% 80%, rgb(250 204 21 / 0.16), transparent 40%);
 }
 
 .portada {
-  max-width: 560px;
-  text-align: center;
+  width: 100%;
+  max-width: 880px;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  grid-template-areas: 'texto dibujo' 'opciones opciones';
+  gap: 1.5rem 2rem;
+  align-items: center;
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  box-shadow: var(--sombra);
+}
+
+.portada-texto {
+  grid-area: texto;
+}
+
+.portada-dibujo {
+  grid-area: dibujo;
+  justify-self: center;
+}
+
+.portada-dibujo .laberinto.mini {
+  width: 240px;
+  transform: rotate(-3deg);
+}
+
+.portada .opciones {
+  grid-area: opciones;
+  margin-top: 0;
 }
 
 .logo {
-  margin: 0;
-  font-size: 2.6rem;
-  color: var(--primario);
+  font-size: 2.8rem;
+}
+
+.lema {
+  font-size: 1.15rem;
+  line-height: 1.5;
+}
+
+.ventajas {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.ventajas li {
+  background: #eef2ff;
+  color: #3730a3;
+  border-radius: 2rem;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 
 .lema,
@@ -306,10 +454,38 @@ button:disabled {
   align-items: center;
   gap: 0.3rem;
   padding: 1.2rem;
+  border-width: 2px;
+  border-radius: 1rem;
+  box-shadow: 0 4px 0 var(--borde);
 }
 
-.opcion:hover {
+.opcion strong {
+  font-size: 1.15rem;
+}
+
+.opcion:hover:not(:disabled) {
   border-color: var(--primario);
+  transform: translateY(-2px);
+}
+
+.opcion:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 var(--borde);
+}
+
+.opcion-alumno {
+  background: linear-gradient(135deg, #6366f1, #4338ca);
+  border-color: #4338ca;
+  color: #fff;
+  box-shadow: 0 4px 0 #312e81;
+}
+
+.opcion-alumno small {
+  color: #e0e7ff !important;
+}
+
+.opcion-alumno:hover:not(:disabled) {
+  border-color: #312e81;
 }
 
 .opcion .icono {
@@ -379,6 +555,16 @@ button:disabled {
   margin: 0;
   text-align: center;
   font-size: 0.9rem;
+}
+
+.enlace:disabled {
+  color: var(--texto-suave);
+  text-decoration: none;
+  cursor: default;
+}
+
+.reenviar .error-form {
+  margin-top: 0.5rem;
 }
 
 /* Panel del tutor */
@@ -546,19 +732,76 @@ button.grande {
   gap: 1rem;
 }
 
+/* Cada nivel tiene su color: verde, índigo y naranjo */
 .tarjeta-nivel {
+  --acento: var(--primario);
+  --acento-oscuro: var(--primario-oscuro);
+  --acento-suave: #eef2ff;
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
   background: var(--superficie);
   border: 1px solid var(--borde);
-  border-top: 6px solid var(--primario);
+  border-top: 6px solid var(--acento);
   border-radius: 1rem;
   padding: 1.1rem;
+  box-shadow: var(--sombra);
 }
 
-.tarjeta-nivel.completo {
-  border-top-color: var(--ok);
+.tarjeta-nivel[data-nivel='1'] {
+  --acento: #059669;
+  --acento-oscuro: #065f46;
+  --acento-suave: #ecfdf5;
+}
+
+.tarjeta-nivel[data-nivel='3'] {
+  --acento: #ea580c;
+  --acento-oscuro: #9a3412;
+  --acento-suave: #fff7ed;
+}
+
+.cabeza-nivel {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.icono-nivel {
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 0.8rem;
+  background: var(--acento-suave);
+  font-size: 1.3rem;
+}
+
+.sello {
+  color: var(--ok);
+}
+
+.tarjeta-nivel > button.primario {
+  background: var(--acento);
+  border-color: var(--acento);
+  box-shadow: 0 4px 0 var(--acento-oscuro);
+}
+
+.tarjeta-nivel > button.primario:hover:not(:disabled) {
+  background: var(--acento);
+  filter: brightness(1.08);
+}
+
+.tarjeta-nivel > button.primario:active:not(:disabled) {
+  box-shadow: 0 1px 0 var(--acento-oscuro);
+}
+
+.tarjeta-nivel .avance-relleno {
+  background: var(--acento);
+}
+
+.tarjeta-nivel .lista-desafios button:hover:not(:disabled) {
+  border-color: var(--acento);
+  background: var(--acento-suave);
 }
 
 .tarjeta-nivel h3,
@@ -576,7 +819,7 @@ button.grande {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--primario);
+  color: var(--acento, var(--primario));
 }
 
 .bloques-nivel {
@@ -804,6 +1047,22 @@ button.grande {
     grid-template-columns: 1fr;
   }
 
+  .portada {
+    grid-template-columns: 1fr;
+    grid-template-areas: 'texto' 'dibujo' 'opciones';
+    padding: 1.3rem;
+    text-align: center;
+  }
+
+  .portada .logo,
+  .ventajas {
+    justify-content: center;
+  }
+
+  .portada-dibujo .laberinto.mini {
+    width: 180px;
+  }
+
   .tabla .avance {
     min-width: 64px;
   }
@@ -825,7 +1084,13 @@ button.grande {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .robot {
+  .robot,
+  button {
     transition: none;
+  }
+
+  .meta,
+  .robot.chocado {
+    animation: none;
   }
 }

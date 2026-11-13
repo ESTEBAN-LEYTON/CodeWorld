@@ -76,6 +76,37 @@ export const NIVELES: NivelSemilla[] = [
             'El robot siguió derecho y chocó. Cuando llega a la esquina, ¿hacia qué lado tiene que mirar para seguir el camino?',
         },
       },
+      {
+        id: 'secuencias-3',
+        titulo: 'Curva hacia arriba',
+        enunciado: 'Esta vez el camino sube. ¿Hacia qué lado tiene que girar el robot?',
+        laberinto: { celdas: ['######', '####M#', '####.#', '#I...#', '######'], dirInicial: 'E' },
+        bloquesPermitidos: ['cw_avanzar', 'cw_girar'],
+        bloquesOptimos: 6,
+        xpRecompensa: 15,
+        guias: {
+          choque:
+            'El robot giró hacia el lado equivocado o muy pronto. Si mira a la derecha (➤) y tiene que subir, ¿gira a la izquierda o a la derecha?',
+          incompleto: 'Vas bien. Después de girar, cuenta las casillas que faltan hasta la estrella.',
+        },
+      },
+      {
+        id: 'secuencias-4',
+        titulo: 'Zigzag',
+        enunciado: 'El camino baja como una escalera. Fíjate en cada esquina: a veces se gira a la derecha y a veces a la izquierda.',
+        laberinto: {
+          celdas: ['#######', '#I.####', '##.####', '##...##', '####.##', '####.M#', '#######'],
+          dirInicial: 'E',
+        },
+        bloquesPermitidos: ['cw_avanzar', 'cw_girar'],
+        bloquesOptimos: 12,
+        xpRecompensa: 20,
+        guias: {
+          choque:
+            'Choque en una esquina. Antes de cada giro, imagina que eres el robot: ¿el camino sigue a tu derecha o a tu izquierda?',
+          incompleto: 'El robot se detuvo a mitad de camino. Revisa el último tramo: ¿le faltan pasos o un giro?',
+        },
+      },
     ],
   },
   {
@@ -114,6 +145,38 @@ export const NIVELES: NivelSemilla[] = [
             'El robot da vueltas sin llegar. Dentro de «repetir hasta la meta» tiene que haber al menos un «avanzar» que lo acerque.',
         },
       },
+      {
+        id: 'ciclos-3',
+        titulo: 'Un repetir dentro de otro',
+        enunciado: 'Cada tramo es igual: 3 pasos y un giro. Pon un «repetir» dentro de otro «repetir».',
+        laberinto: { celdas: ['######', '#I...#', '####.#', '####.#', '#M...#', '######'], dirInicial: 'E' },
+        bloquesPermitidos: ['cw_avanzar', 'cw_girar', 'cw_repetir'],
+        bloquesOptimos: 4,
+        xpRecompensa: 25,
+        guias: {
+          choque:
+            'El robot chocó al final de un tramo. Después de los 3 pasos tiene que girar: ¿el giro quedó dentro del «repetir» de afuera?',
+          incompleto:
+            'Faltó un tramo. El «repetir» de afuera indica cuántos tramos recorre el robot: ¿cuántos tramos tiene el camino?',
+        },
+      },
+      {
+        id: 'ciclos-4',
+        titulo: 'La serpiente',
+        enunciado: 'Tres pasillos largos unidos por curvas. Usa «repetir» para cada pasillo y ahorra bloques.',
+        laberinto: {
+          celdas: ['#########', '#I......#', '#######.#', '#.......#', '#.#######', '#......M#', '#########'],
+          dirInicial: 'E',
+        },
+        bloquesPermitidos: ['cw_avanzar', 'cw_girar', 'cw_repetir'],
+        bloquesOptimos: 14,
+        xpRecompensa: 30,
+        guias: {
+          choque:
+            'Cada pasillo tiene 6 casillas. Si el robot chocó, revisa el número de «repetir» o el giro: la primera curva es a la derecha y la segunda, a la izquierda.',
+          incompleto: 'El robot no llegó al último pasillo. Cuenta las curvas: ¿hay un giro y dos pasos por cada una?',
+        },
+      },
     ],
   },
   {
@@ -146,6 +209,44 @@ export const NIVELES: NivelSemilla[] = [
         guias: {
           limite_pasos:
             'El robot gira pero vuelve a quedar frente a una pared. En este laberinto el camino sigue hacia la izquierda, no hacia la derecha.',
+        },
+      },
+      {
+        id: 'condiciones-3',
+        titulo: 'El caracol',
+        enunciado: 'Un laberinto en espiral. ¿Sirve el mismo programa del desafío «El robot decide»? Pruébalo.',
+        laberinto: {
+          celdas: ['#########', '#I......#', '#######.#', '#.....#.#', '#.###M#.#', '#.#####.#', '#.......#', '#########'],
+          dirInicial: 'E',
+        },
+        bloquesPermitidos: ['cw_avanzar', 'cw_girar', 'cw_repetir_hasta_meta', 'cw_si_camino'],
+        bloquesOptimos: 4,
+        xpRecompensa: 40,
+        guias: {
+          choque:
+            'Con tantas curvas es difícil contar. Deja que el robot decida: «si hay camino adelante» avanza y, si no, gira.',
+          limite_pasos:
+            'El robot gira sin avanzar. En este caracol todas las curvas son hacia la derecha: ¿hacia dónde gira tu robot cuando hay pared?',
+          incompleto: 'El robot se detuvo. Pon tu decisión dentro de «repetir hasta la meta» para que la tome en cada casilla.',
+        },
+      },
+      {
+        id: 'condiciones-4',
+        titulo: 'Curvas para ambos lados',
+        enunciado:
+          'Reto final: el camino dobla a la derecha y a la izquierda. Si al girar a la derecha todavía hay pared, el robot tiene que darse vuelta hacia el otro lado.',
+        laberinto: {
+          celdas: ['########', '#I.#####', '##.#M..#', '##.###.#', '##.....#', '########'],
+          dirInicial: 'E',
+        },
+        bloquesPermitidos: ['cw_avanzar', 'cw_girar', 'cw_repetir_hasta_meta', 'cw_si_camino'],
+        bloquesOptimos: 7,
+        xpRecompensa: 50,
+        guias: {
+          choque: 'El robot avanzó sin mirar. Cada «avanzar» tiene que estar dentro de «si hay camino adelante».',
+          limite_pasos:
+            'El robot da vueltas en una esquina. Pista: dentro del «si no», gira a la derecha y pregunta otra vez con un segundo «si hay camino adelante». Si tampoco hay camino, gira dos veces más.',
+          incompleto: 'El robot se detuvo. Pon tu decisión dentro de «repetir hasta la meta» para que la tome en cada casilla.',
         },
       },
     ],
