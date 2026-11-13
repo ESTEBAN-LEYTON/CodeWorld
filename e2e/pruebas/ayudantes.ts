@@ -1,6 +1,7 @@
 import type { Page } from '@playwright/test'
 
-export const API = 'http://localhost:3100'
+// Con E2E_UN_SERVIDOR la API y la página comparten el puerto 4173, como en Render.
+export const API = process.env.E2E_UN_SERVIDOR ? 'http://localhost:4173' : 'http://localhost:3100'
 
 let contador = 0
 /** Nombre único entre proyectos y ejecuciones: la base solo se vacía al iniciar el servidor. */

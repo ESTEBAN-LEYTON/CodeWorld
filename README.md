@@ -80,6 +80,6 @@ Las pruebas de la API usan una base de datos aparte (`TEST_DATABASE_URL`, que se
 | Autoguardado del programa a medio armar y apertura sin conexión con service worker (R2, R7) | ✅ |
 | Pruebas funcionales, de integración, de carga y de aceptación automatizadas | ✅ |
 | Código 2FA por correo con Brevo: implementado, falta probarlo con una cuenta real | 🔶 |
-| Despliegue en hosting: guía lista en [`docs/despliegue.md`](docs/despliegue.md), falta ejecutarlo | ⏳ |
+| Despliegue en Render y Neon: [`render.yaml`](render.yaml) y guía en [`docs/despliegue.md`](docs/despliegue.md), probado localmente; falta crear las cuentas | 🔶 |
 | Pruebas manuales en dispositivos físicos (iOS, Android, gama baja) | ⏳ |
 | Pruebas de usabilidad con el grupo de control (OE4) | ⏳ |

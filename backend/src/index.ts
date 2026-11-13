@@ -1,4 +1,5 @@
 import 'dotenv/config'
+import { resolve } from 'node:path'
 import { crearApp } from './app.js'
 import { crearDb } from './db.js'
 import { enviadorDesdeEntorno } from './servicios/mensajeria.js'
@@ -17,6 +18,8 @@ crearApp({
   enviador: enviadorDesdeEntorno(),
   limites,
   saltosProxy: Number(process.env.SALTOS_PROXY ?? 0),
+  // En Render la API también sirve el frontend (ver render.yaml): un solo origen, sin CORS.
+  carpetaFrontend: process.env.CARPETA_FRONTEND ? resolve(process.env.CARPETA_FRONTEND) : undefined,
 }).listen(puerto, () => {
   console.log(`CodeWorld API escuchando en http://localhost:${puerto}/api`)
 })

@@ -1,0 +1,40 @@
+# Despliegue de CodeWorld en Render (Blueprint). Guía paso a paso: docs/despliegue.md
+# Un solo Web Service: la API de Express también sirve el build del frontend, así la app y la API
+# comparten el origen, como en desarrollo y en las pruebas e2e. La base de datos está en Neon.
+services:
+  - type: web
+    name: codeworld
+    runtime: node
+    plan: free
+    # Virginia, la región más cercana a Chile; crea la base de Neon en AWS US East 1 (N. Virginia).
+    region: virginia
+    branch: main
+    # Con NODE_ENV=production, npm ci omite las dependencias de desarrollo; el build las necesita.
+    # Las migraciones y la carga de desafíos van en el build porque el plan gratuito no tiene pre-deploy.
+    # La carga es idempotente: actualiza niveles y guías sin tocar el progreso de los alumnos.
+    buildCommand: >-
+      cd frontend && npm ci --include=dev && npm run build &&
+      cd ../backend && npm ci --include=dev && npm run build &&
+      npm run db:deploy && npm run db:seed
+    startCommand: cd backend && npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false # se pega al crear el Blueprint: la cadena de conexión de Neon
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CARPETA_FRONTEND
+        value: ../frontend/dist
+      - key: SALTOS_PROXY
+        value: "1"
+      # Una sala comparte la IP pública: 100 logins por minuto alcanzan para un curso completo.
+      - key: LIMITE_API
+        value: "1000"
+      - key: LIMITE_LOGIN
+        value: "100"
+      # Correo del 2FA: sin estas dos variables, el código queda en los registros (Logs) del servicio.
+      # Para activar Brevo, agrégalas en Environment: BREVO_API_KEY y CORREO_REMITENTE.

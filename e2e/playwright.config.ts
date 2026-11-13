@@ -22,7 +22,17 @@ export default defineConfig({
     { name: 'celular', use: { ...devices['Pixel 7'] } },
     { name: 'tableta', use: { ...devices['Galaxy Tab S9'] } },
   ],
-  webServer: [
+  // E2E_UN_SERVIDOR=1 prueba el despliegue de Render: la API sirve también el build del frontend.
+  webServer: process.env.E2E_UN_SERVIDOR
+    ? {
+        command: 'npm run build --prefix ../frontend && npx tsx src/test/servidor-e2e.ts',
+        cwd: '../backend',
+        env: { PORT: String(WEB), CARPETA_FRONTEND: '../frontend/dist' },
+        url: `http://localhost:${WEB}/api/health`,
+        timeout: 120_000,
+        reuseExistingServer: false,
+      }
+    : [
     {
       command: 'npx tsx src/test/servidor-e2e.ts',
       cwd: '../backend',

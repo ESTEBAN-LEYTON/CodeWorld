@@ -1,3 +1,6 @@
+import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 import request from 'supertest'
 import type { Express } from 'express'
@@ -49,6 +52,25 @@ describe.skipIf(!urlPruebas)('API de CodeWorld', () => {
     expect(res.status).toBe(200)
     expect(res.body).toMatchObject({ estado: 'ok', baseDeDatos: 'ok' })
     expect(res.headers['x-content-type-options']).toBe('nosniff')
+  })
+
+  it('despliegue en Render: sirve el frontend y sigue respondiendo la API desde el mismo origen', async () => {
+    const carpeta = mkdtempSync(join(tmpdir(), 'codeworld-front-'))
+    mkdirSync(join(carpeta, 'assets'))
+    writeFileSync(join(carpeta, 'index.html'), '<!doctype html><title>CodeWorld</title>')
+    writeFileSync(join(carpeta, 'assets', 'app-abc123.js'), 'console.log(1)')
+    const conFront = crearApp({ db, jwtSecret: SECRETO, carpetaFrontend: carpeta })
+
+    const pagina = await request(conFront).get('/')
+    expect(pagina.status).toBe(200)
+    expect(pagina.text).toContain('CodeWorld')
+    expect(pagina.headers['cache-control']).toBe('no-cache')
+    expect((await request(conFront).get('/assets/app-abc123.js')).headers['cache-control']).toContain('immutable')
+    expect((await request(conFront).get('/otra/ruta')).text).toContain('CodeWorld')
+    expect((await request(conFront).get('/api/health')).body.estado).toBe('ok')
+    const sinRuta = await request(conFront).get('/api/no-existe')
+    expect(sinRuta.status).toBe(404)
+    expect(sinRuta.body.error).toBeDefined()
   })
 
   it('rutas desconocidas devuelven 404 en JSON', async () => {

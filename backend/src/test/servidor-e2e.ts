@@ -1,5 +1,6 @@
 import 'dotenv/config'
 import { execSync } from 'node:child_process'
+import { resolve } from 'node:path'
 import express from 'express'
 import { crearApp } from '../app.js'
 import { crearDb } from '../db.js'
@@ -19,7 +20,8 @@ const raiz = express()
 raiz.get('/__e2e/codigo', (_req, res) => {
   res.json({ codigo: correo.ultimoCodigo() })
 })
-raiz.use(crearApp({ db, jwtSecret: SECRETO, enviador: correo.enviador, limites: { api: 100_000, login: 100_000 } }))
+const carpetaFrontend = process.env.CARPETA_FRONTEND ? resolve(process.env.CARPETA_FRONTEND) : undefined
+raiz.use(crearApp({ db, jwtSecret: SECRETO, enviador: correo.enviador, limites: { api: 100_000, login: 100_000 }, carpetaFrontend }))
 
 const puerto = Number(process.env.PORT ?? 3100)
 raiz.listen(puerto, () => {

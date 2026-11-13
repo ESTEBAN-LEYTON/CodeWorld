@@ -1,3 +1,4 @@
+import { join } from 'node:path'
 import express, { type NextFunction, type Request, type Response } from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
@@ -24,6 +25,9 @@ export interface Opciones {
   saltosProxy?: number
   /** Segundos de espera para reenviar el código 2FA; las pruebas lo bajan a 0. */
   esperaReenvio2fa?: number
+  /** Carpeta con el build del frontend (frontend/dist). Si se indica, la API también sirve la aplicación web
+   *  desde el mismo origen, como se despliega en Render; si no, el frontend se sirve aparte (Vite). */
+  carpetaFrontend?: string
 }
 
 export function crearApp({
@@ -34,6 +38,7 @@ export function crearApp({
   limites = { api: 300, login: 20 },
   saltosProxy = 0,
   esperaReenvio2fa,
+  carpetaFrontend,
 }: Opciones) {
   const app = express()
   app.set('trust proxy', saltosProxy)
@@ -60,6 +65,12 @@ export function crearApp({
   app.use('/api', servicioContenido(db))
   app.use('/api', servicioProgreso(db, tokens))
 
+  app.use('/api', (_req, res) => {
+    res.status(404).json({ error: 'Ruta no encontrada' })
+  })
+
+  if (carpetaFrontend) servirFrontend(app, carpetaFrontend)
+
   app.use((_req, res) => {
     res.status(404).json({ error: 'Ruta no encontrada' })
   })
@@ -72,4 +83,24 @@ export function crearApp({
   })
 
   return app
+}
+
+/** Sirve el build de Vite. Los archivos con hash se guardan un año; la página y el service worker se revalidan
+ *  siempre, para que los alumnos reciban las versiones nuevas. Cualquier otra ruta GET devuelve la página. */
+function servirFrontend(app: express.Express, carpeta: string) {
+  const sinCache = (res: Response) => res.setHeader('Cache-Control', 'no-cache')
+  const assets = join(carpeta, 'assets')
+  app.use(
+    express.static(carpeta, {
+      index: false,
+      setHeaders(res, ruta) {
+        if (ruta.startsWith(assets)) res.setHeader('Cache-Control', 'public, max-age=31536000, immutable')
+        else sinCache(res)
+      },
+    }),
+  )
+  app.get(/^\/(?!api\/).*/, (_req, res) => {
+    sinCache(res)
+    res.sendFile(join(carpeta, 'index.html'))
+  })
 }

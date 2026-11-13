@@ -18,7 +18,7 @@ npm run test:carga   # cargabilidad; reescribe docs/pruebas/resultados-carga.md
 | --- | --- | --- | --- |
 | Unitarias | Vitest | Interpretador, MotorGuias, GestorProgreso, ayuda de bloques, contraseñas, tokens, intentos 2FA y mensajería | Pasan |
 | Integración | Vitest, Supertest y PostgreSQL | API completa contra una base real | Pasan |
-| Total unitarias e integración | | Frontend 53; backend 36 | **89 de 89** |
+| Total unitarias e integración | | Frontend 53; backend 37 | **90 de 90** |
 | Funcionales y de aceptación | Playwright (Chromium) | 15 casos en computador, tableta y celular | **43 pasan, 2 omitidas, 0 fallan** |
 | Cargabilidad | Autocannon | 4 endpoints con 10, 50 y 100 conexiones | Ver abajo; **1 falla intermitente sin explicar** |
 | Aceptación con usuarios (OE4) | Grupo de control | Al menos 10 jóvenes | **Pendiente** |

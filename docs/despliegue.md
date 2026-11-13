@@ -1,61 +1,71 @@
 # Despliegue de CodeWorld
 
-La aplicación queda en tres piezas separadas, como en la Figura 9 del informe. **Aún no está desplegada:** estos pasos requieren crear cuentas a nombre del autor, y no se han probado en esos servicios. Lo que sí está probado localmente es el build de producción (`node dist/index.js` y `vite preview`).
+CodeWorld se despliega como **un solo Web Service de Render** que sirve la API y la aplicación web desde la misma dirección, más una base de datos PostgreSQL en **Neon**. Todo está definido en [`render.yaml`](../render.yaml), en la raíz del repositorio.
 
-| Pieza | Servicio recomendado | Alternativas |
+| Pieza | Servicio | Plan |
 | --- | --- | --- |
-| Base de datos PostgreSQL | Neon | Render PostgreSQL, Supabase |
-| API (Node.js) | Render, Web Service | Railway, Fly.io |
-| Frontend estático | Render, Static Site | Netlify, Cloudflare Pages, Vercel |
-| Correo del 2FA | Brevo (API HTTP) | Resend, si se tiene un dominio propio |
+| API y aplicación web | Render, Web Service `codeworld` | Gratuito |
+| Base de datos PostgreSQL | Neon | Gratuito, sin vencimiento |
+| Correo del 2FA | Brevo (API HTTP) | Opcional: sin Brevo, el código queda en los registros |
 
-Antes de empezar, conviene confirmar los límites vigentes de cada plan gratuito. El plan gratuito de Render suspende el servicio tras un período sin uso, por lo que la primera petición puede tardar. **Abre la aplicación unos minutos antes de cada prueba con alumnos.**
+Esta forma de despliegue está probada localmente: `E2E_UN_SERVIDOR=1 npm run test:e2e` corre las 15 pruebas de aceptación contra la API sirviendo el build del frontend, igual que en Render.
 
-## 1. Base de datos
+**El plan gratuito de Render suspende el servicio tras 15 minutos sin uso**, y la primera visita después tarda cerca de un minuto en responder. Abre la aplicación unos minutos antes de cada prueba con alumnos.
 
-Crea la base y copia su cadena de conexión. Desde tu computador, aplica las migraciones y carga los desafíos:
+## 1. Base de datos en Neon
 
-```bash
-cd backend
-DATABASE_URL="<cadena de conexión>" npm run db:deploy
-DATABASE_URL="<cadena de conexión>" npm run db:seed
-```
+1. Crea una cuenta en [neon.tech](https://neon.tech) y un proyecto llamado `codeworld`.
+2. **Región:** AWS US East 1 (N. Virginia), la misma del servicio de Render.
+3. En **Connect**, desactiva **Connection pooling** y copia la cadena de conexión. Empieza con `postgresql://` y termina en `?sslmode=require`.
 
-## 2. API
+No hace falta correr nada en tu computador: las migraciones y los desafíos se cargan en cada despliegue.
 
-- **Directorio raíz:** `backend`
-- **Build:** `npm ci --include=dev && npm run build`
-- **Inicio:** `npm start`
-- **Comprobación de salud:** `/api/health`
+## 2. Servicio en Render
 
-| Variable | Valor |
-| --- | --- |
-| `NODE_ENV` | `production` |
-| `DATABASE_URL` | La cadena de conexión de la base |
-| `JWT_SECRET` | Un valor aleatorio largo: `openssl rand -base64 48` |
-| `CORS_ORIGIN` | La URL del frontend, sin `/` final |
-| `SALTOS_PROXY` | `1`. Sin esto, todos los usuarios cuentan como una sola IP en el rate limiting |
-| `BREVO_API_KEY` | La clave de la API de Brevo |
-| `CORREO_REMITENTE` | El remitente verificado en Brevo |
+1. Crea una cuenta en [render.com](https://render.com) entrando con GitHub.
+2. **New → Blueprint** y elige el repositorio `CodeWorld`. Como es privado, autoriza a Render a leerlo cuando lo pida.
+3. Render lee `render.yaml` y pide **`DATABASE_URL`**: pega la cadena de Neon.
+4. **Deploy Blueprint.** El primer despliegue tarda unos 5 minutos: compila el frontend y la API, crea las tablas y carga los 12 desafíos.
 
-Sin las dos últimas variables la API funciona igual, pero el código 2FA queda en los registros del servidor.
+`JWT_SECRET` lo genera Render. No hace falta configurar CORS porque la app y la API comparten la dirección.
 
-## 3. Frontend
+Cada `git push` a `main` vuelve a desplegar.
 
-- **Directorio raíz:** `frontend`
-- **Build:** `npm ci && npm run build`
-- **Directorio publicado:** `dist`
-- **Variable de build:** `VITE_API_URL=https://<url-de-la-api>/api`
+## 3. Verificación
 
-El service worker exige HTTPS, que estos servicios entregan por defecto.
+La dirección queda como `https://codeworld.onrender.com`, o con un sufijo si el nombre ya existe.
 
-## 4. Verificación
+1. `https://<dirección>/api/health` responde `"baseDeDatos": "ok"`.
+2. Abre la dirección, entra como **Soy tutor** y crea tu cuenta.
+3. Al iniciar sesión, busca el código en **Logs** del servicio, en la línea `[2FA] Código para …`.
+4. Registra un alumno, entra como alumno, resuelve un desafío y revisa su progreso en el panel del tutor.
+5. Con un desafío abierto, activa el modo avión, recarga la página y resuelve otro. Al volver la conexión, el progreso debe sincronizarse (PM-06).
 
-1. `https://<url-de-la-api>/api/health` responde `baseDeDatos: ok`.
-2. Crea una cuenta de tutor con tu correo real y confirma que el código llega.
-3. Registra un alumno, resuelve un desafío y revisa su progreso en el panel del tutor.
-4. Con el desafío abierto, activa el modo avión, recarga la página y resuelve otro desafío. Al volver la conexión, debe sincronizarse.
+## 4. Correo del 2FA con Brevo (opcional)
 
-## Antes de la prueba con alumnos
+Mientras no lo configures, el código aparece en los registros, lo que sirve para la demo. Para que llegue al correo:
 
-El rate limiting se cuenta por IP, y una sala completa suele compartir la misma IP pública. El límite por defecto es de 20 intentos de login por minuto: alcanza para 10 alumnos, pero para una sala de 30 o más conviene definir `LIMITE_API=1000` y `LIMITE_LOGIN=100`.
+1. Crea una cuenta en [brevo.com](https://www.brevo.com).
+2. En **Senders**, agrega y verifica el correo que enviará los códigos.
+3. En **SMTP & API → API Keys**, crea una clave.
+4. En Render, **Environment** del servicio, agrega `BREVO_API_KEY` y `CORREO_REMITENTE`, y guarda. El servicio se reinicia solo.
+
+**Sin confirmar:** que el plan gratuito de Brevo acepte un remitente de Gmail sin dominio propio. Si los correos no llegan, revisa la carpeta de spam y los registros de Brevo.
+
+## Variables del servicio
+
+| Variable | Valor | Para qué |
+| --- | --- | --- |
+| `DATABASE_URL` | Cadena de Neon | Conexión a la base |
+| `JWT_SECRET` | Generado por Render | Firma de las sesiones y los códigos 2FA |
+| `CARPETA_FRONTEND` | `../frontend/dist` | La API sirve la aplicación web |
+| `SALTOS_PROXY` | `1` | Sin esto, todos los usuarios cuentan como una sola IP |
+| `LIMITE_API`, `LIMITE_LOGIN` | `1000` y `100` | Peticiones por minuto e IP; una sala comparte la IP pública |
+| `BREVO_API_KEY`, `CORREO_REMITENTE` | Opcionales | Correo real del 2FA |
+
+## Si algo falla
+
+- **El build falla en `db:deploy`:** la cadena de Neon está mal copiada o usa el *pooler*. Usa la conexión directa.
+- **`/api/health` responde `sin conexión`:** revisa `DATABASE_URL` en **Environment**.
+- **No veo el código 2FA:** en **Logs**, busca `[2FA]`. Los intentos fallidos y los reenvíos se cuentan en la memoria del servidor, así que un reinicio los borra.
+- **Los alumnos no ven una versión nueva:** el service worker revalida la página en cada visita; basta con recargar una vez.
