@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080"><defs><marker id="fp" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#3D4663"/></marker><marker id="fr" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#C62828"/></marker><marker id="fv" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#15803D"/></marker><marker id="fn" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#4F46E5"/></marker><marker id="fa" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#B45309"/></marker><marker id="fb" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#047857"/></marker></defs>
+<rect width="1920" height="1080" fill="#F7F8FC"/>
+<rect x="0" y="0" width="14" height="1080" fill="#4F46E5"/>
+<text x="50" y="68" font-family="'Noto Sans', sans-serif" font-size="42" font-weight="700" fill="#1B2340" text-anchor="start">11. Estado del software</text>
+<text x="50" y="108" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="400" fill="#5A6380" text-anchor="start">Qué está construido y probado, qué falta por verificar y qué sigue pendiente (5 de noviembre de 2026)</text>
+<rect x="40" y="145" width="600" height="70" rx="12" fill="#E3F6E8" stroke="#15803D" stroke-width="2.5"/>
+<text x="340.0" y="189" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#15803D" text-anchor="middle" data-caja="40,145,600,70">Construido y probado</text>
+<rect x="40" y="225" width="600" height="52" rx="8" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="340.0" y="258" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="40,225,600,52">Editor de bloques en español</text>
+<rect x="40" y="283" width="600" height="52" rx="8" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="340.0" y="316" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="40,283,600,52">Interpretador local con límite de 200 pasos</text>
+<rect x="40" y="341" width="600" height="52" rx="8" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="340.0" y="374" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="40,341,600,52">Guías correctivas: 6 desafíos, 4 errores</text>
+<rect x="40" y="399" width="600" height="52" rx="8" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="340.0" y="432" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="40,399,600,52">3 niveles y 6 desafíos desde PostgreSQL</text>
+<rect x="40" y="457" width="600" height="52" rx="8" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="340.0" y="490" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="40,457,600,52">Tutor con 2FA, alumno y consentimiento</text>
+<rect x="40" y="515" width="600" height="52" rx="8" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="340.0" y="548" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="40,515,600,52">XP, progreso y panel del tutor</text>
+<rect x="40" y="573" width="600" height="52" rx="8" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="340.0" y="606" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="40,573,600,52">Sincronización e inicio sin conexión</text>
+<rect x="40" y="631" width="600" height="52" rx="8" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="340.0" y="664" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="40,631,600,52">Autoguardado del programa</text>
+<rect x="40" y="689" width="600" height="52" rx="8" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="340.0" y="722" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="40,689,600,52">Tutoriales y ayuda animada de bloques</text>
+<rect x="40" y="747" width="600" height="52" rx="8" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="340.0" y="780" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="40,747,600,52">Interfaz para computador, tableta y celular</text>
+<rect x="660" y="145" width="600" height="70" rx="12" fill="#FFF9DB" stroke="#A16207" stroke-width="2.5"/>
+<text x="960.0" y="189" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#A16207" text-anchor="middle" data-caja="660,145,600,70">Hecho, falta verificar en real</text>
+<rect x="660" y="225" width="600" height="52" rx="8" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="960.0" y="258" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="660,225,600,52">Correo 2FA con Brevo: probado con simulador</text>
+<rect x="660" y="283" width="600" height="52" rx="8" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="960.0" y="316" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="660,283,600,52">Arrastre táctil en celular y tableta</text>
+<rect x="660" y="341" width="600" height="52" rx="8" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="960.0" y="374" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="660,341,600,52">Safari en iOS y Android físicos</text>
+<rect x="660" y="399" width="600" height="52" rx="8" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="960.0" y="432" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="660,399,600,52">Equipo escolar de 2 GB de RAM</text>
+<rect x="660" y="457" width="600" height="52" rx="8" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="960.0" y="490" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="660,457,600,52">Carga en el hosting definitivo</text>
+<rect x="1280" y="145" width="600" height="70" rx="12" fill="#FDEAEA" stroke="#C62828" stroke-width="2.5"/>
+<text x="1580.0" y="189" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#C62828" text-anchor="middle" data-caja="1280,145,600,70">Pendiente</text>
+<rect x="1280" y="225" width="600" height="52" rx="8" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1580.0" y="258" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1280,225,600,52">Despliegue en hosting</text>
+<rect x="1280" y="283" width="600" height="52" rx="8" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1580.0" y="316" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1280,283,600,52">Prueba con 10 jóvenes (OE4)</text>
+<rect x="1280" y="341" width="600" height="52" rx="8" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1580.0" y="374" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1280,341,600,52">Más desafíos por nivel</text>
+<rect x="1280" y="399" width="600" height="52" rx="8" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1580.0" y="432" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1280,399,600,52">Decidir POO y robótica</text>
+<rect x="1280" y="457" width="600" height="52" rx="8" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1580.0" y="490" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1280,457,600,52">Revisar falla intermitente de carga</text>
+<rect x="40" y="820" width="1840" height="215" rx="18" fill="#EEF0FF" fill-opacity=".55" stroke="#4F46E5" stroke-width="2.5" stroke-dasharray="10 7"/>
+<text x="60" y="856" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#4F46E5" text-anchor="start">Evidencia de las pruebas (corridas locales)</text>
+<rect x="70" y="870" width="430" height="150" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="285.0" y="946" font-family="'Noto Sans', sans-serif" font-size="40" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="70,870,430,150">64 de 64</text>
+<text x="285.0" y="979" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="70,870,430,150">unitarias e integración</text>
+<rect x="520" y="870" width="430" height="150" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="735.0" y="946" font-family="'Noto Sans', sans-serif" font-size="40" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="520,870,430,150">43 pasan</text>
+<text x="735.0" y="979" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="520,870,430,150">2 omitidas, 0 fallan: aceptación</text>
+<rect x="970" y="870" width="430" height="150" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1185.0" y="946" font-family="'Noto Sans', sans-serif" font-size="40" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="970,870,430,150">100 conexiones</text>
+<text x="1185.0" y="979" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="970,870,430,150">última corrida de carga cumple</text>
+<rect x="1420" y="870" width="430" height="150" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1635.0" y="946" font-family="'Noto Sans', sans-serif" font-size="40" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="1420,870,430,150">≤ 1 ms</text>
+<text x="1635.0" y="979" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1420,870,430,150">retroalimentación con CPU lenta</text>
+</svg>

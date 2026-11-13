@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080"><defs><marker id="fp" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#3D4663"/></marker><marker id="fr" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#C62828"/></marker><marker id="fv" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#15803D"/></marker><marker id="fn" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#4F46E5"/></marker><marker id="fa" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#B45309"/></marker><marker id="fb" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#047857"/></marker></defs>
+<rect width="1920" height="1080" fill="#F7F8FC"/>
+<rect x="0" y="0" width="14" height="1080" fill="#4F46E5"/>
+<text x="50" y="68" font-family="'Noto Sans', sans-serif" font-size="42" font-weight="700" fill="#1B2340" text-anchor="start">7. Registro del alumno: datos mínimos y consentimiento</text>
+<text x="50" y="108" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="400" fill="#5A6380" text-anchor="start">Solo el tutor puede registrar. El alumno y su consentimiento se guardan juntos o no se guarda ninguno.</text>
+<text x="1880" y="1064" font-family="'Liberation Mono', monospace" font-size="18" font-weight="400" fill="#5A6380" text-anchor="end" xml:space="preserve" style="white-space:pre">backend/src/servicios/autenticacion.ts · POST /api/alumnos</text>
+<rect x="60" y="140" width="660" height="120" rx="12" fill="#EEF0FF" stroke="#4F46E5" stroke-width="2.5"/>
+<text x="390.0" y="195" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#4F46E5" text-anchor="middle" data-caja="60,140,660,120">1. El tutor completa el formulario</text>
+<text x="390.0" y="223" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="60,140,660,120">usuario, clave, edad y consentimiento</text>
+<rect x="60" y="280" width="660" height="120" rx="12" fill="#FFF3E2" stroke="#B45309" stroke-width="2.5"/>
+<text x="390.0" y="335" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#B45309" text-anchor="middle" data-caja="60,280,660,120">2. ¿Tiene sesión de tutor?</text>
+<text x="390.0" y="363" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="60,280,660,120">tokens.exigir(&quot;tutor&quot;)</text>
+<rect x="60" y="420" width="660" height="140" rx="12" fill="#FFF3E2" stroke="#B45309" stroke-width="2.5"/>
+<text x="390.0" y="472" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#B45309" text-anchor="middle" data-caja="60,420,660,140">3. ¿Los datos son válidos?</text>
+<text x="390.0" y="500" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="60,420,660,140">validar(z.object(...))</text>
+<text x="390.0" y="526" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="60,420,660,140">edad de 9 a 15 · consentimiento = true</text>
+<rect x="60" y="580" width="660" height="120" rx="12" fill="#FFF3E2" stroke="#B45309" stroke-width="2.5"/>
+<text x="390.0" y="635" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#B45309" text-anchor="middle" data-caja="60,580,660,120">4. ¿El usuario está libre?</text>
+<text x="390.0" y="663" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="60,580,660,120">db.alumno.findUnique()</text>
+<rect x="60" y="720" width="660" height="120" rx="12" fill="#FFF3E2" stroke="#B45309" stroke-width="2.5"/>
+<text x="390.0" y="775" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#B45309" text-anchor="middle" data-caja="60,720,660,120">5. Hash de la clave</text>
+<text x="390.0" y="803" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="60,720,660,120">hashear(password) con scrypt</text>
+<rect x="800" y="295" width="230" height="90" rx="12" fill="#FDEAEA" stroke="#C62828" stroke-width="2.5"/>
+<text x="915.0" y="335" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#C62828" text-anchor="middle" data-caja="800,295,230,90">401 / 403</text>
+<text x="915.0" y="363" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="800,295,230,90">sin sesión de tutor</text>
+<rect x="800" y="435" width="230" height="90" rx="12" fill="#FDEAEA" stroke="#C62828" stroke-width="2.5"/>
+<text x="915.0" y="475" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#C62828" text-anchor="middle" data-caja="800,435,230,90">400</text>
+<text x="915.0" y="503" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="800,435,230,90">datos inválidos</text>
+<rect x="800" y="595" width="230" height="90" rx="12" fill="#FDEAEA" stroke="#C62828" stroke-width="2.5"/>
+<text x="915.0" y="635" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#C62828" text-anchor="middle" data-caja="800,595,230,90">409</text>
+<text x="915.0" y="663" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="800,595,230,90">usuario repetido</text>
+<rect x="60" y="860" width="970" height="180" rx="18" fill="#E4F6EF" fill-opacity=".55" stroke="#047857" stroke-width="2.5" stroke-dasharray="10 7"/>
+<text x="80" y="896" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#047857" text-anchor="start">Una sola transacción: db.$transaction() · responde 201</text>
+<rect x="80" y="912" width="440" height="108" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="300.0" y="960" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="80,912,440,108">alumno.create</text>
+<text x="300.0" y="986" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="80,912,440,108">identificador anónimo incluido</text>
+<rect x="570" y="912" width="440" height="108" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="790.0" y="960" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="570,912,440,108">consentimiento.create</text>
+<text x="790.0" y="986" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="570,912,440,108">método: login_2fa_tutor</text>
+<rect x="1090" y="140" width="790" height="420" rx="18" fill="#E3F6E8" fill-opacity=".55" stroke="#15803D" stroke-width="2.5" stroke-dasharray="10 7"/>
+<text x="1110" y="176" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#15803D" text-anchor="start">Lo que se guarda del alumno</text>
+<rect x="1115" y="195" width="360" height="100" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1295.0" y="252" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="1115,195,360,100">id · anon_id</text>
+<rect x="1495" y="195" width="360" height="100" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1675.0" y="252" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="1495,195,360,100">username</text>
+<rect x="1115" y="310" width="360" height="100" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1295.0" y="367" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="1115,310,360,100">password_hash</text>
+<rect x="1495" y="310" width="360" height="100" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1675.0" y="367" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="1495,310,360,100">edad</text>
+<rect x="1115" y="425" width="360" height="100" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1295.0" y="482" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="1115,425,360,100">tutor_id</text>
+<rect x="1495" y="425" width="360" height="100" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1675.0" y="482" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="1495,425,360,100">created_at</text>
+<rect x="1090" y="585" width="790" height="195" rx="18" fill="#FDEAEA" fill-opacity=".55" stroke="#C62828" stroke-width="2.5" stroke-dasharray="10 7"/>
+<text x="1110" y="621" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#C62828" text-anchor="start">Lo que NO se guarda del alumno (Zero-Data, Ley 19.628)</text>
+<rect x="1115" y="640" width="235" height="110" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1232.5" y="704" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="1115,640,235,110">Nombre real</text>
+<rect x="1367" y="640" width="235" height="110" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1484.5" y="704" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="1367,640,235,110">Correo</text>
+<rect x="1619" y="640" width="235" height="110" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1736.5" y="704" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="1619,640,235,110">Biometría</text>
+<rect x="1090" y="805" width="790" height="235" rx="12" fill="#FFF9DB" stroke="#A16207" stroke-width="2.5"/>
+<text x="1485.0" y="865" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#A16207" text-anchor="middle" data-caja="1090,805,790,235">Consentimiento inmutable</text>
+<text x="1485.0" y="893" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1090,805,790,235"> </text>
+<text x="1485.0" y="919" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1090,805,790,235">Un trigger de PostgreSQL rechaza cualquier UPDATE o DELETE:</text>
+<text x="1485.0" y="946" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="1090,805,790,235">consentimiento_inmutable</text>
+<text x="1485.0" y="972" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1090,805,790,235"> </text>
+<text x="1485.0" y="998" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1090,805,790,235">Lo garantiza la propia base de datos, no solo la aplicación.</text>
+<path d="M390,260 L390,278" fill="none" stroke="#3D4663" stroke-width="2.5" marker-end="url(#fp)"/>
+<path d="M390,400 L390,418" fill="none" stroke="#3D4663" stroke-width="2.5" marker-end="url(#fp)"/>
+<path d="M390,560 L390,578" fill="none" stroke="#3D4663" stroke-width="2.5" marker-end="url(#fp)"/>
+<path d="M390,700 L390,718" fill="none" stroke="#3D4663" stroke-width="2.5" marker-end="url(#fp)"/>
+<path d="M390,840 L390,858" fill="none" stroke="#3D4663" stroke-width="2.5" marker-end="url(#fp)"/>
+<path d="M720,340 L798,340" fill="none" stroke="#C62828" stroke-width="2.5" marker-end="url(#fr)"/>
+<path d="M720,480 L798,480" fill="none" stroke="#C62828" stroke-width="2.5" marker-end="url(#fr)"/>
+<path d="M720,640 L798,640" fill="none" stroke="#C62828" stroke-width="2.5" marker-end="url(#fr)"/>
+<path d="M520,966 L568,966" fill="none" stroke="#047857" stroke-width="2.5" marker-end="url(#fb)"/>
+</svg>

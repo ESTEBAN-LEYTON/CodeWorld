@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080"><defs><marker id="fp" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#3D4663"/></marker><marker id="fr" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#C62828"/></marker><marker id="fv" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#15803D"/></marker><marker id="fn" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#4F46E5"/></marker><marker id="fa" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#B45309"/></marker><marker id="fb" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#047857"/></marker></defs>
+<rect width="1920" height="1080" fill="#F7F8FC"/>
+<rect x="0" y="0" width="14" height="1080" fill="#4F46E5"/>
+<text x="50" y="68" font-family="'Noto Sans', sans-serif" font-size="42" font-weight="700" fill="#1B2340" text-anchor="start">9. Cómo abre la aplicación sin internet</text>
+<text x="50" y="108" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="400" fill="#5A6380" text-anchor="start">El service worker intercepta las peticiones de archivos y localStorage conserva los datos del alumno</text>
+<text x="1880" y="1064" font-family="'Liberation Mono', monospace" font-size="18" font-weight="400" fill="#5A6380" text-anchor="end" xml:space="preserve" style="white-space:pre">frontend/public/sw.js · frontend/src/main.tsx</text>
+<rect x="40" y="140" width="1110" height="895" rx="18" fill="#EEF0FF" fill-opacity=".55" stroke="#4F46E5" stroke-width="2.5" stroke-dasharray="10 7"/>
+<text x="60" y="176" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#4F46E5" text-anchor="start">El service worker decide de dónde sale cada archivo</text>
+<rect x="70" y="195" width="1050" height="110" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="595.0" y="245" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="70,195,1050,110">Al instalarse: precargar()</text>
+<text x="595.0" y="273" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="70,195,1050,110">Guarda en caché la página, los archivos de la app y los recursos de Blockly</text>
+<rect x="350" y="347" width="490" height="70" rx="12" fill="#EEF0FF" stroke="#4F46E5" stroke-width="2.5"/>
+<text x="595.0" y="391" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#4F46E5" text-anchor="middle" data-caja="350,347,490,70">Llega una petición: evento fetch</text>
+<polygon points="595,452.0 805.0,520 595,588.0 385.0,520" fill="#FFF9DB" stroke="#A16207" stroke-width="2.5"/>
+<text x="595" y="513" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#1B2340" text-anchor="middle">¿Es GET y del mismo</text>
+<text x="595" y="544" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#1B2340" text-anchor="middle">origen, sin ser /api?</text>
+<rect x="70" y="620" width="330" height="140" rx="12" fill="#EEF0F4" stroke="#5A6380" stroke-width="2.5"/>
+<text x="235.0" y="672" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#5A6380" text-anchor="middle" data-caja="70,620,330,140">No interviene</text>
+<text x="235.0" y="700" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="70,620,330,140">Las peticiones a /api</text>
+<text x="235.0" y="726" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="70,620,330,140">van directo a la red</text>
+<polygon points="790,620.0 970.0,690 790,760.0 610.0,690" fill="#FFF9DB" stroke="#A16207" stroke-width="2.5"/>
+<text x="790" y="683" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#1B2340" text-anchor="middle">¿Es abrir</text>
+<text x="790" y="714" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#1B2340" text-anchor="middle">una página?</text>
+<rect x="70" y="837" width="520" height="175" rx="12" fill="#E3F6E8" stroke="#15803D" stroke-width="2.5"/>
+<text x="330.0" y="894" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#15803D" text-anchor="middle" data-caja="70,837,520,175">La página: red primero</text>
+<text x="330.0" y="921" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="70,837,520,175">paginaRedPrimero()</text>
+<text x="330.0" y="948" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="70,837,520,175">Pide la versión nueva y guarda una copia.</text>
+<text x="330.0" y="974" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="70,837,520,175">Si no hay red, entrega la copia guardada.</text>
+<rect x="610" y="837" width="520" height="175" rx="12" fill="#E3F6E8" stroke="#15803D" stroke-width="2.5"/>
+<text x="870.0" y="894" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#15803D" text-anchor="middle" data-caja="610,837,520,175">Los archivos: caché primero</text>
+<text x="870.0" y="921" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="610,837,520,175">archivoCachePrimero()</text>
+<text x="870.0" y="948" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="610,837,520,175">Si ya está guardado, lo entrega de inmediato.</text>
+<text x="870.0" y="974" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="610,837,520,175">Si no, lo descarga y lo guarda.</text>
+<rect x="1190" y="140" width="690" height="895" rx="18" fill="#E4F6EF" fill-opacity=".55" stroke="#047857" stroke-width="2.5" stroke-dasharray="10 7"/>
+<text x="1210" y="176" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#047857" text-anchor="start">Lo que el alumno conserva sin internet</text>
+<rect x="1215" y="195" width="640" height="110" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1535.0" y="245" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="1215,195,640,110">Su sesión</text>
+<text x="1535.0" y="273" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="1215,195,640,110">codeworld.sesion</text>
+<rect x="1215" y="320" width="640" height="110" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1535.0" y="370" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="1215,320,640,110">Niveles y desafíos</text>
+<text x="1535.0" y="398" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="1215,320,640,110">codeworld.contenido</text>
+<rect x="1215" y="445" width="640" height="110" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1535.0" y="495" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="1215,445,640,110">El programa a medio armar</text>
+<text x="1535.0" y="523" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="1215,445,640,110">codeworld.programa.&lt;alumno&gt;.&lt;desafío&gt;</text>
+<rect x="1215" y="570" width="640" height="110" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1535.0" y="620" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="1215,570,640,110">Progreso y pendientes</text>
+<text x="1535.0" y="648" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="1215,570,640,110">codeworld.progreso.&lt;alumno&gt;</text>
+<rect x="1215" y="695" width="640" height="110" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1535.0" y="745" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="1215,695,640,110">Tutoriales ya vistos</text>
+<text x="1535.0" y="773" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="1215,695,640,110">codeworld.ayuda.&lt;usuario&gt;</text>
+<rect x="1215" y="825" width="640" height="190" rx="12" fill="#E3F6E8" stroke="#15803D" stroke-width="2.5"/>
+<text x="1535.0" y="889" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#15803D" text-anchor="middle" data-caja="1215,825,640,190">Verificado en la prueba PA-08</text>
+<text x="1535.0" y="917" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1215,825,640,190">Sin red: recarga, juega y gana XP.</text>
+<text x="1535.0" y="943" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1215,825,640,190">El servidor sigue en 0 XP.</text>
+<text x="1535.0" y="969" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1215,825,640,190">Vuelve la red: el servidor recibe los 10 XP.</text>
+<path d="M595,305 L595,345" fill="none" stroke="#4F46E5" stroke-width="2.5" marker-end="url(#fn)"/>
+<path d="M595,417 L595,450" fill="none" stroke="#4F46E5" stroke-width="2.5" marker-end="url(#fn)"/>
+<path d="M385,520 L235,520 L235,618" fill="none" stroke="#3D4663" stroke-width="2.5" marker-end="url(#fp)"/>
+<text x="310" y="506" font-family="'Noto Sans', sans-serif" font-size="22" font-weight="700" fill="#1B2340" text-anchor="middle" paint-order="stroke" stroke="#F7F8FC" stroke-width="6" stroke-linejoin="round">no</text>
+<path d="M805,520 L870,520 L870,595 L790,595 L790,618" fill="none" stroke="#3D4663" stroke-width="2.5" marker-end="url(#fp)"/>
+<text x="840" y="506" font-family="'Noto Sans', sans-serif" font-size="22" font-weight="700" fill="#1B2340" text-anchor="middle" paint-order="stroke" stroke="#F7F8FC" stroke-width="6" stroke-linejoin="round">sí</text>
+<path d="M610,690 L500,690 L500,835" fill="none" stroke="#3D4663" stroke-width="2.5" marker-end="url(#fp)"/>
+<text x="555" y="677" font-family="'Noto Sans', sans-serif" font-size="22" font-weight="700" fill="#1B2340" text-anchor="middle" paint-order="stroke" stroke="#F7F8FC" stroke-width="6" stroke-linejoin="round">sí</text>
+<path d="M970,690 L1040,690 L1040,835" fill="none" stroke="#3D4663" stroke-width="2.5" marker-end="url(#fp)"/>
+<text x="1005" y="677" font-family="'Noto Sans', sans-serif" font-size="22" font-weight="700" fill="#1B2340" text-anchor="middle" paint-order="stroke" stroke="#F7F8FC" stroke-width="6" stroke-linejoin="round">no</text>
+</svg>

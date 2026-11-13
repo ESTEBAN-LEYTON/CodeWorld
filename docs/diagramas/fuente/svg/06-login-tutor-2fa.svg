@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080"><defs><marker id="fp" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#3D4663"/></marker><marker id="fr" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#C62828"/></marker><marker id="fv" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#15803D"/></marker><marker id="fn" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#4F46E5"/></marker><marker id="fa" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#B45309"/></marker><marker id="fb" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#047857"/></marker></defs>
+<rect width="1920" height="1080" fill="#F7F8FC"/>
+<rect x="0" y="0" width="14" height="1080" fill="#4F46E5"/>
+<text x="50" y="68" font-family="'Noto Sans', sans-serif" font-size="42" font-weight="700" fill="#1B2340" text-anchor="start">6. Inicio de sesión del tutor con doble factor</text>
+<text x="50" y="108" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="400" fill="#5A6380" text-anchor="start">Primero la contraseña y luego un código de 6 dígitos que llega al correo. Sin el código no hay sesión.</text>
+<text x="1880" y="1064" font-family="'Liberation Mono', monospace" font-size="18" font-weight="400" fill="#5A6380" text-anchor="end" xml:space="preserve" style="white-space:pre">backend/src/servicios/autenticacion.ts · seguridad/tokens.ts · seguridad/contrasenas.ts</text>
+<line x1="170" y1="209" x2="170" y2="1045" stroke="#9AA3BD" stroke-width="2" stroke-dasharray="4 6"/>
+<rect x="50.0" y="135" width="240" height="74" rx="12" fill="#EEF0FF" stroke="#4F46E5" stroke-width="2.5"/>
+<text x="170.0" y="167" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#4F46E5" text-anchor="middle" data-caja="50.0,135,240,74">Tutor</text>
+<text x="170.0" y="195" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="50.0,135,240,74">en el navegador</text>
+<line x1="660" y1="209" x2="660" y2="1045" stroke="#9AA3BD" stroke-width="2" stroke-dasharray="4 6"/>
+<rect x="500.0" y="135" width="320" height="74" rx="12" fill="#FFF3E2" stroke="#B45309" stroke-width="2.5"/>
+<text x="660.0" y="167" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#B45309" text-anchor="middle" data-caja="500.0,135,320,74">ServicioAutenticacion</text>
+<text x="660.0" y="195" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="500.0,135,320,74">en el servidor</text>
+<line x1="1140" y1="209" x2="1140" y2="1045" stroke="#9AA3BD" stroke-width="2" stroke-dasharray="4 6"/>
+<rect x="1020.0" y="135" width="240" height="74" rx="12" fill="#FFF3E2" stroke="#B45309" stroke-width="2.5"/>
+<text x="1140.0" y="167" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#B45309" text-anchor="middle" data-caja="1020.0,135,240,74">Tokens</text>
+<text x="1140.0" y="195" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1020.0,135,240,74">JWT y HMAC</text>
+<line x1="1480" y1="209" x2="1480" y2="1045" stroke="#9AA3BD" stroke-width="2" stroke-dasharray="4 6"/>
+<rect x="1370.0" y="135" width="220" height="74" rx="12" fill="#E4F6EF" stroke="#047857" stroke-width="2.5"/>
+<text x="1480.0" y="167" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#047857" text-anchor="middle" data-caja="1370.0,135,220,74">PostgreSQL</text>
+<text x="1480.0" y="195" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1370.0,135,220,74">tabla tutor</text>
+<line x1="1770" y1="209" x2="1770" y2="1045" stroke="#9AA3BD" stroke-width="2" stroke-dasharray="4 6"/>
+<rect x="1670.0" y="135" width="200" height="74" rx="12" fill="#EEF0F4" stroke="#5A6380" stroke-width="2.5"/>
+<text x="1770.0" y="167" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#5A6380" text-anchor="middle" data-caja="1670.0,135,200,74">Brevo</text>
+<text x="1770.0" y="195" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1670.0,135,200,74">correo</text>
+<rect x="40" y="225" width="1840" height="410" rx="8" fill="#EEF0FF" fill-opacity=".45" stroke="#4F46E5" stroke-width="2"/>
+<text x="52" y="251" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="700" fill="#4F46E5" text-anchor="start">PASO 1: LA CONTRASEÑA</text>
+<rect x="40" y="650" width="1840" height="250" rx="8" fill="#E3F6E8" fill-opacity=".45" stroke="#15803D" stroke-width="2"/>
+<text x="52" y="676" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="700" fill="#15803D" text-anchor="start">PASO 2: EL CÓDIGO</text>
+<rect x="40" y="915" width="590" height="120" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="335.0" y="957" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="40,915,590,120">El token guarda solo un HMAC</text>
+<text x="335.0" y="985" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="40,915,590,120">El código no va en claro dentro del token</text>
+<text x="335.0" y="1011" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="40,915,590,120">y tampoco se guarda en la base de datos</text>
+<rect x="665" y="915" width="590" height="120" rx="12" fill="#FDEAEA" stroke="#C62828" stroke-width="2.5"/>
+<text x="960.0" y="957" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#C62828" text-anchor="middle" data-caja="665,915,590,120">Errores que no revelan nada</text>
+<text x="960.0" y="985" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="665,915,590,120">Contraseña mala o usuario inexistente</text>
+<text x="960.0" y="1011" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="665,915,590,120">dan la misma respuesta: 401</text>
+<rect x="1290" y="915" width="590" height="120" rx="12" fill="#FFF9DB" stroke="#A16207" stroke-width="2.5"/>
+<text x="1585.0" y="957" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#A16207" text-anchor="middle" data-caja="1290,915,590,120">Si el correo falla</text>
+<text x="1585.0" y="985" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1290,915,590,120">Responde 503, pide reintentar</text>
+<text x="1585.0" y="1011" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1290,915,590,120">y no entrega ninguna sesión</text>
+<path d="M170,295 L660,295" fill="none" stroke="#3D4663" stroke-width="2.5" marker-end="url(#fp)"/>
+<text x="415.0" y="286" font-family="'Noto Sans', sans-serif" font-size="20" fill="#1B2340" text-anchor="middle" paint-order="stroke" stroke="#F7F8FC" stroke-width="7" stroke-linejoin="round">1. POST /auth/tutor/login</text>
+<path d="M660,345 L1480,345" fill="none" stroke="#3D4663" stroke-width="2.5" marker-end="url(#fp)"/>
+<text x="1070.0" y="336" font-family="'Noto Sans', sans-serif" font-size="20" fill="#1B2340" text-anchor="middle" paint-order="stroke" stroke="#F7F8FC" stroke-width="7" stroke-linejoin="round">2. busca al tutor por username</text>
+<path d="M660,379 L704,379 L704,401 L663,401" fill="none" stroke="#3D4663" stroke-width="2.5" marker-end="url(#fp)"/>
+<text x="714" y="397" font-family="'Noto Sans', sans-serif" font-size="20" fill="#1B2340" text-anchor="start" paint-order="stroke" stroke="#F7F8FC" stroke-width="7" stroke-linejoin="round">3. verificar(): compara con el hash scrypt</text>
+<path d="M660,450 L1140,450" fill="none" stroke="#3D4663" stroke-width="2.5" marker-end="url(#fp)"/>
+<text x="900.0" y="441" font-family="'Noto Sans', sans-serif" font-size="20" fill="#1B2340" text-anchor="middle" paint-order="stroke" stroke="#F7F8FC" stroke-width="7" stroke-linejoin="round">4. crearDesafio2fa()</text>
+<path d="M1140,500 L660,500" fill="none" stroke="#3D4663" stroke-width="2.5" stroke-dasharray="9 7" marker-end="url(#fp)"/>
+<text x="900.0" y="491" font-family="'Noto Sans', sans-serif" font-size="20" fill="#1B2340" text-anchor="middle" paint-order="stroke" stroke="#F7F8FC" stroke-width="7" stroke-linejoin="round">5. código y token de 10 min</text>
+<path d="M660,550 L1770,550" fill="none" stroke="#3D4663" stroke-width="2.5" marker-end="url(#fp)"/>
+<text x="1215.0" y="541" font-family="'Noto Sans', sans-serif" font-size="20" fill="#1B2340" text-anchor="middle" paint-order="stroke" stroke="#F7F8FC" stroke-width="7" stroke-linejoin="round">6. envía el código al correo del tutor</text>
+<path d="M660,600 L170,600" fill="none" stroke="#3D4663" stroke-width="2.5" stroke-dasharray="9 7" marker-end="url(#fp)"/>
+<text x="415.0" y="591" font-family="'Noto Sans', sans-serif" font-size="20" fill="#1B2340" text-anchor="middle" paint-order="stroke" stroke="#F7F8FC" stroke-width="7" stroke-linejoin="round">7. { desafio2fa, enviadoA: «tu*******cl» }</text>
+<path d="M170,720 L660,720" fill="none" stroke="#3D4663" stroke-width="2.5" marker-end="url(#fp)"/>
+<text x="415.0" y="711" font-family="'Noto Sans', sans-serif" font-size="20" fill="#1B2340" text-anchor="middle" paint-order="stroke" stroke="#F7F8FC" stroke-width="7" stroke-linejoin="round">8. POST /auth/tutor/verificar  { desafio2fa, codigo }</text>
+<path d="M660,770 L1140,770" fill="none" stroke="#3D4663" stroke-width="2.5" marker-end="url(#fp)"/>
+<text x="900.0" y="761" font-family="'Noto Sans', sans-serif" font-size="20" fill="#1B2340" text-anchor="middle" paint-order="stroke" stroke="#F7F8FC" stroke-width="7" stroke-linejoin="round">9. verificarDesafio2fa()</text>
+<path d="M660,820 L1140,820" fill="none" stroke="#3D4663" stroke-width="2.5" marker-end="url(#fp)"/>
+<text x="900.0" y="811" font-family="'Noto Sans', sans-serif" font-size="20" fill="#1B2340" text-anchor="middle" paint-order="stroke" stroke="#F7F8FC" stroke-width="7" stroke-linejoin="round">10. firmarSesion({ sub, rol: tutor })</text>
+<path d="M660,870 L170,870" fill="none" stroke="#3D4663" stroke-width="2.5" stroke-dasharray="9 7" marker-end="url(#fp)"/>
+<text x="415.0" y="861" font-family="'Noto Sans', sans-serif" font-size="20" fill="#1B2340" text-anchor="middle" paint-order="stroke" stroke="#F7F8FC" stroke-width="7" stroke-linejoin="round">11. JWT de sesión, válido 8 horas</text>
+</svg>

@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080"><defs><marker id="fp" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#3D4663"/></marker><marker id="fr" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#C62828"/></marker><marker id="fv" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#15803D"/></marker><marker id="fn" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#4F46E5"/></marker><marker id="fa" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#B45309"/></marker><marker id="fb" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#047857"/></marker></defs>
+<rect width="1920" height="1080" fill="#F7F8FC"/>
+<rect x="0" y="0" width="14" height="1080" fill="#4F46E5"/>
+<text x="50" y="68" font-family="'Noto Sans', sans-serif" font-size="42" font-weight="700" fill="#1B2340" text-anchor="start">4. El error se convierte en una pista</text>
+<text x="50" y="108" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="400" fill="#5A6380" text-anchor="start">El Interpretador nombra el error y el MotorGuias entrega el mensaje de ese desafío, sin revelar la solución</text>
+<text x="1880" y="1064" font-family="'Liberation Mono', monospace" font-size="18" font-weight="400" fill="#5A6380" text-anchor="end" xml:space="preserve" style="white-space:pre">frontend/src/game/motorGuias.ts · seleccionar() · backend/prisma/contenido.ts</text>
+<rect x="40" y="145" width="390" height="60" rx="12" fill="#EEF0F4" stroke="#5A6380" stroke-width="2.5"/>
+<text x="235.0" y="184" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#5A6380" text-anchor="middle" data-caja="40,145,390,60">Qué hizo el alumno</text>
+<rect x="440" y="145" width="300" height="60" rx="12" fill="#EEF0F4" stroke="#5A6380" stroke-width="2.5"/>
+<text x="590.0" y="184" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#5A6380" text-anchor="middle" data-caja="440,145,300,60">patronError</text>
+<rect x="750" y="145" width="1130" height="60" rx="12" fill="#EEF0F4" stroke="#5A6380" stroke-width="2.5"/>
+<text x="1315.0" y="184" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#5A6380" text-anchor="middle" data-caja="750,145,1130,60">Guía genérica que recibe (cada desafío puede tener la suya)</text>
+<rect x="40" y="215" width="390" height="118" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="235.0" y="281" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="40,215,390,118">Ejecutó sin conectar bloques</text>
+<rect x="440" y="215" width="300" height="118" rx="12" fill="#FDEAEA" stroke="#C62828" stroke-width="2.5"/>
+<text x="590.0" y="281" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="440,215,300,118">vacio</text>
+<rect x="750" y="215" width="1130" height="118" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1315.0" y="281" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="750,215,1130,118">Tu programa está vacío. Arrastra bloques desde la izquierda y únelos debajo de «Al ejecutar».</text>
+<rect x="40" y="343" width="390" height="118" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="235.0" y="409" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="40,343,390,118">Avanzó contra una pared</text>
+<rect x="440" y="343" width="300" height="118" rx="12" fill="#FDEAEA" stroke="#C62828" stroke-width="2.5"/>
+<text x="590.0" y="409" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="440,343,300,118">choque</text>
+<rect x="750" y="343" width="1130" height="118" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1315.0" y="396" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="750,343,1130,118">Tu robot chocó con una pared. Mira hacia dónde apunta la flecha justo antes del choque: ¿necesitaba</text>
+<text x="1315.0" y="422" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="750,343,1130,118">girar antes de avanzar?</text>
+<rect x="40" y="471" width="390" height="118" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="235.0" y="537" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="40,471,390,118">Se detuvo antes de la meta</text>
+<rect x="440" y="471" width="300" height="118" rx="12" fill="#FFF9DB" stroke="#A16207" stroke-width="2.5"/>
+<text x="590.0" y="537" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="440,471,300,118">incompleto</text>
+<rect x="750" y="471" width="1130" height="118" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1315.0" y="524" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="750,471,1130,118">Tu robot se detuvo antes de llegar a la meta. Cuenta cuántas casillas le faltan y agrega los pasos</text>
+<text x="1315.0" y="550" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="750,471,1130,118">que faltan.</text>
+<rect x="40" y="599" width="390" height="118" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="235.0" y="665" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="40,599,390,118">Armó un ciclo sin fin</text>
+<rect x="440" y="599" width="300" height="118" rx="12" fill="#FDEAEA" stroke="#C62828" stroke-width="2.5"/>
+<text x="590.0" y="665" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="440,599,300,118">limite_pasos</text>
+<rect x="750" y="599" width="1130" height="118" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1315.0" y="652" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="750,599,1130,118">Tu programa se repite sin terminar nunca. Revisa los bloques «repetir»: ¿el robot realmente se</text>
+<text x="1315.0" y="678" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="750,599,1130,118">acerca a la meta en cada vuelta?</text>
+<rect x="40" y="735" width="1840" height="305" rx="18" fill="#EEF0FF" fill-opacity=".55" stroke="#4F46E5" stroke-width="2.5" stroke-dasharray="10 7"/>
+<text x="60" y="771" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#4F46E5" text-anchor="start">Cómo elige la guía: seleccionar(patronError, guias)</text>
+<rect x="70" y="795" width="390" height="140" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="265.0" y="847" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="70,795,390,140">1. Filtrar</text>
+<text x="265.0" y="875" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="70,795,390,140">Guías del desafío con</text>
+<text x="265.0" y="901" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="70,795,390,140">ese patrón de error</text>
+<rect x="500" y="795" width="390" height="140" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="695.0" y="847" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="500,795,390,140">2. Ordenar</text>
+<text x="695.0" y="875" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="500,795,390,140">Por el campo «orden»</text>
+<text x="695.0" y="901" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="500,795,390,140">de menor a mayor</text>
+<rect x="930" y="795" width="390" height="140" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1125.0" y="847" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="930,795,390,140">3. Usar la primera</text>
+<text x="1125.0" y="875" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="930,795,390,140">Es la guía que ve</text>
+<text x="1125.0" y="901" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="930,795,390,140">el alumno</text>
+<rect x="1360" y="795" width="390" height="140" rx="12" fill="#FDEAEA" stroke="#C62828" stroke-width="2.5"/>
+<text x="1555.0" y="847" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#C62828" text-anchor="middle" data-caja="1360,795,390,140">Si no hay ninguna</text>
+<text x="1555.0" y="875" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1360,795,390,140">Usa una guía de respaldo</text>
+<text x="1555.0" y="901" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1360,795,390,140">incluida en el código</text>
+<path d="M460,865 L498,865" fill="none" stroke="#4F46E5" stroke-width="2.5" marker-end="url(#fn)"/>
+<path d="M890,865 L928,865" fill="none" stroke="#4F46E5" stroke-width="2.5" marker-end="url(#fn)"/>
+<path d="M1320,865 L1358,865" fill="none" stroke="#C62828" stroke-width="2.5" stroke-dasharray="9 7" marker-end="url(#fr)"/>
+<text x="960" y="985" font-family="'Noto Sans', sans-serif" font-size="22" font-weight="700" fill="#1B2340" text-anchor="middle" paint-order="stroke" stroke="#F7F8FC" stroke-width="6" stroke-linejoin="round">Corre en el navegador y no depende de la red. Los 6 desafíos tienen guía para los 4 patrones de error (prueba OE3).</text>
+</svg>

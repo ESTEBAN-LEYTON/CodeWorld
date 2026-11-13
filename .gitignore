@@ -26,3 +26,4 @@ Thumbs.db
 # Resultados de las pruebas e2e
 e2e/resultados/
 Pendientes.txt
+__pycache__/

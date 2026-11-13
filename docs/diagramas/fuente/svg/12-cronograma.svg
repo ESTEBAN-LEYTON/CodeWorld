@@ -1,0 +1,299 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080"><defs><marker id="fp" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#3D4663"/></marker><marker id="fr" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#C62828"/></marker><marker id="fv" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#15803D"/></marker><marker id="fn" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#4F46E5"/></marker><marker id="fa" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#B45309"/></marker><marker id="fb" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#047857"/></marker></defs>
+<rect width="1920" height="1080" fill="#F7F8FC"/>
+<rect x="0" y="0" width="14" height="1080" fill="#4F46E5"/>
+<text x="50" y="68" font-family="'Noto Sans', sans-serif" font-size="42" font-weight="700" fill="#1B2340" text-anchor="start">12. Cronograma del proyecto</text>
+<text x="50" y="108" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="400" fill="#5A6380" text-anchor="start">Gestión (PMBOK) y desarrollo (sprints), semana a semana, del 3 de agosto al 22 de noviembre de 2026.  RC: ruta crítica</text>
+<rect x="650" y="135" width="304" height="40" rx="2" fill="#EEF0F4" stroke="#5A6380" stroke-width="2.5"/>
+<text x="802.0" y="164" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#5A6380" text-anchor="middle" data-caja="650,135,304,40">Agosto</text>
+<rect x="954" y="135" width="304" height="40" rx="2" fill="#EEF0F4" stroke="#5A6380" stroke-width="2.5"/>
+<text x="1106.0" y="164" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#5A6380" text-anchor="middle" data-caja="954,135,304,40">Septiembre</text>
+<rect x="1258" y="135" width="380" height="40" rx="2" fill="#EEF0F4" stroke="#5A6380" stroke-width="2.5"/>
+<text x="1448.0" y="164" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#5A6380" text-anchor="middle" data-caja="1258,135,380,40">Octubre</text>
+<rect x="1638" y="135" width="228" height="40" rx="2" fill="#EEF0F4" stroke="#5A6380" stroke-width="2.5"/>
+<text x="1752.0" y="164" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#5A6380" text-anchor="middle" data-caja="1638,135,228,40">Noviembre</text>
+<rect x="650" y="175" width="76" height="40" rx="2" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="688.0" y="203" font-family="'Noto Sans', sans-serif" font-size="22" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="650,175,76,40">1</text>
+<rect x="726" y="175" width="76" height="40" rx="2" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="764.0" y="203" font-family="'Noto Sans', sans-serif" font-size="22" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="726,175,76,40">2</text>
+<rect x="802" y="175" width="76" height="40" rx="2" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="840.0" y="203" font-family="'Noto Sans', sans-serif" font-size="22" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="802,175,76,40">3</text>
+<rect x="878" y="175" width="76" height="40" rx="2" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="916.0" y="203" font-family="'Noto Sans', sans-serif" font-size="22" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="878,175,76,40">4</text>
+<rect x="954" y="175" width="76" height="40" rx="2" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="992.0" y="203" font-family="'Noto Sans', sans-serif" font-size="22" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="954,175,76,40">5</text>
+<rect x="1030" y="175" width="76" height="40" rx="2" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1068.0" y="203" font-family="'Noto Sans', sans-serif" font-size="22" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="1030,175,76,40">6</text>
+<rect x="1106" y="175" width="76" height="40" rx="2" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1144.0" y="203" font-family="'Noto Sans', sans-serif" font-size="22" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="1106,175,76,40">7</text>
+<rect x="1182" y="175" width="76" height="40" rx="2" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1220.0" y="203" font-family="'Noto Sans', sans-serif" font-size="22" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="1182,175,76,40">8</text>
+<rect x="1258" y="175" width="76" height="40" rx="2" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1296.0" y="203" font-family="'Noto Sans', sans-serif" font-size="22" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="1258,175,76,40">9</text>
+<rect x="1334" y="175" width="76" height="40" rx="2" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1372.0" y="203" font-family="'Noto Sans', sans-serif" font-size="22" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="1334,175,76,40">10</text>
+<rect x="1410" y="175" width="76" height="40" rx="2" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1448.0" y="203" font-family="'Noto Sans', sans-serif" font-size="22" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="1410,175,76,40">11</text>
+<rect x="1486" y="175" width="76" height="40" rx="2" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1524.0" y="203" font-family="'Noto Sans', sans-serif" font-size="22" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="1486,175,76,40">12</text>
+<rect x="1562" y="175" width="76" height="40" rx="2" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1600.0" y="203" font-family="'Noto Sans', sans-serif" font-size="22" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="1562,175,76,40">13</text>
+<rect x="1638" y="175" width="76" height="40" rx="2" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1676.0" y="203" font-family="'Noto Sans', sans-serif" font-size="22" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="1638,175,76,40">14</text>
+<rect x="1714" y="175" width="76" height="40" rx="2" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1752.0" y="203" font-family="'Noto Sans', sans-serif" font-size="22" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="1714,175,76,40">15</text>
+<rect x="1790" y="175" width="76" height="40" rx="2" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1828.0" y="203" font-family="'Noto Sans', sans-serif" font-size="22" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="1790,175,76,40">16</text>
+<rect x="50" y="219" width="1816" height="48" rx="2" fill="#EEF0F4" stroke="#5A6380" stroke-width="2.5"/>
+<text x="958.0" y="252" font-family="'Noto Sans', sans-serif" font-size="26" font-weight="700" fill="#5A6380" text-anchor="middle" data-caja="50,219,1816,48">GESTIÓN DEL PROYECTO (PMBOK)</text>
+<rect x="50" y="269" width="600" height="48" rx="2" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="350.0" y="302" font-family="'Noto Sans', sans-serif" font-size="26" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="50,269,600,48">Inicio</text>
+<rect x="650" y="269" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="726" y="269" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="802" y="269" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="878" y="269" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="954" y="269" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1030" y="269" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1106" y="269" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1182" y="269" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1258" y="269" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1334" y="269" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1410" y="269" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1486" y="269" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1562" y="269" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1638" y="269" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1714" y="269" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1790" y="269" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="653" y="276" width="146" height="34" rx="6" fill="#D98A2B"/>
+<rect x="50" y="319" width="600" height="48" rx="2" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="350.0" y="352" font-family="'Noto Sans', sans-serif" font-size="26" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="50,319,600,48">Planificación y línea base</text>
+<rect x="650" y="319" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="726" y="319" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="802" y="319" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="878" y="319" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="954" y="319" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1030" y="319" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1106" y="319" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1182" y="319" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1258" y="319" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1334" y="319" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1410" y="319" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1486" y="319" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1562" y="319" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1638" y="319" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1714" y="319" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1790" y="319" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="729" y="326" width="374" height="34" rx="6" fill="#D98A2B"/>
+<rect x="50" y="369" width="600" height="48" rx="2" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="350.0" y="402" font-family="'Noto Sans', sans-serif" font-size="26" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="50,369,600,48">Ejecución y monitoreo y control</text>
+<rect x="650" y="369" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="726" y="369" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="802" y="369" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="878" y="369" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="954" y="369" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1030" y="369" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1106" y="369" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1182" y="369" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1258" y="369" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1334" y="369" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1410" y="369" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1486" y="369" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1562" y="369" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1638" y="369" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1714" y="369" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1790" y="369" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1109" y="376" width="754" height="34" rx="6" fill="#D98A2B"/>
+<rect x="50" y="419" width="600" height="48" rx="2" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="350.0" y="452" font-family="'Noto Sans', sans-serif" font-size="26" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="50,419,600,48">Cierre e informe final   · RC</text>
+<rect x="650" y="419" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="726" y="419" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="802" y="419" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="878" y="419" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="954" y="419" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1030" y="419" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1106" y="419" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1182" y="419" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1258" y="419" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1334" y="419" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1410" y="419" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1486" y="419" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1562" y="419" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1638" y="419" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1714" y="419" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1790" y="419" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1717" y="426" width="146" height="34" rx="6" fill="#D98A2B"/>
+<rect x="50" y="469" width="1816" height="48" rx="2" fill="#EEF0F4" stroke="#5A6380" stroke-width="2.5"/>
+<text x="958.0" y="502" font-family="'Noto Sans', sans-serif" font-size="26" font-weight="700" fill="#5A6380" text-anchor="middle" data-caja="50,469,1816,48">DESARROLLO DEL PRODUCTO (SPRINTS)</text>
+<rect x="50" y="519" width="600" height="48" rx="2" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="350.0" y="552" font-family="'Noto Sans', sans-serif" font-size="26" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="50,519,600,48">Sprint 1: investigación y análisis   · RC</text>
+<rect x="650" y="519" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="726" y="519" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="802" y="519" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="878" y="519" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="954" y="519" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1030" y="519" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1106" y="519" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1182" y="519" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1258" y="519" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1334" y="519" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1410" y="519" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1486" y="519" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1562" y="519" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1638" y="519" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1714" y="519" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1790" y="519" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="653" y="526" width="222" height="34" rx="6" fill="#4F46E5"/>
+<rect x="50" y="569" width="600" height="48" rx="2" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="350.0" y="602" font-family="'Noto Sans', sans-serif" font-size="26" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="50,569,600,48">Sprint 2: diseño del sistema   · RC</text>
+<rect x="650" y="569" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="726" y="569" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="802" y="569" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="878" y="569" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="954" y="569" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1030" y="569" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1106" y="569" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1182" y="569" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1258" y="569" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1334" y="569" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1410" y="569" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1486" y="569" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1562" y="569" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1638" y="569" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1714" y="569" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1790" y="569" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="881" y="576" width="222" height="34" rx="6" fill="#4F46E5"/>
+<rect x="50" y="619" width="600" height="48" rx="2" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="350.0" y="652" font-family="'Noto Sans', sans-serif" font-size="26" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="50,619,600,48">Sprint 3: funcionalidades principales   · RC</text>
+<rect x="650" y="619" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="726" y="619" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="802" y="619" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="878" y="619" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="954" y="619" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1030" y="619" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1106" y="619" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1182" y="619" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1258" y="619" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1334" y="619" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1410" y="619" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1486" y="619" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1562" y="619" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1638" y="619" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1714" y="619" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1790" y="619" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1109" y="626" width="298" height="34" rx="6" fill="#4F46E5"/>
+<rect x="50" y="669" width="600" height="48" rx="2" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="350.0" y="702" font-family="'Noto Sans', sans-serif" font-size="26" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="50,669,600,48">Sprint 4: integración y optimización   · RC</text>
+<rect x="650" y="669" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="726" y="669" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="802" y="669" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="878" y="669" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="954" y="669" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1030" y="669" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1106" y="669" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1182" y="669" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1258" y="669" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1334" y="669" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1410" y="669" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1486" y="669" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1562" y="669" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1638" y="669" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1714" y="669" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1790" y="669" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1413" y="676" width="222" height="34" rx="6" fill="#4F46E5"/>
+<rect x="50" y="719" width="600" height="48" rx="2" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="350.0" y="752" font-family="'Noto Sans', sans-serif" font-size="26" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="50,719,600,48">Sprint 5: validación y cierre   · RC</text>
+<rect x="650" y="719" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="726" y="719" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="802" y="719" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="878" y="719" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="954" y="719" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1030" y="719" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1106" y="719" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1182" y="719" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1258" y="719" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1334" y="719" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1410" y="719" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1486" y="719" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1562" y="719" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1638" y="719" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1714" y="719" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1790" y="719" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1641" y="726" width="222" height="34" rx="6" fill="#4F46E5"/>
+<rect x="50" y="769" width="1816" height="48" rx="2" fill="#EEF0F4" stroke="#5A6380" stroke-width="2.5"/>
+<text x="958.0" y="802" font-family="'Noto Sans', sans-serif" font-size="26" font-weight="700" fill="#5A6380" text-anchor="middle" data-caja="50,769,1816,48">VALIDACIÓN</text>
+<rect x="50" y="819" width="600" height="48" rx="2" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="350.0" y="852" font-family="'Noto Sans', sans-serif" font-size="26" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="50,819,600,48">Pruebas funcionales, integración, carga   · RC</text>
+<rect x="650" y="819" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="726" y="819" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="802" y="819" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="878" y="819" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="954" y="819" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1030" y="819" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1106" y="819" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1182" y="819" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1258" y="819" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1334" y="819" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1410" y="819" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1486" y="819" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1562" y="819" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1638" y="819" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1714" y="819" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1790" y="819" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1641" y="826" width="70" height="34" rx="6" fill="#047857"/>
+<rect x="50" y="869" width="600" height="48" rx="2" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="350.0" y="902" font-family="'Noto Sans', sans-serif" font-size="26" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="50,869,600,48">Despliegue en hosting</text>
+<rect x="650" y="869" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="726" y="869" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="802" y="869" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="878" y="869" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="954" y="869" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1030" y="869" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1106" y="869" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1182" y="869" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1258" y="869" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1334" y="869" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1410" y="869" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1486" y="869" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1562" y="869" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1638" y="869" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1714" y="869" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1790" y="869" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1717" y="876" width="70" height="34" rx="6" fill="#047857"/>
+<rect x="50" y="919" width="600" height="48" rx="2" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="350.0" y="952" font-family="'Noto Sans', sans-serif" font-size="26" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="50,919,600,48">Prueba con grupo de control (OE4)   · RC</text>
+<rect x="650" y="919" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="726" y="919" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="802" y="919" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="878" y="919" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="954" y="919" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1030" y="919" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1106" y="919" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1182" y="919" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1258" y="919" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1334" y="919" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1410" y="919" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1486" y="919" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1562" y="919" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1638" y="919" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1714" y="919" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1790" y="919" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1717" y="926" width="70" height="34" rx="6" fill="#047857"/>
+<rect x="50" y="969" width="600" height="48" rx="2" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="350.0" y="1002" font-family="'Noto Sans', sans-serif" font-size="26" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="50,969,600,48">Análisis y ajustes posteriores</text>
+<rect x="650" y="969" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="726" y="969" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="802" y="969" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="878" y="969" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="954" y="969" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1030" y="969" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1106" y="969" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1182" y="969" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1258" y="969" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1334" y="969" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1410" y="969" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1486" y="969" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1562" y="969" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1638" y="969" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1714" y="969" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1790" y="969" width="76" height="48" fill="#FFFFFF" stroke="#C9CEDB"/>
+<rect x="1793" y="976" width="70" height="34" rx="6" fill="#047857"/>
+</svg>

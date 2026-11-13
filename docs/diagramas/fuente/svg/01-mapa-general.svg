@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080"><defs><marker id="fp" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#3D4663"/></marker><marker id="fr" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#C62828"/></marker><marker id="fv" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#15803D"/></marker><marker id="fn" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#4F46E5"/></marker><marker id="fa" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#B45309"/></marker><marker id="fb" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#047857"/></marker></defs>
+<rect width="1920" height="1080" fill="#F7F8FC"/>
+<rect x="0" y="0" width="14" height="1080" fill="#4F46E5"/>
+<text x="50" y="68" font-family="'Noto Sans', sans-serif" font-size="42" font-weight="700" fill="#1B2340" text-anchor="start">1. Mapa general de CodeWorld</text>
+<text x="50" y="108" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="400" fill="#5A6380" text-anchor="start">Tres capas: el navegador hace el trabajo del juego y el servidor solo autentica, entrega contenido y guarda el progreso</text>
+<rect x="36" y="135" width="964" height="900" rx="18" fill="#EEF0FF" fill-opacity=".55" stroke="#4F46E5" stroke-width="2.5" stroke-dasharray="10 7"/>
+<text x="56" y="171" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#4F46E5" text-anchor="start">NAVEGADOR DEL ALUMNO O TUTOR  ·  frontend/src</text>
+<rect x="1060" y="135" width="570" height="900" rx="18" fill="#FFF3E2" fill-opacity=".55" stroke="#B45309" stroke-width="2.5" stroke-dasharray="10 7"/>
+<text x="1080" y="171" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#B45309" text-anchor="start">SERVIDOR  ·  backend/src</text>
+<rect x="1656" y="135" width="240" height="620" rx="18" fill="#E4F6EF" fill-opacity=".55" stroke="#047857" stroke-width="2.5" stroke-dasharray="10 7"/>
+<text x="1676" y="171" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#047857" text-anchor="start">DATOS</text>
+<rect x="60" y="190" width="924" height="110" rx="12" fill="#EEF0FF" stroke="#4F46E5" stroke-width="2.5"/>
+<text x="522.0" y="240" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#4F46E5" text-anchor="middle" data-caja="60,190,924,110">Interfaz web (React)</text>
+<text x="522.0" y="268" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="60,190,924,110">App.tsx · pantallas/Juego.tsx · MenuAlumno.tsx · PanelTutor.tsx</text>
+<rect x="60" y="370" width="216" height="190" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="168.0" y="436" font-family="'Noto Sans', sans-serif" font-size="22" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="60,370,216,190">Editor de bloques</text>
+<text x="168.0" y="461" font-family="'Liberation Mono', monospace" font-size="18" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="60,370,216,190">BlocklyEditor.tsx</text>
+<text x="168.0" y="485" font-family="'Liberation Mono', monospace" font-size="18" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="60,370,216,190">blocks.ts</text>
+<text x="168.0" y="510" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="60,370,216,190">arma el programa</text>
+<rect x="296" y="370" width="216" height="190" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="404.0" y="435" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="296,370,216,190">Interpretador</text>
+<text x="404.0" y="461" font-family="'Liberation Mono', monospace" font-size="18" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="296,370,216,190">interpreter.ts</text>
+<text x="404.0" y="487" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="296,370,216,190">lo ejecuta y</text>
+<text x="404.0" y="513" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="296,370,216,190">detecta errores</text>
+<rect x="532" y="370" width="216" height="190" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="640.0" y="435" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="532,370,216,190">MotorGuias</text>
+<text x="640.0" y="461" font-family="'Liberation Mono', monospace" font-size="18" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="532,370,216,190">motorGuias.ts</text>
+<text x="640.0" y="487" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="532,370,216,190">elige la pista</text>
+<text x="640.0" y="513" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="532,370,216,190">correctiva</text>
+<rect x="768" y="370" width="216" height="190" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="876.0" y="435" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="768,370,216,190">GestorProgreso</text>
+<text x="876.0" y="461" font-family="'Liberation Mono', monospace" font-size="18" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="768,370,216,190">gestorProgreso.ts</text>
+<text x="876.0" y="487" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="768,370,216,190">guarda el avance</text>
+<text x="876.0" y="513" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="768,370,216,190">y sincroniza</text>
+<rect x="60" y="630" width="452" height="130" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="286.0" y="677" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="60,630,452,130">Service worker</text>
+<text x="286.0" y="705" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="60,630,452,130">public/sw.js</text>
+<text x="286.0" y="731" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="60,630,452,130">abre la app sin internet</text>
+<rect x="532" y="630" width="216" height="130" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="640.0" y="677" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="532,630,216,130">AlmacenLocal</text>
+<text x="640.0" y="705" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="532,630,216,130">almacen.ts</text>
+<text x="640.0" y="731" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="532,630,216,130">localStorage</text>
+<rect x="768" y="630" width="216" height="130" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="876.0" y="677" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="768,630,216,130">Cliente HTTP</text>
+<text x="876.0" y="705" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="768,630,216,130">api.ts</text>
+<text x="876.0" y="731" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="768,630,216,130">llamar()</text>
+<rect x="60" y="810" width="924" height="190" rx="12" fill="#FFF9DB" stroke="#A16207" stroke-width="2.5"/>
+<text x="522.0" y="874" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#A16207" text-anchor="middle" data-caja="60,810,924,190">La decisión central de la arquitectura</text>
+<text x="522.0" y="902" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="60,810,924,190">El programa del alumno se evalúa aquí, en su propio navegador.</text>
+<text x="522.0" y="928" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="60,810,924,190">Respuesta inmediata, sirve con mala conexión y equipos modestos,</text>
+<text x="522.0" y="954" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="60,810,924,190">y el servidor nunca ejecuta código escrito por el alumno.</text>
+<rect x="1072" y="190" width="170" height="820" rx="12" fill="#FFF3E2" stroke="#B45309" stroke-width="2.5"/>
+<text x="1157.0" y="516" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#B45309" text-anchor="middle" data-caja="1072,190,170,820">ApiGateway</text>
+<text x="1157.0" y="544" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="1072,190,170,820">app.ts</text>
+<text x="1157.0" y="570" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1072,190,170,820"> </text>
+<text x="1157.0" y="597" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1072,190,170,820">seguridad</text>
+<text x="1157.0" y="623" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1072,190,170,820">CORS</text>
+<text x="1157.0" y="649" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1072,190,170,820">límite de</text>
+<text x="1157.0" y="676" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1072,190,170,820">peticiones</text>
+<text x="1157.0" y="702" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1072,190,170,820">rutas</text>
+<rect x="1282" y="190" width="328" height="190" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1446.0" y="267" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="1282,190,328,190">ServicioContenido</text>
+<text x="1446.0" y="295" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="1282,190,328,190">contenido.ts</text>
+<text x="1446.0" y="321" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1282,190,328,190">niveles, desafíos y guías</text>
+<rect x="1282" y="440" width="328" height="190" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1446.0" y="517" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="1282,440,328,190">ServicioProgreso</text>
+<text x="1446.0" y="545" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="1282,440,328,190">progreso.ts</text>
+<text x="1446.0" y="571" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1282,440,328,190">avance, XP y panel del tutor</text>
+<rect x="1282" y="690" width="328" height="190" rx="12" fill="#FFFFFF" stroke="#3D4663" stroke-width="2.5"/>
+<text x="1446.0" y="754" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#1B2340" text-anchor="middle" data-caja="1282,690,328,190">ServicioAutenticacion</text>
+<text x="1446.0" y="782" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="1282,690,328,190">autenticacion.ts</text>
+<text x="1446.0" y="808" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1282,690,328,190">tutor con 2FA, alumno y</text>
+<text x="1446.0" y="834" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1282,690,328,190">consentimiento</text>
+<rect x="1672" y="190" width="208" height="545" rx="12" fill="#E4F6EF" stroke="#047857" stroke-width="2.5"/>
+<text x="1776.0" y="326" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#047857" text-anchor="middle" data-caja="1672,190,208,545">PostgreSQL</text>
+<text x="1776.0" y="354" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1672,190,208,545"> </text>
+<text x="1776.0" y="380" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="1672,190,208,545">tutor</text>
+<text x="1776.0" y="406" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="1672,190,208,545">alumno</text>
+<text x="1776.0" y="433" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="1672,190,208,545">consentimiento</text>
+<text x="1776.0" y="459" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="1672,190,208,545">nivel</text>
+<text x="1776.0" y="486" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="1672,190,208,545">desafio</text>
+<text x="1776.0" y="512" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="1672,190,208,545">guia_correctiva</text>
+<text x="1776.0" y="538" font-family="'Liberation Mono', monospace" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" xml:space="preserve" style="white-space:pre" data-caja="1672,190,208,545">progreso</text>
+<text x="1776.0" y="565" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1672,190,208,545"> </text>
+<text x="1776.0" y="591" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1672,190,208,545">acceso con</text>
+<text x="1776.0" y="618" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1672,190,208,545">Prisma</text>
+<rect x="1656" y="800" width="240" height="170" rx="12" fill="#EEF0F4" stroke="#5A6380" stroke-width="2.5"/>
+<text x="1776.0" y="854" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="700" fill="#5A6380" text-anchor="middle" data-caja="1656,800,240,170">Brevo</text>
+<text x="1776.0" y="882" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1656,800,240,170">servicio externo</text>
+<text x="1776.0" y="908" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1656,800,240,170">de correo:</text>
+<text x="1776.0" y="934" font-family="'Noto Sans', sans-serif" font-size="20" font-weight="400" fill="#1B2340" text-anchor="middle" data-caja="1656,800,240,170">envía el código</text>
+<path d="M168,300 L168,368" fill="none" stroke="#4F46E5" stroke-width="2.5" marker-end="url(#fn)"/>
+<path d="M404,300 L404,368" fill="none" stroke="#4F46E5" stroke-width="2.5" marker-end="url(#fn)"/>
+<path d="M640,300 L640,368" fill="none" stroke="#4F46E5" stroke-width="2.5" marker-end="url(#fn)"/>
+<path d="M876,300 L876,368" fill="none" stroke="#4F46E5" stroke-width="2.5" marker-end="url(#fn)"/>
+<path d="M820,560 L680,628" fill="none" stroke="#4F46E5" stroke-width="2.5" marker-end="url(#fn)"/>
+<path d="M876,560 L876,628" fill="none" stroke="#4F46E5" stroke-width="2.5" marker-end="url(#fn)"/>
+<path d="M1242,285 L1280,285" fill="none" stroke="#B45309" stroke-width="2.5" marker-end="url(#fa)"/>
+<path d="M1242,535 L1280,535" fill="none" stroke="#B45309" stroke-width="2.5" marker-end="url(#fa)"/>
+<path d="M1242,785 L1280,785" fill="none" stroke="#B45309" stroke-width="2.5" marker-end="url(#fa)"/>
+<path d="M984,695 L1070,695" fill="none" stroke="#3D4663" stroke-width="2.5" marker-end="url(#fp)"/>
+<text x="1030" y="680" font-family="'Noto Sans', sans-serif" font-size="19" font-weight="700" fill="#1B2340" text-anchor="middle" paint-order="stroke" stroke="#F7F8FC" stroke-width="6" stroke-linejoin="round">HTTP</text>
+<text x="1030" y="722" font-family="'Noto Sans', sans-serif" font-size="19" font-weight="700" fill="#1B2340" text-anchor="middle" paint-order="stroke" stroke="#F7F8FC" stroke-width="6" stroke-linejoin="round">JSON</text>
+<path d="M1610,285 L1670,285" fill="none" stroke="#047857" stroke-width="2.5" marker-end="url(#fb)"/>
+<path d="M1610,535 L1670,535" fill="none" stroke="#047857" stroke-width="2.5" marker-end="url(#fb)"/>
+<path d="M1610,725 L1670,725" fill="none" stroke="#047857" stroke-width="2.5" marker-end="url(#fb)"/>
+<path d="M1610,840 L1654,880" fill="none" stroke="#3D4663" stroke-width="2.5" stroke-dasharray="9 7" marker-end="url(#fp)"/>
+</svg>
