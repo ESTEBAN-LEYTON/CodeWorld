@@ -30,6 +30,7 @@ __pycache__/
 
 # Informe y EXPOTIC: se trabajan fuera del repositorio
 /*.docx
+/*.pdf
 docs/informe/
 docs/expotic/
 e2e/renderizar-cartel.mjs

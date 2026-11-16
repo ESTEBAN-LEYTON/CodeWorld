@@ -66,7 +66,7 @@ test.describe('Alumno', () => {
     await entrarAlumno(page, alumno)
     await saltarRecorrido(page)
     await expect(page.locator('.tarjeta-nivel h3')).toHaveText(['Secuencias', 'Ciclos', 'Condiciones'])
-    await expect(page.locator('.lista-desafios button')).toHaveCount(12)
+    await expect(page.locator('.lista-desafios button')).toHaveCount(18)
   })
 
   test('PA-05 RF06, RF07, RF09: arma el programa con bloques, ve al robot llegar y gana XP', async ({ page }, info) => {

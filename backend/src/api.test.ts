@@ -286,23 +286,25 @@ describe.skipIf(!urlPruebas)('API de CodeWorld', () => {
             { desafioId: 'secuencias-2', completadoEn: '2026-10-10T15:05:00Z', intentos: 3 },
             { desafioId: 'secuencias-3', completadoEn: '2026-10-10T15:09:00Z', intentos: 1 },
             { desafioId: 'secuencias-4', completadoEn: '2026-10-10T15:15:00Z', intentos: 2 },
+            { desafioId: 'secuencias-5', completadoEn: '2026-10-10T15:17:00Z', intentos: 1 },
+            { desafioId: 'secuencias-6', completadoEn: '2026-10-10T15:19:00Z', intentos: 2 },
             { desafioId: 'ciclos-1', completadoEn: '2026-10-10T15:20:00Z', intentos: 1 },
           ],
         })
       expect(sync.status).toBe(200)
-      // 10 + 15 + 15 + 20 de Secuencias y 20 de Ciclos; un nivel se completa solo con todos sus desafíos.
-      expect(sync.body.xpTotal).toBe(80)
+      // 10 + 15 + 15 + 20 + 20 + 25 de Secuencias y 20 de Ciclos; un nivel se completa solo con todos sus desafíos.
+      expect(sync.body.xpTotal).toBe(125)
       expect(sync.body.nivelesCompletados).toEqual(['secuencias'])
 
       const lista = await request(app).get('/api/tutor/alumnos').set('Authorization', `Bearer ${tutor}`)
       expect(lista.body).toEqual([
-        expect.objectContaining({ username: 'gato_rapido', xpTotal: 80, desafiosCompletados: 5, totalDesafios: 12 }),
+        expect.objectContaining({ username: 'gato_rapido', xpTotal: 125, desafiosCompletados: 7, totalDesafios: 18 }),
       ])
 
       const detalle = await request(app)
         .get(`/api/tutor/alumnos/${lista.body[0].id}/progreso`)
         .set('Authorization', `Bearer ${tutor}`)
-      expect(detalle.body.registros).toHaveLength(5)
+      expect(detalle.body.registros).toHaveLength(7)
     })
 
     it('la sincronización es idempotente y el XP lo fija el servidor', async () => {

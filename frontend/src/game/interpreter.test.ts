@@ -35,6 +35,23 @@ const SOLUCIONES: Record<string, Instruccion[]> = {
       tipo: 'repetirHastaMeta',
       cuerpo: [{ tipo: 'siCaminoAdelante', entonces: [A], sino: [DER, { tipo: 'siCaminoAdelante', entonces: [], sino: [DER, DER] }] }],
     },
+  ],  'secuencias-5': [DER, DER, A, A, A, A],
+  'secuencias-6': [A, A, DER, A, A, A, A, DER, A, A],
+  'ciclos-5': [{ tipo: 'repetirHastaMeta', cuerpo: [A, A, DER, A, IZQ] }],
+  // Se detiene a mitad del cuarto lado: el programa no necesita contar los pasos del último tramo.
+  'ciclos-6': [{ tipo: 'repetir', veces: 4, cuerpo: [{ tipo: 'repetir', veces: 4, cuerpo: [A] }, DER] }],
+  // El programa de «Curvas para ambos lados» generaliza a cualquier camino sin bifurcaciones.
+  'condiciones-5': [
+    {
+      tipo: 'repetirHastaMeta',
+      cuerpo: [{ tipo: 'siCaminoAdelante', entonces: [A], sino: [DER, { tipo: 'siCaminoAdelante', entonces: [], sino: [DER, DER] }] }],
+    },
+  ],
+  'condiciones-6': [
+    {
+      tipo: 'repetirHastaMeta',
+      cuerpo: [{ tipo: 'siCaminoAdelante', entonces: [A], sino: [DER, { tipo: 'siCaminoAdelante', entonces: [], sino: [DER, DER] }] }],
+    },
   ],
 }
 

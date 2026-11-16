@@ -97,7 +97,7 @@ Los demás valores ya sirven para el paso 4. `.env` nunca se sube al repositorio
 npm run db:setup
 ```
 
-Aplica las migraciones y carga los 3 niveles, los 12 desafíos y sus guías. Se puede repetir sin perder el progreso guardado.
+Aplica las migraciones y carga los 3 niveles, los 18 desafíos y sus guías. Se puede repetir sin perder el progreso guardado.
 
 ### 7. Inicia la aplicación
 
@@ -177,7 +177,7 @@ Sin configuración, el código solo aparece en la terminal o en los registros. P
 
 ```bash
 npm test                   # frontend (intérprete, guías, progreso) + backend (seguridad y API)
-npm run test:e2e           # aceptación en navegador real, en computador, tableta y celular
+npm run test:e2e           # aceptación en navegador real (la primera vez: npx --prefix e2e playwright install chromium)
 npm run test:carga         # cargabilidad de la API
 ```
 
@@ -192,8 +192,8 @@ Las pruebas de la API usan una base de datos aparte (`TEST_DATABASE_URL`, que se
 | --- | --- |
 | Editor de bloques en español (avanzar, girar, repetir, repetir hasta la meta, si hay camino) | ✅ |
 | Interpretador local en el navegador, límite de 200 pasos, estados EXITO/REINTENTO/ERROR | ✅ |
-| MotorGuias: guía correctiva por desafío y patrón de error, 100% de cobertura en los 12 desafíos (OE3) | ✅ |
-| 3 niveles y 12 desafíos (4 por nivel) servidos desde PostgreSQL (ServicioContenido), con caché sin conexión | ✅ |
+| MotorGuias: guía correctiva por desafío y patrón de error, 100% de cobertura en los 18 desafíos (OE3) | ✅ |
+| 3 niveles y 18 desafíos (6 por nivel) servidos desde PostgreSQL (ServicioContenido), con caché sin conexión | ✅ |
 | ApiGateway: CORS, rate limiting (más estricto en login), cabeceras de seguridad, errores en JSON | ✅ |
 | ServicioAutenticacion: registro y login del tutor con 2FA, registro de alumno con consentimiento, login del alumno | ✅ |
 | 2FA reforzado (R6): 5 intentos por código, un solo uso y reenvío con espera de 60 s | ✅ |

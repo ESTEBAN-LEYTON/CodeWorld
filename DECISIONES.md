@@ -39,6 +39,7 @@ Decisiones que tomó Claude el 2026-11-05 mientras no estabas. Cualquiera se pue
 | 35 | Base de datos | **Neon**, que no vence. | Render PostgreSQL: una cuenta menos, pero la base gratuita vence a los 30 días. |
 | 36 | Correo del 2FA en producción | **En los registros de Render por ahora.** Brevo se activa después agregando 2 variables, sin cambiar código. | Configurar Brevo desde el inicio. |
 | 37 | Límites en producción | **1000 peticiones y 100 logins por minuto e IP**, porque una sala comparte la IP pública. | Los valores por defecto, 300 y 20, que alcanzan para unos 10 alumnos. |
+| 38 | 6 desafíos más (2026-11-16) | **18 en total, 6 por nivel.** Secuencias: «Media vuelta» (parte mirando la pared) y «El rodeo» (parte mirando hacia arriba). Ciclos: «Escalones largos» (un patrón de 5 bloques con «repetir hasta la meta») y «La vuelta completa» (el programa se detiene a mitad de un «repetir»). Condiciones: «El gancho» y «El gran laberinto», que se resuelven con el programa de «Curvas para ambos lados»; el reto final pasa a ser «El gran laberinto». Una prueba temporal confirmó que los programas más simples del nivel no los resuelven. | Otra cantidad, o un nivel nuevo. |
 
 ## Lo que no hice
 

@@ -25,7 +25,7 @@ No hace falta correr nada en tu computador: las migraciones y los desafíos se c
 1. Crea una cuenta en [render.com](https://render.com) entrando con GitHub.
 2. **New → Blueprint** y elige el repositorio `CodeWorld`. Como es privado, autoriza a Render a leerlo cuando lo pida.
 3. Render lee `render.yaml` y pide **`DATABASE_URL`**: pega la cadena de Neon.
-4. **Deploy Blueprint.** El primer despliegue tarda unos 5 minutos: compila el frontend y la API, crea las tablas y carga los 12 desafíos.
+4. **Deploy Blueprint.** El primer despliegue tarda unos 5 minutos: compila el frontend y la API, crea las tablas y carga los 18 desafíos.
 
 `JWT_SECRET` lo genera Render. No hace falta configurar CORS porque la app y la API comparten la dirección.
 

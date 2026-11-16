@@ -107,6 +107,34 @@ export const NIVELES: NivelSemilla[] = [
           incompleto: 'El robot se detuvo a mitad de camino. Revisa el último tramo: ¿le faltan pasos o un giro?',
         },
       },
+      {
+        id: 'secuencias-5',
+        titulo: 'Media vuelta',
+        enunciado: 'El robot empieza mirando hacia la pared. Hazlo darse vuelta antes de avanzar.',
+        laberinto: { celdas: ['#######', '#I...M#', '#######'], dirInicial: 'O' },
+        bloquesPermitidos: ['cw_avanzar', 'cw_girar'],
+        bloquesOptimos: 6,
+        xpRecompensa: 20,
+        guias: {
+          choque:
+            'El robot chocó apenas partió: mira hacia la izquierda, contra la pared. ¿Cuántos giros necesita para mirar hacia la estrella?',
+          incompleto: 'Ya se dio vuelta. Ahora cuenta las casillas hasta la estrella.',
+        },
+      },
+      {
+        id: 'secuencias-6',
+        titulo: 'El rodeo',
+        enunciado: 'Una pared tapa el camino directo. Sube, cruza por arriba y baja hasta la estrella.',
+        laberinto: { celdas: ['#######', '#.....#', '#.###.#', '#I###M#', '#######'], dirInicial: 'N' },
+        bloquesPermitidos: ['cw_avanzar', 'cw_girar'],
+        bloquesOptimos: 10,
+        xpRecompensa: 25,
+        guias: {
+          choque:
+            'Esta vez el robot parte mirando hacia arriba (▲). En cada esquina, imagina que eres el robot: ¿el camino sigue a tu derecha o a tu izquierda?',
+          incompleto: 'El robot se detuvo antes. Revisa el último tramo: después de la segunda esquina tiene que bajar 2 casillas.',
+        },
+      },
     ],
   },
   {
@@ -177,6 +205,44 @@ export const NIVELES: NivelSemilla[] = [
           incompleto: 'El robot no llegó al último pasillo. Cuenta las curvas: ¿hay un giro y dos pasos por cada una?',
         },
       },
+      {
+        id: 'ciclos-5',
+        titulo: 'Escalones largos',
+        enunciado: 'Cada escalón tiene 2 pasos de largo y 1 de alto. Descubre el patrón y repítelo hasta la meta.',
+        laberinto: {
+          celdas: ['#########', '#I..#####', '###...###', '#####...#', '#######M#', '#########'],
+          dirInicial: 'E',
+        },
+        bloquesPermitidos: ['cw_avanzar', 'cw_girar', 'cw_repetir', 'cw_repetir_hasta_meta'],
+        bloquesOptimos: 6,
+        xpRecompensa: 30,
+        guias: {
+          choque:
+            'El patrón de cada escalón es: avanzar 2 veces, girar a la derecha, avanzar 1 vez y girar a la izquierda. ¿Cuál de esos pasos falta o sobra?',
+          limite_pasos:
+            'El robot repite sin llegar. Revisa que dentro del «repetir» quede un escalón completo, con sus 2 giros.',
+          incompleto: 'Faltan escalones. Usa «repetir hasta la meta» y no tendrás que contarlos.',
+        },
+      },
+      {
+        id: 'ciclos-6',
+        titulo: 'La vuelta completa',
+        enunciado:
+          'El camino da la vuelta a un cuadrado. Con solo 4 bloques se puede: un «repetir» dentro de otro. El robot se detiene solo al llegar a la estrella.',
+        laberinto: {
+          celdas: ['#######', '#I....#', '#####.#', '#M###.#', '#.###.#', '#.....#', '#######'],
+          dirInicial: 'E',
+        },
+        bloquesPermitidos: ['cw_avanzar', 'cw_girar', 'cw_repetir'],
+        bloquesOptimos: 4,
+        xpRecompensa: 35,
+        guias: {
+          choque:
+            'Cada lado del cuadrado tiene 4 pasos y después viene un giro a la derecha. Revisa el número del «repetir» de adentro.',
+          incompleto:
+            'El robot no completó la vuelta. El «repetir» de afuera es la cantidad de lados: ¿cuántos lados recorre hasta la estrella?',
+        },
+      },
     ],
   },
   {
@@ -234,7 +300,7 @@ export const NIVELES: NivelSemilla[] = [
         id: 'condiciones-4',
         titulo: 'Curvas para ambos lados',
         enunciado:
-          'Reto final: el camino dobla a la derecha y a la izquierda. Si al girar a la derecha todavía hay pared, el robot tiene que darse vuelta hacia el otro lado.',
+          'El camino dobla a la derecha y a la izquierda. Si al girar a la derecha todavía hay pared, el robot tiene que darse vuelta hacia el otro lado.',
         laberinto: {
           celdas: ['########', '#I.#####', '##.#M..#', '##.###.#', '##.....#', '########'],
           dirInicial: 'E',
@@ -246,6 +312,43 @@ export const NIVELES: NivelSemilla[] = [
           choque: 'El robot avanzó sin mirar. Cada «avanzar» tiene que estar dentro de «si hay camino adelante».',
           limite_pasos:
             'El robot da vueltas en una esquina. Pista: dentro del «si no», gira a la derecha y pregunta otra vez con un segundo «si hay camino adelante». Si tampoco hay camino, gira dos veces más.',
+          incompleto: 'El robot se detuvo. Pon tu decisión dentro de «repetir hasta la meta» para que la tome en cada casilla.',
+        },
+      },
+      {
+        id: 'condiciones-5',
+        titulo: 'El gancho',
+        enunciado: 'Curvas a la derecha y a la izquierda. ¿Sirve tu programa de «Curvas para ambos lados»? Pruébalo.',
+        laberinto: {
+          celdas: ['#########', '#I..#####', '###.#M..#', '###.###.#', '###.....#', '#########'],
+          dirInicial: 'E',
+        },
+        bloquesPermitidos: ['cw_avanzar', 'cw_girar', 'cw_repetir_hasta_meta', 'cw_si_camino'],
+        bloquesOptimos: 7,
+        xpRecompensa: 55,
+        guias: {
+          choque: 'El robot avanzó sin mirar. Cada «avanzar» tiene que estar dentro de «si hay camino adelante».',
+          limite_pasos:
+            'El robot da vueltas en una esquina. Si no hay camino adelante, gira a la derecha y pregunta otra vez; si tampoco hay, gira dos veces más.',
+          incompleto: 'El robot se detuvo. Pon tu decisión dentro de «repetir hasta la meta» para que la tome en cada casilla.',
+        },
+      },
+      {
+        id: 'condiciones-6',
+        titulo: 'El gran laberinto',
+        enunciado:
+          'Reto final: el robot parte mirando una pared y el camino tiene curvas para ambos lados. Un buen programa que decide solo lo resuelve todo.',
+        laberinto: {
+          celdas: ['#########', '#I#.....#', '#.#.###.#', '#...#M#.#', '#####.#.#', '#####...#', '#########'],
+          dirInicial: 'N',
+        },
+        bloquesPermitidos: ['cw_avanzar', 'cw_girar', 'cw_repetir_hasta_meta', 'cw_si_camino'],
+        bloquesOptimos: 7,
+        xpRecompensa: 60,
+        guias: {
+          choque: 'El robot avanzó contra una pared. Que solo avance cuando «si hay camino adelante» se cumple.',
+          limite_pasos:
+            'El robot gira sin salir de un lugar. Recuerda: si no hay camino, prueba a la derecha y, si tampoco, date vuelta hacia la izquierda con 2 giros más.',
           incompleto: 'El robot se detuvo. Pon tu decisión dentro de «repetir hasta la meta» para que la tome en cada casilla.',
         },
       },
