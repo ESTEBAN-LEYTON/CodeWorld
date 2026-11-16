@@ -11,7 +11,6 @@
     "test:e2e": "npm test --prefix e2e",
     "test:carga": "npm run test:carga --prefix backend",
     "diagramas": "python3 docs/diagramas/fuente/generar_diagramas.py && node e2e/renderizar-diagramas.mjs",
-    "expotic": "python3 docs/expotic/generar_resumen.py && node e2e/renderizar-cartel.mjs",
     "build": "npm run build --prefix frontend && npm run build --prefix backend"
   }
 }

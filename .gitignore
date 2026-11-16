@@ -27,3 +27,9 @@ Thumbs.db
 e2e/resultados/
 Pendientes.txt
 __pycache__/
+
+# Informe y EXPOTIC: se trabajan fuera del repositorio
+/*.docx
+docs/informe/
+docs/expotic/
+e2e/renderizar-cartel.mjs

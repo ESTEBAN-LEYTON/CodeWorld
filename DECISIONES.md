@@ -27,31 +27,6 @@ Decisiones que tomó Claude el 2026-11-05 mientras no estabas. Cualquiera se pue
 | 14 | `Pendientes.txt` | **Fuera de git**, porque tiene correos de la profesora. | Incluirlo en el repositorio. |
 | 15 | `docs/arquitectura.md` | **No lo restauré**: estaba desactualizado y lo habías borrado. Sigue en el historial de git. Quité el enlace del README. | Restaurarlo y actualizarlo. |
 
-## Decisiones del informe
-
-| # | Decisión | Elegí | Otras opciones |
-| --- | --- | --- | --- |
-| 16 | Formato | **`Pantoja_J_Formato_de_Proyecto_Final_2026.docx`** como base: Arial 12, interlineado 1,5 y máximos por capítulo. **Sin confirmar que sea el formato de biblioteca**: sus metadatos indican otra autora y su índice trae un proyecto judicial. | Si la profesora indica otro, se cambia la plantilla y se vuelve a generar. |
-| 17 | Título | **El mismo, en mayúsculas**, porque quizá ya está inscrito. | La plantilla pide el objetivo general sin verbo, por ejemplo: «Plataforma web de programación con bloques visuales y retroalimentación inmediata para jóvenes de 9 a 15 años». |
-| 18 | OE1 | **Reemplacé la reducción de 30%**, que no tenía línea base, por «80% llega al primer desafío en 5 minutos o menos». | Medir una línea base real con otra herramienta. |
-| 19 | Plazos | **13 de noviembre** para OE2 y OE3, y **15 de noviembre** para OE1 y OE4. | Otra fecha, si la prueba con alumnos se mueve. |
-| 20 | Fechas de los sprints | **Las deduje** del calendario y del historial de git: el Sprint 3 termina el 11 de octubre y dura 4 semanas. | Corregirlas si tu registro real dice otra cosa. |
-| 21 | Carta Gantt | **La rehíce** con 16 semanas y solo actividades del proyecto. La anterior llegaba a la semana 20. | Volver a la anterior. |
-| 22 | Secciones «si aplica» | **Eliminé** «Descripción de la organización» y «Unidad bajo estudio». | Incluirlas si el proyecto se enmarca en tu taller o colegio. |
-| 23 | Figuras UML | **Las mantuve** y agregué una tabla que relaciona sus nombres lógicos con los archivos reales. | Redibujarlas con los nombres reales. |
-
-## Decisiones de EXPOTIC
-
-Se regeneran con `npm run expotic`. Quedan en `docs/expotic/`.
-
-| # | Decisión | Elegí | Otras opciones |
-| --- | --- | --- | --- |
-| 24 | Profesor guía | **Alfonsina del Mar Linarez Castañeda**, como en la portada del informe. El ejemplo del cartel muestra a Jenny Pantoja Blyde, que recibe los archivos. | Cambiarlo si EXPOTIC pide otro nombre. |
-| 25 | Resumen sin citas | **Sin citas ni referencias**: con Arial 12 e interlineado sencillo, los dos idiomas y las referencias no caben en 1 página, y un resumen normalmente no cita. | Agregar «Wing (2006)» y su referencia, acortando el texto. |
-| 26 | Título del resumen en 13 pt | **13 pt en negrita**; el resto, Arial 12 como pide la plantilla. | Todo en 12 pt. |
-| 27 | Cartel | **HTML convertido a PDF de 90 x 120 cm** con Playwright, con los colores de la UNAB y un diagrama de contexto simple, no los diagramas técnicos del informe. | Hacerlo en Canva o PowerPoint a partir de este. |
-| 28 | QR del cartel | **Recuadro por completar**: aún no hay una URL desplegada. | Un QR al repositorio de GitHub, si es público. |
-
 ## Decisiones del avance del 80% (2026-11-13)
 
 | # | Decisión | Elegí | Otras opciones |
@@ -60,7 +35,6 @@ Se regeneran con `npm run expotic`. Quedan en `docs/expotic/`.
 | 30 | Nuevos desafíos | **6 más, 2 por nivel (12 en total)**, con guías propias y solución de referencia probada. «El caracol» se resuelve con el mismo programa de «El robot decide», para mostrar que una condición generaliza; «Curvas para ambos lados» es el reto final, con una condición dentro de otra. | Más desafíos o un nivel nuevo. |
 | 31 | XP de los desafíos anteriores | **Sin cambios**, para no alterar el progreso ya guardado. Los nuevos dan entre 15 y 50 XP. | Rebalancear todo. |
 | 32 | Diseño | **Más de juego sin cambiar el flujo:** robot dibujado en vez de una flecha, tablero con muros en relieve, estrella animada, botones con relieve, un color por nivel y una portada con un laberinto de ejemplo. Sin fuentes externas, porque el navegador del alumno no debe contactar a terceros (PA-14). | Una fuente propia descargada en la app, o un rediseño más profundo del panel del tutor. |
-| 33 | Informe | **Actualizado con 12 desafíos, 89 pruebas y el R6 implementado.** Los objetivos OE2 y OE3 siguen diciendo 6 desafíos, porque son el compromiso original; los resultados y las conclusiones dicen que se entregó el doble. La fila del Sprint 3 también conserva los 6 desafíos que entregó ese sprint. | Cambiar los objetivos a 12 desafíos, aunque así se reescribe el compromiso después de cumplirlo. |
 | 34 | Forma del despliegue | **Un solo Web Service en Render**, definido en `render.yaml`: Express sirve también el build del frontend. Así la app y la API comparten la dirección, sin CORS ni variables cruzadas, igual que en desarrollo y en las pruebas e2e (`E2E_UN_SERVIDOR=1`). Las migraciones y la carga de desafíos corren en el build, porque el plan gratuito no tiene pre-deploy. | Frontend como Static Site aparte, con `VITE_API_URL` y `CORS_ORIGIN`. |
 | 35 | Base de datos | **Neon**, que no vence. | Render PostgreSQL: una cuenta menos, pero la base gratuita vence a los 30 días. |
 | 36 | Correo del 2FA en producción | **En los registros de Render por ahora.** Brevo se activa después agregando 2 variables, sin cambiar código. | Configurar Brevo desde el inicio. |
@@ -68,8 +42,6 @@ Se regeneran con `npm run expotic`. Quedan en `docs/expotic/`.
 
 ## Lo que no hice
 
-- **Informe:** versión nueva generada el 2026-11-06 con `python3 docs/informe/generar_informe.py`. Sus pendientes están en amarillo y sus decisiones, en la sección «Decisiones del informe».
-- **EXPOTIC:** primera versión del afiche y del resumen hecha el 2026-11-13 (ver «Decisiones de EXPOTIC»). Les falta el resultado de la prueba con alumnos.
 - **Prueba con tus alumnos:** no preparé el protocolo, la pauta ni el consentimiento, porque pediste la parte de código. Es lo siguiente que conviene hacer.
 
 ## Lo que está sin resolver
