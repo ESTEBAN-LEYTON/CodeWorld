@@ -38,7 +38,7 @@ const RECORRIDO_JUEGO: PasoRecorrido[] = [
   {
     selector: '.panel-editor',
     titulo: 'Arma tu programa',
-    texto: 'Arrastra los bloques de la columna gris y encájalos debajo de «▶ Al ejecutar», como piezas de un puzle. El robot los sigue de arriba hacia abajo.',
+    texto: 'Arrastra los bloques de la zona gris y encájalos debajo de «▶ Al ejecutar», como piezas de un puzle. El robot los sigue de arriba hacia abajo.',
   },
   {
     selector: '[data-recorrido="ejecutar"]',

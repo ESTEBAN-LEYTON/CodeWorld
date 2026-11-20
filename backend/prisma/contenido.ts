@@ -29,7 +29,7 @@ export interface NivelSemilla {
 }
 
 const GENERICAS: Record<PatronError, string> = {
-  vacio: 'Tu programa está vacío. Arrastra bloques desde la izquierda y únelos debajo de «Al ejecutar».',
+  vacio: 'Tu programa está vacío. Arrastra bloques desde la zona gris y únelos debajo de «Al ejecutar».',
   choque:
     'Tu robot chocó con una pared. Mira hacia dónde apunta la flecha justo antes del choque: ¿necesitaba girar antes de avanzar?',
   incompleto:

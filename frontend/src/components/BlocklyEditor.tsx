@@ -7,6 +7,12 @@ import { BLOQUE_INICIO, toolboxPara } from '../game/blocks'
 
 Blockly.setLocale(Es as unknown as Record<string, string>)
 
+const ESCALA = 1.1
+/** En celular los bloques van un poco más chicos para que la franja muestre todos los del desafío. */
+const ESCALA_ANGOSTO = 0.85
+const RADIO_ENCAJE = Blockly.config.snapRadius
+const RADIO_CONEXION = Blockly.config.connectingSnapRadius
+
 interface Props {
   /** Lista estable por desafío (viene de DESAFIOS); al cambiar se crea un workspace nuevo. */
   bloquesPermitidos: string[]
@@ -39,10 +45,19 @@ export function BlocklyEditor({ bloquesPermitidos, claveGuardado, workspaceRef }
 
   useEffect(() => {
     if (!contenedor.current) return
+    // En celular la caja de bloques va como franja arriba del lienzo: así el lienzo usa todo el ancho.
+    const angosto = window.matchMedia('(max-width: 720px)').matches
+    const escala = angosto ? ESCALA_ANGOSTO : ESCALA
+    // El radio de encaje se mide en unidades del lienzo: se agranda al achicar los bloques, para que encajar
+    // un bloque con el dedo sea igual de fácil que en un computador.
+    Blockly.config.snapRadius = (RADIO_ENCAJE * ESCALA) / escala
+    Blockly.config.connectingSnapRadius = (RADIO_CONEXION * ESCALA) / escala
     const ws = Blockly.inject(contenedor.current, {
       toolbox: toolboxPara(bloquesPermitidos),
+      horizontalLayout: angosto,
+      toolboxPosition: 'start',
       trashcan: true,
-      zoom: { controls: true, startScale: 1.1 },
+      zoom: { controls: true, startScale: escala },
       move: { scrollbars: true, drag: true, wheel: true },
       renderer: 'zelos',
       // Servidos por la propia aplicación: funcionan sin conexión y no se contacta a terceros.
