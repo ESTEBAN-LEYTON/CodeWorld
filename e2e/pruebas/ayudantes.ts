@@ -100,7 +100,8 @@ export async function agregarBloque(page: Page) {
   // El punto de encaje es justo bajo el último bloque del lienzo principal.
   const destino = await page.evaluate(() => {
     const lienzo = document.querySelector('.blocklySvg .blocklyWorkspace > .blocklyBlockCanvas')
-    const grupos = lienzo ? [...lienzo.querySelectorAll('.blocklyDraggable')] : []
+    // Por id y no por .blocklyDraggable: «Al ejecutar» está fijo y no lleva esa clase.
+    const grupos = lienzo ? [...lienzo.querySelectorAll('g[data-id]')] : []
     const cajas = grupos.map((g) => g.getBoundingClientRect())
     const abajo = Math.max(...cajas.map((c) => c.bottom))
     const izquierda = Math.min(...cajas.map((c) => c.left))

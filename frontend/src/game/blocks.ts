@@ -15,7 +15,6 @@ Blockly.common.defineBlocksWithJsonArray([
     message0: '▶ Al ejecutar',
     nextStatement: null,
     colour: 45,
-    deletable: false,
   },
   {
     type: 'cw_avanzar',

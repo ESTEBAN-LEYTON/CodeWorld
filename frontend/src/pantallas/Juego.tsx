@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import type * as Blockly from 'blockly/core'
 import { ErrorApi, llamar, mensajeDeError } from '../api'
 import { useAyudaVista } from '../ayudaVista'
@@ -212,6 +212,28 @@ function EstadoConexion({ conexion, pendientes, onReintentar }: { conexion: Cone
   )
 }
 
+// Lluvia breve de confeti sobre el laberinto al resolver el desafío (solo CSS; se omite con movimiento reducido).
+const COLORES_CONFETI = ['#facc15', '#4f46e5', '#16a34a', '#ea580c', '#ec4899', '#06b6d4']
+
+function Celebracion() {
+  return (
+    <div className="celebracion" aria-hidden>
+      {Array.from({ length: 28 }, (_, i) => {
+        const angulo = (i / 28) * Math.PI * 2
+        const alcance = 70 + ((i * 37) % 60)
+        const estilo = {
+          '--x': `${Math.cos(angulo) * alcance}px`,
+          '--y': `${Math.sin(angulo) * alcance - 40}px`,
+          '--giro': `${(i * 97) % 360}deg`,
+          '--retraso': `${(i % 5) * 30}ms`,
+          background: COLORES_CONFETI[i % COLORES_CONFETI.length],
+        } as CSSProperties
+        return <span key={i} style={estilo} />
+      })}
+    </div>
+  )
+}
+
 export interface PropsDesafio {
   alumnoId: string
   desafio: Desafio
@@ -243,6 +265,7 @@ export function PantallaDesafio(props: PropsDesafio) {
   const ws = useRef<Blockly.WorkspaceSvg | null>(null)
   const timer = useRef<number | undefined>(undefined)
   const [robot, setRobot] = useState<Posicion>(() => posicionInicial(desafio.laberinto))
+  const [rastro, setRastro] = useState<Posicion[]>([])
   const [retro, setRetro] = useState<Retro | null>(null)
   const refRetro = useRef<HTMLDivElement | null>(null)
   const [animando, setAnimando] = useState(false)
@@ -262,6 +285,7 @@ export function PantallaDesafio(props: PropsDesafio) {
     window.clearInterval(timer.current)
     setAnimando(false)
     setRetro(null)
+    setRastro([])
     setRobot(posicionInicial(desafio.laberinto))
   }
 
@@ -283,6 +307,7 @@ export function PantallaDesafio(props: PropsDesafio) {
       paso++
       if (paso < resultado.traza.length) {
         setRobot(resultado.traza[paso])
+        setRastro(resultado.traza.slice(0, paso))
         return
       }
       window.clearInterval(timer.current)
@@ -302,7 +327,15 @@ export function PantallaDesafio(props: PropsDesafio) {
         </p>
         <h2>{desafio.titulo}</h2>
         <p className="enunciado">{desafio.enunciado}</p>
-        <MazeView laberinto={desafio.laberinto} robot={robot} chocado={retro?.resultado.patronError === 'choque'} />
+        <MazeView
+          laberinto={desafio.laberinto}
+          robot={robot}
+          rastro={rastro}
+          exito={exito}
+          chocado={retro?.resultado.patronError === 'choque'}
+        >
+          {exito && <Celebracion />}
+        </MazeView>
         <div className="acciones">
           <button className="primario" data-recorrido="ejecutar" onClick={ejecutarPrograma} disabled={animando}>
             ▶ Ejecutar
@@ -319,7 +352,7 @@ export function PantallaDesafio(props: PropsDesafio) {
                 <p>
                   <strong>¡Lo lograste!</strong> Tu robot llegó a la meta.
                 </p>
-                <p>+{desafio.xpRecompensa} XP</p>
+                <p className="premio-xp">+{desafio.xpRecompensa} XP</p>
                 {desafio.bloquesOptimos && retro.bloquesUsados > desafio.bloquesOptimos && (
                   <p className="pista">Reto extra: se puede resolver con {desafio.bloquesOptimos} bloques. ¿Lo intentas?</p>
                 )}

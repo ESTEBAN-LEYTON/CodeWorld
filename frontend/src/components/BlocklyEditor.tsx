@@ -21,23 +21,34 @@ interface Props {
   workspaceRef: RefObject<Blockly.WorkspaceSvg | null>
 }
 
-function colocarInicio(ws: Blockly.WorkspaceSvg) {
-  const inicio = ws.newBlock(BLOQUE_INICIO)
-  inicio.initSvg()
-  inicio.render()
-  inicio.moveBy(30, 30)
+const POSICION_INICIO = { x: 30, y: 30 }
+
+/**
+ * «Al ejecutar» es el ancla del programa: siempre existe, no se puede borrar ni arrastrar y queda en la
+ * misma esquina. Se aplica también a programas guardados antes de este cambio, que no traían esas marcas.
+ */
+function fijarInicio(ws: Blockly.WorkspaceSvg) {
+  let inicio = ws.getBlocksByType(BLOQUE_INICIO, false)[0] as Blockly.BlockSvg | undefined
+  if (!inicio) {
+    inicio = ws.newBlock(BLOQUE_INICIO)
+    inicio.initSvg()
+    inicio.render()
+  }
+  inicio.setDeletable(false)
+  inicio.setMovable(false)
+  const { x, y } = inicio.getRelativeToSurfaceXY()
+  if (x !== POSICION_INICIO.x || y !== POSICION_INICIO.y) inicio.moveBy(POSICION_INICIO.x - x, POSICION_INICIO.y - y)
 }
 
 function restaurar(ws: Blockly.WorkspaceSvg, clave: string) {
   const guardado = leer<object | null>(clave, null)
-  if (!guardado) return colocarInicio(ws)
   try {
-    Blockly.serialization.workspaces.load(guardado, ws)
+    if (guardado) Blockly.serialization.workspaces.load(guardado, ws)
   } catch {
     // Un programa guardado que ya no se puede leer no debe impedir jugar el desafío.
     ws.clear()
-    colocarInicio(ws)
   }
+  fijarInicio(ws)
 }
 
 export function BlocklyEditor({ bloquesPermitidos, claveGuardado, workspaceRef }: Props) {
@@ -65,6 +76,8 @@ export function BlocklyEditor({ bloquesPermitidos, claveGuardado, workspaceRef }
     })
     restaurar(ws, claveGuardado)
     ws.addChangeListener((e) => {
+      // «Ordenar bloques» del menú contextual también lo movería: se devuelve a su esquina.
+      if (e.type === Blockly.Events.BLOCK_MOVE) fijarInicio(ws)
       if (!e.isUiEvent) guardar(claveGuardado, Blockly.serialization.workspaces.save(ws))
     })
     workspaceRef.current = ws
