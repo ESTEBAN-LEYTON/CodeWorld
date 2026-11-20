@@ -1072,14 +1072,50 @@ button.grande {
     display: none;
   }
 
+  /* En celular la página hace scroll completa: el título, la instrucción y la pista quedan siempre a la vista
+     en vez de esconderse dentro de un panel con scroll propio. */
+  .app {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .barra {
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+  }
+
   .contenido {
     grid-template-columns: 1fr;
-    grid-template-rows: auto 60vh;
+    grid-template-rows: auto auto;
   }
 
   .panel-juego {
+    overflow: visible;
+    padding: 0.75rem 1rem;
     border-right: none;
     border-bottom: 1px solid var(--borde);
+  }
+
+  .panel-juego h2 {
+    font-size: 1.25rem;
+  }
+
+  .enunciado {
+    margin-bottom: 0.25rem;
+  }
+
+  .panel-juego .laberinto {
+    max-width: min(220px, 60vw);
+    margin: 0.5rem auto;
+  }
+
+  .panel-juego .acciones {
+    justify-content: center;
+  }
+
+  .panel-editor,
+  .editor {
+    height: 60vh;
   }
 }
 
@@ -1166,4 +1202,19 @@ button.grande {
   max-width: 1000px;
   margin: 0 auto;
   padding: 1rem;
+}
+
+/* En la prueba, el número de desafío de la barra reemplaza al del nivel, para no mostrar dos conteos distintos */
+.prueba-validacion .miga {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .prueba-validacion .barra .logo-barra {
+    display: none;
+  }
+
+  .prueba-validacion .barra {
+    flex-wrap: nowrap;
+  }
 }

@@ -244,9 +244,19 @@ export function PantallaDesafio(props: PropsDesafio) {
   const timer = useRef<number | undefined>(undefined)
   const [robot, setRobot] = useState<Posicion>(() => posicionInicial(desafio.laberinto))
   const [retro, setRetro] = useState<Retro | null>(null)
+  const refRetro = useRef<HTMLDivElement | null>(null)
   const [animando, setAnimando] = useState(false)
 
   useEffect(() => () => window.clearInterval(timer.current), [])
+  // En celular la página completa hace scroll: cada desafío empieza mostrando su título e instrucción.
+  // Llaves obligatorias: en Chrome reciente scrollTo devuelve una promesa, y React la tomaría como limpieza.
+  useEffect(() => {
+    window.scrollTo({ top: 0 })
+  }, [])
+  // En pantallas chicas la pista puede quedar fuera de la vista: se lleva a la pantalla al aparecer.
+  useEffect(() => {
+    refRetro.current?.scrollIntoView?.({ behavior: 'smooth', block: 'nearest' })
+  }, [retro])
 
   const reiniciar = () => {
     window.clearInterval(timer.current)
@@ -303,7 +313,7 @@ export function PantallaDesafio(props: PropsDesafio) {
           ❓ ¿Cómo funcionan los bloques?
         </button>
         {retro && (
-          <div className={`feedback ${exito ? 'ok' : retro.resultado.estado === 'REINTENTO' ? 'reintento' : 'error'}`} role="status">
+          <div ref={refRetro} className={`feedback ${exito ? 'ok' : retro.resultado.estado === 'REINTENTO' ? 'reintento' : 'error'}`} role="status">
             {exito ? (
               <>
                 <p>
@@ -343,6 +353,7 @@ export function PantallaDesafio(props: PropsDesafio) {
           pasos={RECORRIDO_JUEGO}
           onTerminar={() => {
             setRecorrido(false)
+            window.scrollTo({ top: 0 })
             props.onRecorridoVisto()
           }}
         />

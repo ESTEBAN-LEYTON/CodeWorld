@@ -313,15 +313,15 @@ function Prueba({
   }
 
   return (
-    <div className="app">
+    <div className="app prueba-validacion">
       <header className="barra">
         <Logo />
         <span className="espacio" />
         <span className="progreso-validacion">
           Desafío {indice + 1} de {desafios.length}
         </span>
-        <button onClick={avanzar} title="Pasar al siguiente sin resolverlo">
-          {ultimo ? 'No pude resolverlo: terminar' : 'No puedo resolverlo: pasar'}
+        <button onClick={avanzar} title={ultimo ? 'Terminar sin resolverlo' : 'Pasar al siguiente sin resolverlo'}>
+          {ultimo ? 'No puedo: terminar' : 'No puedo: pasar'}
         </button>
       </header>
       <PantallaDesafio

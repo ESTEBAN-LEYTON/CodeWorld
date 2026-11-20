@@ -32,10 +32,10 @@ test('VAL-01: consentimiento, prueba de 3 desafíos, encuesta y resultados', asy
   await expect(page.getByText('Desafío 2 de 3')).toBeVisible()
   const probar = page.getByRole('button', { name: '¡A probarlo!' })
   if (await probar.isVisible().catch(() => false)) await probar.click()
-  await page.getByRole('button', { name: 'No puedo resolverlo: pasar' }).click()
+  await page.getByRole('button', { name: 'No puedo: pasar' }).click()
   await expect(page.getByText('Desafío 3 de 3')).toBeVisible()
   if (await probar.isVisible().catch(() => false)) await probar.click()
-  await page.getByRole('button', { name: 'No pude resolverlo: terminar' }).click()
+  await page.getByRole('button', { name: 'No puedo: terminar' }).click()
 
   // Encuesta.
   await expect(page.getByRole('heading', { name: 'Encuesta' })).toBeVisible()

@@ -9,7 +9,7 @@ Modo temporal para la validación con usuarios de noviembre de 2026. Los partici
 | `/validacion` | Participante | Consentimiento (mayor de 18 años y acepta) → 3 desafíos reales (nivel 1: «Primeros pasos» y «La primera curva»; nivel 2: el primero) → encuesta de 14 preguntas → código de participante (P-XXXX) |
 | `/validacion/resultados` | Autor, con la clave | Métricas de OE1 a OE4, promedios por objetivo, comentarios y descarga en CSV |
 
-Por cada desafío se registran los intentos, los patrones de error, el tiempo hasta la primera ejecución y el tiempo hasta resolverlo. El participante puede saltarse un desafío con «No puedo resolverlo». Al final responde si alguien lo ayudó, la escala de 1 a 5 (C1 a C9) y 4 preguntas abiertas (D1 a D4).
+Por cada desafío se registran los intentos, los patrones de error, el tiempo hasta la primera ejecución y el tiempo hasta resolverlo. El participante puede saltarse un desafío con «No puedo: pasar». Al final responde si alguien lo ayudó, la escala de 1 a 5 (C1 a C9) y 4 preguntas abiertas (D1 a D4).
 
 ## Activarla en Render
 
