@@ -212,7 +212,7 @@ function EstadoConexion({ conexion, pendientes, onReintentar }: { conexion: Cone
   )
 }
 
-interface PropsDesafio {
+export interface PropsDesafio {
   alumnoId: string
   desafio: Desafio
   nivel: Nivel
@@ -225,9 +225,11 @@ interface PropsDesafio {
   onIr: (id: string) => void
   onMenu: () => void
   onResultado: (r: ResultadoEjecucion) => void
+  /** Texto del botón que sale del desafío resuelto; la validación con usuarios lo cambia. */
+  textoMenu?: string
 }
 
-function PantallaDesafio(props: PropsDesafio) {
+export function PantallaDesafio(props: PropsDesafio) {
   const { desafio, nivel, siguiente, nuevos, onIr, onMenu, onResultado } = props
   // Primero el recorrido guiado (solo la primera vez) y luego la explicación de los bloques nuevos.
   const [recorrido, setRecorrido] = useState(props.mostrarRecorrido)
@@ -317,7 +319,7 @@ function PantallaDesafio(props: PropsDesafio) {
                       Siguiente desafío →
                     </button>
                   )}
-                  <button onClick={onMenu}>Volver al menú</button>
+                  <button onClick={onMenu}>{props.textoMenu ?? 'Volver al menú'}</button>
                 </div>
               </>
             ) : (

@@ -4,11 +4,21 @@ import { AccesoTutor } from './pantallas/AccesoTutor'
 import { Inicio } from './pantallas/Inicio'
 import { Juego } from './pantallas/Juego'
 import { PanelTutor } from './pantallas/PanelTutor'
+import { ResultadosValidacion } from './pantallas/ResultadosValidacion'
+import { Validacion } from './pantallas/Validacion'
 import { cerrarSesion, guardarSesion, leerSesion, type Sesion } from './sesion'
 
 type Pantalla = 'inicio' | 'acceso-alumno' | 'acceso-tutor'
 
 export default function App() {
+  // TEMPORAL: validación con cliente simulado (docs/validacion.md). No usa ni toca la sesión del juego.
+  const ruta = window.location.pathname.replace(/\/+$/, '')
+  if (ruta === '/validacion') return <Validacion />
+  if (ruta === '/validacion/resultados') return <ResultadosValidacion />
+  return <AppJuego />
+}
+
+function AppJuego() {
   const [sesion, setSesion] = useState<Sesion | null>(leerSesion)
   const [pantalla, setPantalla] = useState<Pantalla>('inicio')
 

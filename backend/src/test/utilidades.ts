@@ -21,11 +21,20 @@ export function enviadorFalso() {
 /** Vacía la base de pruebas y recarga el contenido de los niveles. */
 export async function reiniciarDb(db: Db) {
   await db.$executeRawUnsafe(
-    'TRUNCATE progreso, consentimiento, alumno, tutor, guia_correctiva, desafio, nivel RESTART IDENTITY CASCADE',
+    'TRUNCATE validacion_respuesta, progreso, consentimiento, alumno, tutor, guia_correctiva, desafio, nivel RESTART IDENTITY CASCADE',
   )
   await cargarContenido(db)
 }
 
+export const CLAVE_VALIDACION = 'clave-de-validacion-de-pruebas'
+
 export function appDePruebas(db: Db, enviador: EnviadorCodigo, esperaReenvio2fa?: number) {
-  return crearApp({ db, jwtSecret: SECRETO, enviador, limites: { api: 10_000, login: 10_000 }, esperaReenvio2fa })
+  return crearApp({
+    db,
+    jwtSecret: SECRETO,
+    enviador,
+    limites: { api: 10_000, login: 10_000 },
+    esperaReenvio2fa,
+    claveValidacion: CLAVE_VALIDACION,
+  })
 }

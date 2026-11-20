@@ -113,3 +113,15 @@ model Progreso {
   @@unique([alumnoId, desafioId])
   @@map("progreso")
 }
+
+/// TEMPORAL (validación con cliente simulado, noviembre de 2026): respuestas anónimas de los participantes.
+/// No se relaciona con TUTOR ni con ALUMNO y no guarda nombres, correos ni direcciones IP.
+model ValidacionRespuesta {
+  id       String   @id @default(uuid()) @db.Uuid
+  /// Código corto del participante (P-XXXX), para cruzarlo con las notas de quien observa.
+  codigo   String   @unique
+  creadoEn DateTime @default(now()) @map("creado_en")
+  datos    Json
+
+  @@map("validacion_respuesta")
+}

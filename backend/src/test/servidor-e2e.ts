@@ -4,7 +4,7 @@ import { resolve } from 'node:path'
 import express from 'express'
 import { crearApp } from '../app.js'
 import { crearDb } from '../db.js'
-import { enviadorFalso, reiniciarDb, SECRETO, urlPruebas } from './utilidades.js'
+import { CLAVE_VALIDACION, enviadorFalso, reiniciarDb, SECRETO, urlPruebas } from './utilidades.js'
 
 // Servidor de las pruebas e2e: VACÍA la base de pruebas y expone el último código 2FA para que el
 // navegador pueda completar el login. src/test no se compila, así que nunca llega a producción.
@@ -21,7 +21,7 @@ raiz.get('/__e2e/codigo', (_req, res) => {
   res.json({ codigo: correo.ultimoCodigo() })
 })
 const carpetaFrontend = process.env.CARPETA_FRONTEND ? resolve(process.env.CARPETA_FRONTEND) : undefined
-raiz.use(crearApp({ db, jwtSecret: SECRETO, enviador: correo.enviador, limites: { api: 100_000, login: 100_000 }, carpetaFrontend }))
+raiz.use(crearApp({ db, jwtSecret: SECRETO, enviador: correo.enviador, limites: { api: 100_000, login: 100_000 }, carpetaFrontend, claveValidacion: CLAVE_VALIDACION }))
 
 const puerto = Number(process.env.PORT ?? 3100)
 raiz.listen(puerto, () => {

@@ -20,6 +20,8 @@ crearApp({
   saltosProxy: Number(process.env.SALTOS_PROXY ?? 0),
   // En Render la API también sirve el frontend (ver render.yaml): un solo origen, sin CORS.
   carpetaFrontend: process.env.CARPETA_FRONTEND ? resolve(process.env.CARPETA_FRONTEND) : undefined,
+  // TEMPORAL: activa /validacion mientras dure la validación con usuarios (ver docs/validacion.md).
+  claveValidacion: process.env.VALIDACION_CLAVE || undefined,
 }).listen(puerto, () => {
   console.log(`CodeWorld API escuchando en http://localhost:${puerto}/api`)
 })

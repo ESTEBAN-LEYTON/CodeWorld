@@ -1094,3 +1094,76 @@ button.grande {
     animation: none;
   }
 }
+
+/* TEMPORAL: validación con cliente simulado (/validacion) */
+.formulario.validacion {
+  max-width: 640px;
+}
+
+.caja-consentimiento {
+  background: var(--fondo, #f6f7fb);
+  border: 1px solid var(--borde);
+  border-radius: 0.75rem;
+  padding: 0.25rem 1rem;
+  font-size: 0.95rem;
+}
+
+.pregunta {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pregunta legend {
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.opciones-fila {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.opcion-radio {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px solid var(--borde);
+  border-radius: 0.5rem;
+  padding: 0.4rem 0.7rem;
+  cursor: pointer;
+}
+
+.opcion-radio:has(input:checked) {
+  border-color: var(--primario);
+  outline: 2px solid var(--primario);
+}
+
+.instruccion-escala {
+  margin: 0.5rem 0 0;
+  font-size: 0.9rem;
+}
+
+.campo textarea {
+  font: inherit;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--borde);
+  border-radius: 0.5rem;
+  resize: vertical;
+}
+
+.progreso-validacion {
+  font-weight: 600;
+}
+
+.codigo-participante {
+  font-size: 1.3rem;
+  letter-spacing: 0.08em;
+}
+
+.resultados-validacion {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem;
+}

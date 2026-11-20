@@ -9,6 +9,7 @@ import { servicioAutenticacion } from './servicios/autenticacion.js'
 import { servicioContenido } from './servicios/contenido.js'
 import { enviadorConsola, type EnviadorCodigo } from './servicios/mensajeria.js'
 import { servicioProgreso } from './servicios/progreso.js'
+import { servicioValidacionUsuarios } from './servicios/validacionUsuarios.js'
 
 // ApiGateway (Figuras 6 y 9): CORS, rate limiting, cabeceras de seguridad y enrutamiento
 // hacia ServicioAutenticacion, ServicioContenido y ServicioProgreso.
@@ -28,6 +29,8 @@ export interface Opciones {
   /** Carpeta con el build del frontend (frontend/dist). Si se indica, la API también sirve la aplicación web
    *  desde el mismo origen, como se despliega en Render; si no, el frontend se sirve aparte (Vite). */
   carpetaFrontend?: string
+  /** TEMPORAL: clave para leer las respuestas de la validación con usuarios. Sin ella, /api/validacion no existe. */
+  claveValidacion?: string
 }
 
 export function crearApp({
@@ -39,6 +42,7 @@ export function crearApp({
   saltosProxy = 0,
   esperaReenvio2fa,
   carpetaFrontend,
+  claveValidacion,
 }: Opciones) {
   const app = express()
   app.set('trust proxy', saltosProxy)
@@ -50,7 +54,7 @@ export function crearApp({
   const limitar = (limit: number) => rateLimit({ windowMs: 60_000, limit, standardHeaders: 'draft-8', legacyHeaders: false })
   app.use('/api', limitar(limites.api))
   // Límite más estricto contra fuerza bruta de contraseñas y códigos 2FA.
-  app.use(['/api/auth/tutor/login', '/api/auth/tutor/verificar', '/api/auth/tutor/reenviar', '/api/auth/alumno/login'], limitar(limites.login))
+  app.use(['/api/auth/tutor/login', '/api/auth/tutor/verificar', '/api/auth/tutor/reenviar', '/api/auth/alumno/login', '/api/validacion/resultados'], limitar(limites.login))
 
   app.get('/api/health', async (_req, res) => {
     try {
@@ -64,6 +68,7 @@ export function crearApp({
   app.use('/api', servicioAutenticacion(db, tokens, enviador, esperaReenvio2fa))
   app.use('/api', servicioContenido(db))
   app.use('/api', servicioProgreso(db, tokens))
+  if (claveValidacion) app.use('/api', servicioValidacionUsuarios(db, claveValidacion))
 
   app.use('/api', (_req, res) => {
     res.status(404).json({ error: 'Ruta no encontrada' })

@@ -6,7 +6,7 @@ import request from 'supertest'
 import type { Express } from 'express'
 import { crearDb, type Db } from './db.js'
 import { crearApp } from './app.js'
-import { appDePruebas, enviadorFalso, reiniciarDb, SECRETO, urlPruebas } from './test/utilidades.js'
+import { appDePruebas, CLAVE_VALIDACION, enviadorFalso, reiniciarDb, SECRETO, urlPruebas } from './test/utilidades.js'
 
 // Pruebas de integración de la API contra PostgreSQL (TEST_DATABASE_URL).
 
@@ -332,6 +332,44 @@ describe.skipIf(!urlPruebas)('API de CodeWorld', () => {
       const tutorB = await tutorConSesion('tutor_b')
       const res = await request(app).get(`/api/tutor/alumnos/${alumno.id}/progreso`).set('Authorization', `Bearer ${tutorB}`)
       expect(res.status).toBe(404)
+    })
+  })
+  describe('validación con usuarios (temporal)', () => {
+    const respuesta = {
+      version: 1,
+      perfil: { rol: 'docente', experiencia: 'ninguna', trabajaConNinos: true, dispositivo: 'computador', navegador: 'Chrome' },
+      desafios: [
+        { id: 'inicial-1', titulo: 'Primeros pasos', resuelto: true, intentos: 2, patrones: ['incompleto'], msHastaPrimeraEjecucion: 40_000, msHastaResolver: 70_000 },
+      ],
+      msTotal: 300_000,
+      ayudaExterna: 'no',
+      likert: { C1: 5, C5: null },
+      abiertas: { D1: 'Nada' },
+    }
+
+    it('guarda la respuesta anónima y entrega un código de participante', async () => {
+      const res = await request(app).post('/api/validacion').send(respuesta)
+      expect(res.status).toBe(201)
+      expect(res.body.codigo).toMatch(/^P-[A-Z2-9]{4}$/)
+      const filas = await request(app).get('/api/validacion/resultados').set('x-clave-validacion', CLAVE_VALIDACION)
+      expect(filas.status).toBe(200)
+      expect(filas.body).toHaveLength(1)
+      expect(filas.body[0]).toMatchObject({ codigo: res.body.codigo, ayudaExterna: 'no', perfil: { rol: 'docente' } })
+    })
+
+    it('rechaza respuestas incompletas o con valores fuera de escala', async () => {
+      expect((await request(app).post('/api/validacion').send({ ...respuesta, desafios: [] })).status).toBe(400)
+      expect((await request(app).post('/api/validacion').send({ ...respuesta, likert: { C1: 7 } })).status).toBe(400)
+    })
+
+    it('no entrega los resultados sin la clave', async () => {
+      expect((await request(app).get('/api/validacion/resultados')).status).toBe(401)
+      expect((await request(app).get('/api/validacion/resultados').set('x-clave-validacion', 'otra')).status).toBe(401)
+    })
+
+    it('sin VALIDACION_CLAVE el endpoint no existe', async () => {
+      const sinValidacion = crearApp({ db, jwtSecret: SECRETO })
+      expect((await request(sinValidacion).post('/api/validacion').send(respuesta)).status).toBe(404)
     })
   })
 })
